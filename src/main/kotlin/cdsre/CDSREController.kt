@@ -1,18 +1,15 @@
-package kotlinchatapp
+package cdsre
 
+import javafx.event.ActionEvent
 import javafx.fxml.Initializable
 import java.net.URL
 import java.util.*
 import javafx.fxml.FXML
-import javafx.scene.control.Label
-import javafx.scene.control.MenuBar
-import javafx.scene.control.ScrollPane
+import javafx.scene.control.*
 import javafx.scene.layout.Pane
 import javafx.scene.layout.AnchorPane
-import javafx.scene.control.SplitPane
 import javafx.scene.layout.VBox
-
-
+import java.awt.event.MouseEvent
 
 
 class CDSREController: Initializable {
@@ -26,6 +23,43 @@ class CDSREController: Initializable {
 
     @FXML
     lateinit var menubar: MenuBar
+
+
+    @FXML
+    lateinit var menu_file: Menu
+
+    @FXML
+    lateinit var menuitem_openrom: MenuItem
+
+    @FXML
+    lateinit var menu_openrecent: Menu
+
+    @FXML
+    lateinit var menuitem_close: MenuItem
+
+    @FXML
+    lateinit var menuitem_saverom: MenuItem
+
+    @FXML
+    lateinit var menuitem_saveas: MenuItem
+
+    @FXML
+    lateinit var menuitem_prefs: MenuItem
+
+    @FXML
+    lateinit var menuitem_quit: MenuItem
+
+    @FXML
+    lateinit var menu_edit: Menu
+
+    @FXML
+    lateinit var menu_view: Menu
+
+    @FXML
+    lateinit var menu_help: Menu
+
+    @FXML
+    lateinit var menuitem_help: MenuItem
 
     @FXML
     lateinit var main: SplitPane
@@ -47,4 +81,9 @@ class CDSREController: Initializable {
 
     @FXML
     lateinit var rightstatus: Label
+
+    @FXML
+    fun quit(event: ActionEvent) {
+        System.exit(0)
+    }
 }
