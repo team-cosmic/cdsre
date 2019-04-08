@@ -1,8 +1,7 @@
-package kotlinchatapp
+package cdsre
 
-import cdsre.ClientApp
 import javafx.application.Application
 
-fun main(args : Array<String>) {
+fun main() {
     Application.launch(ClientApp::class.java)
 }
