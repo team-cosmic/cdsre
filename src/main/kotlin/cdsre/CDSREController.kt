@@ -38,7 +38,7 @@ class CDSREController: Initializable {
     lateinit var menu_file: Menu
 
     @FXML
-    lateinit var menuitem_openrom: MenuItem
+    lateinit var menuitem_open: MenuItem
 
     @FXML
     lateinit var menu_openrecent: Menu
@@ -137,11 +137,13 @@ class CDSREController: Initializable {
     }
 
     @FXML
-    fun openROM(event: ActionEvent) {
+    fun openFile(event: ActionEvent) {
         val fileChooser = FileChooser()
-        fileChooser.title = "Open ROM File"
+        fileChooser.title = "Open File"
         fileChooser.extensionFilters.addAll(
-            FileChooser.ExtensionFilter("Nintendo DS ROM", "*.nds")
+            FileChooser.ExtensionFilter("Nintendo DS ROM", "*.nds"),
+            FileChooser.ExtensionFilter("Cosmic ROM Project", "*.crp"),
+            FileChooser.ExtensionFilter("All Files", "*.*")
         )
         fileChooser.showOpenDialog(ClientApp.globalStage)
     }
