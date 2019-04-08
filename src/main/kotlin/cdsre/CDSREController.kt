@@ -11,6 +11,14 @@ import javafx.scene.control.*
 import javafx.scene.layout.Pane
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.VBox
+import java.awt.Desktop
+import java.net.URI
+import javafx.stage.FileChooser
+import java.util.Collections.addAll
+
+
+
+
 
 
 class CDSREController: Initializable {
@@ -63,7 +71,10 @@ class CDSREController: Initializable {
     lateinit var menuitem_viewscript: MenuItem
 
     @FXML
-    lateinit var menuitem_help: MenuItem
+    lateinit var menuitem_about: MenuItem
+
+    @FXML
+    lateinit var menuitem_discord: MenuItem
 
     @FXML
     lateinit var main: SplitPane
@@ -112,5 +123,26 @@ class CDSREController: Initializable {
         this.primaryview.prefHeightProperty().bind(this.view.heightProperty())
         this.view.content = primaryview
         this.leftstatus.text = (event.source as MenuItem).text
+    }
+
+    @FXML
+    fun openLink(event: ActionEvent) {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            when((event.source as MenuItem).text)
+            {
+                menuitem_about.text -> Desktop.getDesktop().browse(URI("https://github.com/team-cosmic/cdsre"))
+                menuitem_discord.text -> Desktop.getDesktop().browse(URI("https://discord.gg/eusTxfA"))
+            }
+        }
+    }
+
+    @FXML
+    fun openROM(event: ActionEvent) {
+        val fileChooser = FileChooser()
+        fileChooser.title = "Open ROM File"
+        fileChooser.extensionFilters.addAll(
+            FileChooser.ExtensionFilter("Nintendo DS ROM", "*.nds")
+        )
+        fileChooser.showOpenDialog(ClientApp.globalStage)
     }
 }
