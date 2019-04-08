@@ -1,15 +1,16 @@
 package cdsre
 
+import javafx.application.Platform
 import javafx.event.ActionEvent
 import javafx.fxml.Initializable
 import java.net.URL
 import java.util.*
 import javafx.fxml.FXML
+import javafx.fxml.FXMLLoader
 import javafx.scene.control.*
 import javafx.scene.layout.Pane
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.VBox
-import java.awt.event.MouseEvent
 
 
 class CDSREController: Initializable {
@@ -59,6 +60,9 @@ class CDSREController: Initializable {
     lateinit var menu_help: Menu
 
     @FXML
+    lateinit var menuitem_viewscript: MenuItem
+
+    @FXML
     lateinit var menuitem_help: MenuItem
 
     @FXML
@@ -69,6 +73,9 @@ class CDSREController: Initializable {
 
     @FXML
     lateinit var view: ScrollPane
+
+    @FXML
+    lateinit var primaryview: AnchorPane
 
     @FXML
     lateinit var rightpanel: AnchorPane
@@ -87,6 +94,23 @@ class CDSREController: Initializable {
      */
     @FXML
     fun quit(event: ActionEvent) {
-        System.exit(0)
+        Platform.exit()
+    }
+
+    @FXML
+    fun switchView(event: ActionEvent) {
+        println("Loading " + (event.source as MenuItem).text + " View")
+
+        var loader: FXMLLoader? = null
+        when((event.source as MenuItem).text)
+        {
+            menuitem_viewscript.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_script.fxml"))
+        }
+
+        this.primaryview = AnchorPane(loader!!.load())
+        this.primaryview.prefWidthProperty().bind(this.view.widthProperty())
+        this.primaryview.prefHeightProperty().bind(this.view.heightProperty())
+        this.view.content = primaryview
+        this.leftstatus.text = (event.source as MenuItem).text
     }
 }
