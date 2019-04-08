@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox
 import java.awt.Desktop
 import java.net.URI
 import javafx.stage.FileChooser
+import java.io.File
 import java.util.Collections.addAll
 
 
@@ -142,9 +143,9 @@ class CDSREController: Initializable {
         fileChooser.title = "Open File"
         fileChooser.extensionFilters.addAll(
             FileChooser.ExtensionFilter("Nintendo DS ROM", "*.nds"),
-            FileChooser.ExtensionFilter("Cosmic ROM Project", "*.crp"),
-            FileChooser.ExtensionFilter("All Files", "*.*")
+            FileChooser.ExtensionFilter("Cosmic ROM Project", "*.crp")
         )
-        fileChooser.showOpenDialog(ClientApp.globalStage)
+
+        var file = fileChooser.showOpenDialog(ClientApp.globalStage) //TODO: Handle this file. If it is a .nds, create a new project wrapping around a ***copy*** of it. If it is a .crp, do some extraction
     }
 }
