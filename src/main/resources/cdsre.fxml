@@ -15,31 +15,31 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="666.0" prefWidth="1006.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="program" prefHeight="666.0" prefWidth="1006.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cdsre.CDSREController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar fx:id="menubar" VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu fx:id="menu_file" mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="Open ROM" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
+            <MenuItem fx:id="menuitem_openrom" mnemonicParsing="false" text="Open ROM" />
+            <Menu fx:id="menu_openrecent" mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save ROM" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem fx:id="menuitem_close" mnemonicParsing="false" text="Close" />
+            <MenuItem fx:id="menuitem_saverom" mnemonicParsing="false" text="Save ROM" />
+            <MenuItem fx:id="menuitem_saveas" mnemonicParsing="false" text="Save As…" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <MenuItem fx:id="menuitem_prefs" mnemonicParsing="false" text="Preferences…" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
+            <MenuItem fx:id="menuitem_quit" mnemonicParsing="false" onAction="#quit" text="Quit" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
+        <Menu fx:id="menu_edit" mnemonicParsing="false" text="Edit">
           <items>
             <MenuItem mnemonicParsing="false" text="Undo" />
             <MenuItem mnemonicParsing="false" text="Redo" />
           </items>
         </Menu>
-            <Menu mnemonicParsing="false" text="View">
+            <Menu fx:id="menu_view" mnemonicParsing="false" text="View">
                <items>
                   <MenuItem mnemonicParsing="false" text="Map Headers" />
                   <MenuItem mnemonicParsing="false" text="Matrix Editor" />
@@ -49,27 +49,27 @@
                   <MenuItem mnemonicParsing="false" text="Event Editor" />
                </items>
             </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu fx:id="menu_help" mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About" />
+            <MenuItem fx:id="menuitem_help" mnemonicParsing="false" text="About" />
           </items>
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.18930957683741648, 0.799554565701559" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane fx:id="main" dividerPositions="0.18930957683741648, 0.799554565701559" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-        <AnchorPane />
-        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+        <AnchorPane fx:id="leftpanel" />
+        <ScrollPane fx:id="view" prefHeight="-1.0" prefWidth="-1.0">
           <content>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0" />
           </content>
         </ScrollPane>
-        <AnchorPane />
+        <AnchorPane fx:id="rightpanel" />
       </items>
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
       <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
+        <Label fx:id="leftstatus" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
           <font>
             <Font size="11.0" fx:id="x3" />
           </font>
@@ -77,8 +77,8 @@
             <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
           </textFill>
         </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
+        <Pane fx:id="bottom" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Label fx:id="rightstatus" font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
       </children>
       <padding>
         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
