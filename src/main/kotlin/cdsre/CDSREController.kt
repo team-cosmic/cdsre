@@ -82,6 +82,9 @@ class CDSREController: Initializable {
     @FXML
     lateinit var rightstatus: Label
 
+    /**
+     * Quits the program.
+     */
     @FXML
     fun quit(event: ActionEvent) {
         System.exit(0)
