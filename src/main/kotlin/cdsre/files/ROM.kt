@@ -2,7 +2,7 @@ package cdsre.files
 
 import java.io.File
 
-class ROM private constructor(val file: File) {
+class ROM private constructor(file: File) {
 
     companion object {
 
