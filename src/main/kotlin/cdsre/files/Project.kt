@@ -2,9 +2,10 @@ package cdsre.files
 
 import java.io.File
 
-class Project private constructor(val file: File) {
+class Project private constructor(file: File) {
 
     companion object {
+
         @JvmStatic
         fun loadProject(file: File) : Project {
             // TODO
@@ -22,6 +23,7 @@ class Project private constructor(val file: File) {
             // TODO
             return Project(file)
         }
+
     }
 
     fun saveProject() {
