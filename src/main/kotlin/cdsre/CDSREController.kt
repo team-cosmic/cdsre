@@ -16,18 +16,11 @@ import javafx.scene.layout.VBox
 import java.awt.Desktop
 import java.net.URI
 import javafx.stage.FileChooser
-import java.io.File
-import java.util.Collections.addAll
-
-
-
-
 
 
 class CDSREController: Initializable {
 
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
-
     }
 
     @FXML
@@ -35,7 +28,6 @@ class CDSREController: Initializable {
 
     @FXML
     lateinit var menubar: MenuBar
-
 
     @FXML
     lateinit var menu_file: Menu
@@ -104,9 +96,6 @@ class CDSREController: Initializable {
     lateinit var view: ScrollPane
 
     @FXML
-    lateinit var primaryview: AnchorPane
-
-    @FXML
     lateinit var rightpanel: AnchorPane
 
     @FXML
@@ -130,22 +119,36 @@ class CDSREController: Initializable {
     fun switchView(event: ActionEvent) {
         println("Loading " + (event.source as MenuItem).text + " View")
 
-        var loader: FXMLLoader? = null
+
+        var primaryview: AnchorPane?
+        var detailpanel: AnchorPane?
+
+        var viewLoader: FXMLLoader? = null
+        var detailLoader: FXMLLoader? = null
+
         when((event.source as MenuItem).text)
         {
-            menuitem_viewmapheaders.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_mapheaders.fxml"))
-            menuitem_viewmatrix.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_matrix.fxml"))
-            menuitem_viewmap.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_map.fxml"))
-            menuitem_viewtext.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_text.fxml"))
-            menuitem_viewscript.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_script.fxml"))
-            menuitem_viewevent.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_event.fxml"))
+            menuitem_viewmapheaders.text -> {
+                viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("view_mapheaders.fxml"))
+                detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("details_mapheaders.fxml"))
+            }
+            menuitem_viewmatrix.text -> viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("view_matrix.fxml"))
+            menuitem_viewmap.text -> viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("view_map.fxml"))
+            menuitem_viewtext.text -> viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("view_text.fxml"))
+            menuitem_viewscript.text -> viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("view_script.fxml"))
+            menuitem_viewevent.text -> viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("view_event.fxml"))
         }
 
-        this.primaryview = AnchorPane(loader!!.load())
-        this.primaryview.prefWidthProperty().bind(this.view.widthProperty())
-        this.primaryview.prefHeightProperty().bind(this.view.heightProperty())
-        this.view.content = primaryview
+        primaryview = AnchorPane(viewLoader!!.load())
+        primaryview.prefWidthProperty().bind(this.view.widthProperty())
+        primaryview.prefHeightProperty().bind(this.view.heightProperty())
+        view.content = primaryview
         this.leftstatus.text = (event.source as MenuItem).text
+
+        detailpanel = AnchorPane(detailLoader!!.load())
+        detailpanel.prefWidthProperty().bind(this.rightpanel.widthProperty())
+        detailpanel.prefHeightProperty().bind(this.rightpanel.heightProperty())
+        rightpanel.children.setAll(detailpanel)
     }
 
     @FXML
