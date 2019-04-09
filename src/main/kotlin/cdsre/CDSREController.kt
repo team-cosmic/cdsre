@@ -1,15 +1,25 @@
 package cdsre
 
+import javafx.application.Platform
 import javafx.event.ActionEvent
 import javafx.fxml.Initializable
 import java.net.URL
 import java.util.*
 import javafx.fxml.FXML
+import javafx.fxml.FXMLLoader
 import javafx.scene.control.*
 import javafx.scene.layout.Pane
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.VBox
-import java.awt.event.MouseEvent
+import java.awt.Desktop
+import java.net.URI
+import javafx.stage.FileChooser
+import java.io.File
+import java.util.Collections.addAll
+
+
+
+
 
 
 class CDSREController: Initializable {
@@ -29,7 +39,7 @@ class CDSREController: Initializable {
     lateinit var menu_file: Menu
 
     @FXML
-    lateinit var menuitem_openrom: MenuItem
+    lateinit var menuitem_open: MenuItem
 
     @FXML
     lateinit var menu_openrecent: Menu
@@ -59,7 +69,13 @@ class CDSREController: Initializable {
     lateinit var menu_help: Menu
 
     @FXML
-    lateinit var menuitem_help: MenuItem
+    lateinit var menuitem_viewscript: MenuItem
+
+    @FXML
+    lateinit var menuitem_about: MenuItem
+
+    @FXML
+    lateinit var menuitem_discord: MenuItem
 
     @FXML
     lateinit var main: SplitPane
@@ -69,6 +85,9 @@ class CDSREController: Initializable {
 
     @FXML
     lateinit var view: ScrollPane
+
+    @FXML
+    lateinit var primaryview: AnchorPane
 
     @FXML
     lateinit var rightpanel: AnchorPane
@@ -82,8 +101,51 @@ class CDSREController: Initializable {
     @FXML
     lateinit var rightstatus: Label
 
+    /**
+     * Quits the program.
+     */
     @FXML
     fun quit(event: ActionEvent) {
-        System.exit(0)
+        Platform.exit()
+    }
+
+    @FXML
+    fun switchView(event: ActionEvent) {
+        println("Loading " + (event.source as MenuItem).text + " View")
+
+        var loader: FXMLLoader? = null
+        when((event.source as MenuItem).text)
+        {
+            menuitem_viewscript.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_script.fxml"))
+        }
+
+        this.primaryview = AnchorPane(loader!!.load())
+        this.primaryview.prefWidthProperty().bind(this.view.widthProperty())
+        this.primaryview.prefHeightProperty().bind(this.view.heightProperty())
+        this.view.content = primaryview
+        this.leftstatus.text = (event.source as MenuItem).text
+    }
+
+    @FXML
+    fun openLink(event: ActionEvent) {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            when((event.source as MenuItem).text)
+            {
+                menuitem_about.text -> Desktop.getDesktop().browse(URI("https://github.com/team-cosmic/cdsre"))
+                menuitem_discord.text -> Desktop.getDesktop().browse(URI("https://discord.gg/eusTxfA"))
+            }
+        }
+    }
+
+    @FXML
+    fun openFile(event: ActionEvent) {
+        val fileChooser = FileChooser()
+        fileChooser.title = "Open File"
+        fileChooser.extensionFilters.addAll(
+            FileChooser.ExtensionFilter("Nintendo DS ROM", "*.nds"),
+            FileChooser.ExtensionFilter("Cosmic ROM Project", "*.crp")
+        )
+
+        var file = fileChooser.showOpenDialog(ClientApp.globalStage) //TODO: Handle this file. If it is a .nds, create a new project wrapping around a ***copy*** of it. If it is a .crp, do some extraction
     }
 }

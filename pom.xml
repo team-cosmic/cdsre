@@ -50,6 +50,11 @@
             <artifactId>kotlinx-coroutines-core</artifactId>
             <version>1.2.0-alpha-2</version>
         </dependency>
+        <dependency>
+            <groupId>org.fxmisc.richtext</groupId>
+            <artifactId>richtextfx</artifactId>
+            <version>0.9.3</version>
+        </dependency>
     </dependencies>
 
     <build>

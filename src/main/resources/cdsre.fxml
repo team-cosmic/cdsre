@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -21,7 +22,10 @@
       <menus>
         <Menu fx:id="menu_file" mnemonicParsing="false" text="File">
           <items>
-            <MenuItem fx:id="menuitem_openrom" mnemonicParsing="false" text="Open ROM" />
+            <MenuItem fx:id="menuitem_open" mnemonicParsing="false" onAction="#openFile" text="Open">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
             <Menu fx:id="menu_openrecent" mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="menuitem_close" mnemonicParsing="false" text="Close" />
@@ -30,13 +34,22 @@
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="menuitem_prefs" mnemonicParsing="false" text="Preferences…" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="menuitem_quit" mnemonicParsing="false" onAction="#quit" text="Quit" />
+            <MenuItem fx:id="menuitem_quit" mnemonicParsing="false" onAction="#quit" text="Quit">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
           </items>
         </Menu>
         <Menu fx:id="menu_edit" mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
+            <MenuItem fx:id="menuitem_undo" mnemonicParsing="false" text="Undo">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+            <MenuItem fx:id="menuitem_redo" mnemonicParsing="false" text="Redo">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
           </items>
         </Menu>
             <Menu fx:id="menu_view" mnemonicParsing="false" text="View">
@@ -45,13 +58,18 @@
                   <MenuItem mnemonicParsing="false" text="Matrix Editor" />
                   <MenuItem mnemonicParsing="false" text="Map Editor" />
                   <MenuItem mnemonicParsing="false" text="Text Editor" />
-                  <MenuItem mnemonicParsing="false" text="Script Editor" />
+                  <MenuItem fx:id="menuitem_viewscript" mnemonicParsing="false" onAction="#switchView" text="Script Editor">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
                   <MenuItem mnemonicParsing="false" text="Event Editor" />
                </items>
             </Menu>
         <Menu fx:id="menu_help" mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem fx:id="menuitem_help" mnemonicParsing="false" text="About" />
+            <MenuItem fx:id="menuitem_about" mnemonicParsing="false" onAction="#openLink" text="About" />
+                  <MenuItem fx:id="menuitem_discord" mnemonicParsing="false" onAction="#openLink" text="Discord" />
           </items>
         </Menu>
       </menus>
@@ -59,11 +77,7 @@
     <SplitPane fx:id="main" dividerPositions="0.18930957683741648, 0.799554565701559" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane fx:id="leftpanel" />
-        <ScrollPane fx:id="view" prefHeight="-1.0" prefWidth="-1.0">
-          <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0" />
-          </content>
-        </ScrollPane>
+        <ScrollPane fx:id="view" prefHeight="-1.0" prefWidth="-1.0" />
         <AnchorPane fx:id="rightpanel" />
       </items>
     </SplitPane>
