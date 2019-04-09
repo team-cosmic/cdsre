@@ -5,9 +5,7 @@ import javafx.fxml.Initializable
 import javafx.scene.layout.AnchorPane
 import org.fxmisc.richtext.CodeArea
 import org.fxmisc.richtext.LineNumberFactory
-import org.reactfx.Subscription
 import java.net.URL
-import java.time.Duration
 import java.util.*
 
 class ScriptViewController: Initializable {

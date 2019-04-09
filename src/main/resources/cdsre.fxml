@@ -54,16 +54,16 @@
         </Menu>
             <Menu fx:id="menu_view" mnemonicParsing="false" text="View">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Map Headers" />
-                  <MenuItem mnemonicParsing="false" text="Matrix Editor" />
-                  <MenuItem mnemonicParsing="false" text="Map Editor" />
-                  <MenuItem mnemonicParsing="false" text="Text Editor" />
+                  <MenuItem fx:id="menuitem_viewmapheaders" mnemonicParsing="false" onAction="#switchView" text="Map Headers" />
+                  <MenuItem fx:id="menuitem_viewmatrix" mnemonicParsing="false" onAction="#switchView" text="Matrix Editor" />
+                  <MenuItem fx:id="menuitem_viewmap" mnemonicParsing="false" onAction="#switchView" text="Map Editor" />
+                  <MenuItem fx:id="menuitem_viewtext" mnemonicParsing="false" onAction="#switchView" text="Text Editor" />
                   <MenuItem fx:id="menuitem_viewscript" mnemonicParsing="false" onAction="#switchView" text="Script Editor">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Event Editor" />
+                  <MenuItem fx:id="menuitem_viewevent" mnemonicParsing="false" onAction="#switchView" text="Event Editor" />
                </items>
             </Menu>
         <Menu fx:id="menu_help" mnemonicParsing="false" text="Help">

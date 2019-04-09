@@ -69,7 +69,22 @@ class CDSREController: Initializable {
     lateinit var menu_help: Menu
 
     @FXML
+    lateinit var menuitem_viewmapheaders: MenuItem
+
+    @FXML
+    lateinit var menuitem_viewmatrix: MenuItem
+
+    @FXML
+    lateinit var menuitem_viewmap: MenuItem
+
+    @FXML
+    lateinit var menuitem_viewtext: MenuItem
+
+    @FXML
     lateinit var menuitem_viewscript: MenuItem
+
+    @FXML
+    lateinit var menuitem_viewevent: MenuItem
 
     @FXML
     lateinit var menuitem_about: MenuItem
@@ -116,7 +131,12 @@ class CDSREController: Initializable {
         var loader: FXMLLoader? = null
         when((event.source as MenuItem).text)
         {
+            menuitem_viewmapheaders.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_mapheaders.fxml"))
+            menuitem_viewmatrix.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_matrix.fxml"))
+            menuitem_viewmap.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_map.fxml"))
+            menuitem_viewtext.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_text.fxml"))
             menuitem_viewscript.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_script.fxml"))
+            menuitem_viewevent.text -> loader = FXMLLoader(this.javaClass.classLoader.getResource("view_event.fxml"))
         }
 
         this.primaryview = AnchorPane(loader!!.load())
