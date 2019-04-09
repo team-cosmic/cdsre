@@ -10,22 +10,24 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="program" prefHeight="666.0" prefWidth="1006.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cdsre.CDSREController">
-  <children>
-    <MenuBar fx:id="menubar" VBox.vgrow="NEVER">
+
+<BorderPane prefHeight="679.0" prefWidth="968.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cdsre.CDSREController">
+   <top>
+    <MenuBar fx:id="menubar" prefWidth="1055.0" BorderPane.alignment="CENTER">
       <menus>
         <Menu fx:id="menu_file" mnemonicParsing="false" text="File">
           <items>
             <MenuItem fx:id="menuitem_open" mnemonicParsing="false" onAction="#openFile" text="Open">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
+                     </accelerator>
+                  </MenuItem>
             <Menu fx:id="menu_openrecent" mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="menuitem_close" mnemonicParsing="false" text="Close" />
@@ -37,7 +39,8 @@
             <MenuItem fx:id="menuitem_quit" mnemonicParsing="false" onAction="#quit" text="Quit">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
+                     </accelerator>
+                  </MenuItem>
           </items>
         </Menu>
         <Menu fx:id="menu_edit" mnemonicParsing="false" text="Edit">
@@ -45,25 +48,47 @@
             <MenuItem fx:id="menuitem_undo" mnemonicParsing="false" text="Undo">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
+                     </accelerator>
+                  </MenuItem>
             <MenuItem fx:id="menuitem_redo" mnemonicParsing="false" text="Redo">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
+                     </accelerator>
+                  </MenuItem>
           </items>
         </Menu>
             <Menu fx:id="menu_view" mnemonicParsing="false" text="View">
                <items>
-                  <MenuItem fx:id="menuitem_viewmapheaders" mnemonicParsing="false" onAction="#switchView" text="Map Headers" />
-                  <MenuItem fx:id="menuitem_viewmatrix" mnemonicParsing="false" onAction="#switchView" text="Matrix Editor" />
-                  <MenuItem fx:id="menuitem_viewmap" mnemonicParsing="false" onAction="#switchView" text="Map Editor" />
-                  <MenuItem fx:id="menuitem_viewtext" mnemonicParsing="false" onAction="#switchView" text="Text Editor" />
+                  <MenuItem fx:id="menuitem_viewmapheaders" mnemonicParsing="false" onAction="#switchView" text="Map Headers">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="menuitem_viewmatrix" mnemonicParsing="false" onAction="#switchView" text="Matrix Editor">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="menuitem_viewmap" mnemonicParsing="false" onAction="#switchView" text="Map Editor">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="menuitem_viewtext" mnemonicParsing="false" onAction="#switchView" text="Text Editor">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
                   <MenuItem fx:id="menuitem_viewscript" mnemonicParsing="false" onAction="#switchView" text="Script Editor">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem fx:id="menuitem_viewevent" mnemonicParsing="false" onAction="#switchView" text="Event Editor" />
+                  <MenuItem fx:id="menuitem_viewevent" mnemonicParsing="false" onAction="#switchView" text="Event Editor">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
                </items>
             </Menu>
         <Menu fx:id="menu_help" mnemonicParsing="false" text="Help">
@@ -74,14 +99,9 @@
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane fx:id="main" dividerPositions="0.18930957683741648, 0.799554565701559" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <items>
-        <AnchorPane fx:id="leftpanel" />
-        <ScrollPane fx:id="view" prefHeight="-1.0" prefWidth="-1.0" />
-        <AnchorPane fx:id="rightpanel" />
-      </items>
-    </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+   </top>
+   <bottom>
+    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" BorderPane.alignment="CENTER">
       <children>
         <Label fx:id="leftstatus" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
           <font>
@@ -98,5 +118,18 @@
         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
       </padding>
     </HBox>
-  </children>
-</VBox>
+   </bottom>
+   <center>
+      <SplitPane dividerPositions="0.2919254658385093, 0.6997929606625258" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane fx:id="leftpanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+              <ScrollPane fx:id="view" prefHeight="153.0" prefWidth="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane fx:id="rightpanel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>
