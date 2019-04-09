@@ -8,7 +8,7 @@ data class NARCFilename(
     val parentDir: UShort
     )
 
-data class NARCFile(
-    val size: UInt,
-    val data: ByteArray
-)
+data class NARCFile(var data: ByteArray) {
+    val size: UInt
+        get() = data.size.toUInt()
+}

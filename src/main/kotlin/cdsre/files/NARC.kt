@@ -3,6 +3,7 @@ package cdsre.files
 import com.google.common.io.LittleEndianDataInputStream
 import java.io.File
 
+@kotlin.ExperimentalUnsignedTypes
 fun LittleEndianDataInputStream.readUnsignedInt() = this.readInt().toUInt()
 
 @kotlin.ExperimentalUnsignedTypes
@@ -19,42 +20,63 @@ class NARC private constructor(file: File?, name: String = "") {
 
     private val BAD_MAGIC: String = "magic does not match expected value. File corrupted?"
 
-    val filename: String = file?.toString() ?: name
+    val filename: String = file?.name ?: "$name.narc"
 
-    val fileSize: UInt
+    val fileSize: UInt // TODO: Make this a getter based on files and stuff
+
     val headerSize: UShort
-    val numSections: UShort
+        get() = 16u
 
-    var allocationTable: List<NARCAlloc>
-    var filenameTable: List<NARCFilename>
-    var files: List<NARCFile>
+    val numSections: UShort
+        get() = 3u
+
+    val numFiles: UInt
+        get() = files.size.toUInt()
+
+    val fatbHeaderSize: UInt
+        get() = 12u
+
+    val fatbSize: UInt
+        get() = fatbHeaderSize + files.size.toUInt() * 8u
+
+    val fntbSize: UInt
+        get() = throw NotImplementedError()
+
+    val fimgSize: UInt
+        get() {
+            var out = 8u
+            for (file in files) {
+                out += file.size
+            }
+            return out
+        }
+
+    protected var allocationTable: List<NARCAlloc>
+    var filenameTable: MutableList<NARCFilename>
+    var files: MutableList<NARCFile>
 
     init {
         if (file == null) {
             fileSize = 0u
-            headerSize = 0u
-            numSections = 3u
 
             allocationTable = listOf()
-            filenameTable = listOf()
-            files = listOf()
+            filenameTable = mutableListOf()
+            files = mutableListOf()
         } else {
             val dataReader = LittleEndianDataInputStream(file.inputStream())
             // Read in offsets
             val magic = dataReader.readUnsignedInt()
             if (magic != 0x4E415243u && magic != 0x4352414Eu) {
-                System.err.println("NARC file " + BAD_MAGIC)
+                System.err.println("NARC file $BAD_MAGIC")
             }
             val constant = dataReader.readUnsignedInt()
-            System.out.println("Constant: " + magic)
+            System.out.println("Constant: $magic")
 
             fileSize = dataReader.readUnsignedInt()
-            headerSize = dataReader.readUnsignedShort().toUShort()
-            numSections = dataReader.readUnsignedShort().toUShort()
+            dataReader.skip(2) // Skip header size
+            dataReader.skip(2) // Skip number of sections
 
-            System.out.println("File Size: " + fileSize)
-            System.out.println("Header Size: " + headerSize)
-            System.out.println("Number of Sections: " + numSections)
+            System.out.println("File Size: $fileSize")
 
             allocationTable = readFATB(dataReader)
             filenameTable = readFNTB(dataReader)
@@ -69,15 +91,15 @@ class NARC private constructor(file: File?, name: String = "") {
     protected fun readFATB(reader: LittleEndianDataInputStream): List<NARCAlloc> {
         val magic = reader.readUnsignedInt()
         if (magic != 0x42544146u && magic != 0x46415442u) {
-            System.err.println("Allocation table " + BAD_MAGIC)
+            System.err.println("Allocation table $BAD_MAGIC")
         }
 
-        var newList: MutableList<NARCAlloc> = ArrayList()
+        val newList: MutableList<NARCAlloc> = ArrayList()
 
         val size = reader.readUnsignedInt()
-        System.out.println("Alloc Size: " + size)
+        System.out.println("Alloc Size: $size")
         val numFiles = reader.readUnsignedInt()
-        System.out.println("Number of files: " + numFiles)
+        System.out.println("Number of files: $numFiles")
 
         for (i in 1u..numFiles) {
             val start = reader.readUnsignedInt()
@@ -88,37 +110,35 @@ class NARC private constructor(file: File?, name: String = "") {
         return newList
     }
 
-    protected fun readFNTB(reader: LittleEndianDataInputStream): List<NARCFilename> {
+    protected fun readFNTB(reader: LittleEndianDataInputStream): MutableList<NARCFilename> {
         val magic = reader.readUnsignedInt()
         if (magic != 0x42544E46u && magic != 0x464E5442u) {
-            System.err.println("Filename table " + BAD_MAGIC)
+            System.err.println("Filename table $BAD_MAGIC")
         }
 
         val sectionSize = reader.readUnsignedInt()
-        System.out.println("FNTB Size: " + sectionSize)
+        System.out.println("FNTB Size: $sectionSize")
         reader.skip(sectionSize.toLong() - 8)
-        return listOf()
+        return mutableListOf()
     }
 
-    protected fun readFIMG(reader: LittleEndianDataInputStream): List<NARCFile> {
+    protected fun readFIMG(reader: LittleEndianDataInputStream): MutableList<NARCFile> {
         val magic = reader.readUnsignedInt()
         if (magic != 0x474D4946u && magic != 0x46494D47u) {
-            System.err.println("Image Table " + BAD_MAGIC)
+            System.err.println("Image Table $BAD_MAGIC")
         }
         reader.skip(4)
 
-        var newList: MutableList<NARCFile> = ArrayList()
+        val newList: MutableList<NARCFile> = ArrayList()
 
         for (alloc in allocationTable) {
             val size = alloc.end - alloc.start
-            var array: ByteArray = ByteArray(size.toInt())
+            val array = ByteArray(size.toInt())
             reader.read(array)
-            newList.add(NARCFile(size, array))
+            newList.add(NARCFile(array))
         }
 
         return newList
     }
-
-    // TODO: Whatever you put in here
 
 }
