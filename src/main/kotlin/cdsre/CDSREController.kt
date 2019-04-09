@@ -1,5 +1,7 @@
 package cdsre
 
+import cdsre.files.Project
+import cdsre.files.ROM
 import javafx.application.Platform
 import javafx.event.ActionEvent
 import javafx.fxml.Initializable
@@ -146,6 +148,20 @@ class CDSREController: Initializable {
             FileChooser.ExtensionFilter("Cosmic ROM Project", "*.crp")
         )
 
-        var file = fileChooser.showOpenDialog(ClientApp.globalStage) //TODO: Handle this file. If it is a .nds, create a new project wrapping around a ***copy*** of it. If it is a .crp, do some extraction
+        val file = fileChooser.showOpenDialog(ClientApp.globalStage)
+
+        // If file is a .nds, create a new project wrapping around a ***copy*** of it.
+        // If it is a .crp, do some extraction
+        var project: Project? = null
+        if (file.extension == "crp") {
+            project = Project.loadProject(file)
+        } else if (file.extension == "nds") {
+            var originalRom: ROM = ROM.loadROM(file)
+            // TODO: copy old ROM to new ROM. Open project creation menu here
+            var newRom: ROM = originalRom
+            project = Project.createProject("", newRom)
+        }
+
+        // TODO: Set active project to project
     }
 }

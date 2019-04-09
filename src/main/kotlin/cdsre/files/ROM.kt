@@ -1,12 +1,14 @@
 package cdsre.files
 
-class ROM private constructor(val filename: String) {
+import java.io.File
+
+class ROM private constructor(val file: File) {
 
     companion object {
 
         @JvmStatic
-        fun loadROM(filename: String) {
-            ROM(filename)
+        fun loadROM(file: File) : ROM {
+            return ROM(file)
         }
 
     }
