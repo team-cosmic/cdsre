@@ -3,40 +3,50 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mapheaders_details" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cdsre.controllers.details.MapHeaderDetailController">
+<AnchorPane fx:id="mapheaders_details" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cdsre.controllers.details.MapHeaderDetailController">
    <children>
-      <TitledPane animated="false" minHeight="0.0" minWidth="0.0" text="Areas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-              </rowConstraints>
+            <VBox>
                <children>
-                  <Label text="Area Data" />
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
-                  <Label text="Building Package" GridPane.rowIndex="1" />
-                  <Label text="Main Tileset" GridPane.rowIndex="2" />
-                  <Label text="Lighting" GridPane.rowIndex="3" />
-                  <CheckBox mnemonicParsing="false" text="Enabled" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Spinner fx:id="buildingpackage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Spinner fx:id="maintileset" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TitledPane expanded="false" text="Areas">
+                     <content>
+                        <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Area Data" />
+                              <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
+                              <Label text="Building Package" GridPane.rowIndex="1" />
+                              <Label text="Main Tileset" GridPane.rowIndex="2" />
+                              <Label text="Lighting" GridPane.rowIndex="3" />
+                              <CheckBox mnemonicParsing="false" text="Enabled" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Spinner fx:id="buildingpackage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Spinner fx:id="maintileset" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                     </content>
+                  </TitledPane>
                </children>
-            </GridPane>
+            </VBox>
          </content>
-      </TitledPane>
+      </ScrollPane>
    </children>
 </AnchorPane>
