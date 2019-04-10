@@ -208,7 +208,8 @@ class CDSREController: Initializable {
 			FileChooser.ExtensionFilter("CDSRE Files", "*.nds", "*.crp")
 		)
 
-		val file = fileChooser.showOpenDialog(ClientApp.globalStage) ?: return //If file is null, then no file was selected; simply do nothing
+		val file = fileChooser.showOpenDialog(ClientApp.globalStage)
+			?: return //If file is null, then no file was selected; simply do nothing
 
 		// If file is a .nds, create a new project wrapping around a ***copy*** of it.
 		// If it is a .crp, do some extraction
