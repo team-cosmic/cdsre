@@ -207,11 +207,12 @@ class CDSREController: Initializable {
 			FileChooser.ExtensionFilter("Cosmic ROM Project", "*.crp")
 		)
 
-		val file = fileChooser.showOpenDialog(ClientApp.globalStage)
+		val file = fileChooser.showOpenDialog(ClientApp.globalStage) ?: return //If file is null, then no file was selected; simply do nothing
 
 		// If file is a .nds, create a new project wrapping around a ***copy*** of it.
 		// If it is a .crp, do some extraction
 		var project: Project? = null
+
 		if(file.extension == "crp") {
 			project = Project.loadProject(file)
 		} else if(file.extension == "nds") {
@@ -220,6 +221,9 @@ class CDSREController: Initializable {
 			// TODO: Open project creation dialog here
 			// TODO: Unpack ROM into project location
 			project = Project.createProject("", projectName)
+		} else {
+			System.err.println("An invalid file has somehow been loaded? Nixing file!")
+			return
 		}
 
 		// TODO: Set active project to project
