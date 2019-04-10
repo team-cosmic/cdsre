@@ -17,6 +17,8 @@ class ClientApp : Application() {
 
         stage.scene = Scene(root)
         stage.title = "CDSRE v1.0"
+
+        stage.scene.stylesheets.add(this.javaClass.classLoader.getResource("main.css").toExternalForm())
         stage.show()
     }
 
