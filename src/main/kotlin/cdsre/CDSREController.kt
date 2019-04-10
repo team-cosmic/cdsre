@@ -33,6 +33,9 @@ class CDSREController: Initializable {
     lateinit var menu_file: Menu
 
     @FXML
+    lateinit var menuitem_new: MenuItem
+
+    @FXML
     lateinit var menuitem_open: MenuItem
 
     @FXML
@@ -131,26 +134,32 @@ class CDSREController: Initializable {
             menuitem_viewmapheaders.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_mapheaders.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_mapheaders.fxml"))
+                menuitem_new.isDisable = true
             }
             menuitem_viewmatrix.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_matrix.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_matrix.fxml"))
+                menuitem_new.isDisable = true
             }
             menuitem_viewmap.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_map.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_map.fxml"))
+                menuitem_new.isDisable = true
             }
             menuitem_viewtext.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_text.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_text.fxml"))
+                menuitem_new.isDisable = false
             }
             menuitem_viewscript.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_script.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_script.fxml"))
+                menuitem_new.isDisable = false
             }
             menuitem_viewevent.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_event.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_event.fxml"))
+                menuitem_new.isDisable = true
             }
         }
 
