@@ -6,12 +6,11 @@ import javafx.scene.layout.AnchorPane
 import java.net.URL
 import java.util.*
 
-
 class MatrixDetailController: Initializable {
 
-    @FXML
-    lateinit var matrix_details: AnchorPane
+	@FXML
+	lateinit var matrix_details: AnchorPane
 
-    override fun initialize(p0: URL?, p1: ResourceBundle?) {
-    }
+	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+	}
 }

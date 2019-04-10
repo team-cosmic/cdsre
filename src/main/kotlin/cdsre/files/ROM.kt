@@ -4,29 +4,27 @@ import java.io.File
 
 class ROM private constructor(file: File) {
 
-    companion object {
+	companion object {
 
-        @JvmStatic
-        fun loadROM(file: File) : ROM {
-            return ROM(file)
-        }
+		@JvmStatic
+		fun loadROM(file: File): ROM {
+			return ROM(file)
+		}
+	}
 
-    }
+	// TODO: Properties
+	val narcs: MutableList<NARC> = loadNarcs()
 
-    // TODO: Properties
-    val narcs: MutableList<NARC> = loadNarcs()
+	init {
+		// TODO: load ROM
+	}
 
-    init {
-        // TODO: load ROM
-    }
+	private fun loadNarcs(): MutableList<NARC> {
+		// TODO: Load NARC files
+		return mutableListOf()
+	}
 
-    private fun loadNarcs(): MutableList<NARC> {
-        // TODO: Load NARC files
-        return mutableListOf()
-    }
-
-    fun save() {
-        // TODO: Save ROM
-    }
-
+	fun save() {
+		// TODO: Save ROM
+	}
 }
