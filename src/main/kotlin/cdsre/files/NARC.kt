@@ -1,10 +1,32 @@
 package cdsre.files
 
 import com.google.common.io.LittleEndianDataInputStream
+import com.google.common.io.LittleEndianDataOutputStream
 import java.io.File
 
 @kotlin.ExperimentalUnsignedTypes
 fun LittleEndianDataInputStream.readUnsignedInt() = this.readInt().toUInt()
+
+@kotlin.ExperimentalUnsignedTypes
+fun LittleEndianDataInputStream.readString(len: UInt): String {
+    var out: String = ""
+    for (i in 1u..len) {
+        out += this.read().toChar()
+    }
+    return out
+}
+
+@kotlin.ExperimentalUnsignedTypes
+fun LittleEndianDataOutputStream.writeUnsignedShort(out: UShort) = this.writeShort(out.toInt())
+
+@kotlin.ExperimentalUnsignedTypes
+fun LittleEndianDataOutputStream.writeUnsignedInt(out: UInt) = this.writeInt(out.toInt())
+
+fun LittleEndianDataOutputStream.writeString(str: String) {
+    for (char in str) {
+        this.writeByte(char.toInt())
+    }
+}
 
 @kotlin.ExperimentalUnsignedTypes
 class NARC private constructor(file: File?, name: String = "") {
@@ -40,7 +62,13 @@ class NARC private constructor(file: File?, name: String = "") {
         get() = fatbHeaderSize + files.size.toUInt() * 8u
 
     val fntbSize: UInt
-        get() = throw NotImplementedError()
+        get() {
+            var out = 8u
+            for (item in filenameTable) {
+                out += item.size
+            }
+            return out
+        }
 
     val fimgSize: UInt
         get() {
@@ -85,6 +113,8 @@ class NARC private constructor(file: File?, name: String = "") {
             System.out.println(allocationTable)
             System.out.println(filenameTable)
             System.out.println(files)
+
+            dataReader.close()
         }
     }
 
@@ -118,8 +148,28 @@ class NARC private constructor(file: File?, name: String = "") {
 
         val sectionSize = reader.readUnsignedInt()
         System.out.println("FNTB Size: $sectionSize")
-        reader.skip(sectionSize.toLong() - 8)
-        return mutableListOf()
+
+        val newList: MutableList<NARCFilename> = ArrayList()
+
+        var pos: UInt = 8u
+        while (pos < sectionSize) {
+            val startOffset = reader.readUnsignedInt()
+            val firstFilePos = reader.readUnsignedShort().toUShort()
+            val parentDir = reader.readUnsignedShort().toUShort()
+            pos += 8u
+
+            var name: String? = null
+            if (pos < sectionSize) {
+                val nameSize = reader.readUnsignedByte().toUByte()
+                System.out.println(nameSize)
+                name = reader.readString(nameSize.toUInt())
+                pos += 1u + nameSize
+            }
+
+            newList.add(NARCFilename(startOffset, firstFilePos, parentDir, name))
+        }
+
+        return newList
     }
 
     protected fun readFIMG(reader: LittleEndianDataInputStream): MutableList<NARCFile> {
@@ -127,7 +177,9 @@ class NARC private constructor(file: File?, name: String = "") {
         if (magic != 0x474D4946u && magic != 0x46494D47u) {
             System.err.println("Image Table $BAD_MAGIC")
         }
-        reader.skip(4)
+
+        // This will need to be changed to support nested directories
+        reader.skip(filenameTable[0].startOffset.toLong())
 
         val newList: MutableList<NARCFile> = ArrayList()
 
@@ -139,6 +191,47 @@ class NARC private constructor(file: File?, name: String = "") {
         }
 
         return newList
+    }
+
+    fun save(file: File) {
+        val output = LittleEndianDataOutputStream(file.outputStream())
+
+        // Write header
+        output.writeString("CRAN")
+        output.writeUnsignedInt(0x0100FFFEu)
+        output.writeUnsignedInt(fileSize)
+        output.writeUnsignedShort(headerSize)
+        output.writeUnsignedShort(numSections)
+
+        output.writeString("BTAF")
+        output.writeUnsignedInt(fatbSize)
+        output.writeUnsignedInt(numFiles)
+        var out = 0u
+        for (f in files) {
+            output.writeUnsignedInt(out)
+            out += f.size
+            output.writeUnsignedInt(out)
+        }
+
+        output.writeString("BTNF")
+        output.writeUnsignedInt(fntbSize)
+        for (item in filenameTable) {
+            output.writeUnsignedInt(item.startOffset)
+            output.writeUnsignedShort(item.firstFilePos)
+            output.writeUnsignedShort(item.parentDir)
+            if (item.name != null) {
+                output.writeByte(item.name.length)
+                output.writeString(item.name)
+            }
+        }
+
+        output.writeString("GMIF")
+        output.writeUnsignedInt(fimgSize)
+        for (f in files) {
+            output.write(f.data)
+        }
+
+        output.close()
     }
 
 }
