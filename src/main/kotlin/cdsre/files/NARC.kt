@@ -9,7 +9,7 @@ fun LittleEndianDataInputStream.readUnsignedInt() = this.readInt().toUInt()
 
 @kotlin.ExperimentalUnsignedTypes
 fun LittleEndianDataInputStream.readString(len: UInt): String {
-    var out: String = ""
+    var out = ""
     for (i in 1u..len) {
         out += this.read().toChar()
     }
@@ -44,7 +44,10 @@ class NARC private constructor(file: File?, name: String = "") {
 
     val filename: String = file?.name ?: "$name.narc"
 
-    val fileSize: UInt // TODO: Make this a getter based on files and stuff
+    val fileSize: UInt
+        get() {
+            return headerSize + fatbSize + fntbSize + fimgSize
+        }
 
     val headerSize: UShort
         get() = 16u
@@ -85,34 +88,29 @@ class NARC private constructor(file: File?, name: String = "") {
 
     init {
         if (file == null) {
-            fileSize = 0u
-
             allocationTable = listOf()
             filenameTable = mutableListOf()
             files = mutableListOf()
         } else {
             val dataReader = LittleEndianDataInputStream(file.inputStream())
-            // Read in offsets
+
             val magic = dataReader.readUnsignedInt()
             if (magic != 0x4E415243u && magic != 0x4352414Eu) {
                 System.err.println("NARC file $BAD_MAGIC")
             }
-            val constant = dataReader.readUnsignedInt()
-            System.out.println("Constant: $magic")
 
-            fileSize = dataReader.readUnsignedInt()
+            val constant = dataReader.readUnsignedInt()
+            if (constant != 0xFEFF0001u && constant != 0x0100FFFEu) {
+                System.out.println("Unexpected NARC constant $constant")
+            }
+
+            dataReader.skip(4) // Skip file size
             dataReader.skip(2) // Skip header size
             dataReader.skip(2) // Skip number of sections
-
-            System.out.println("File Size: $fileSize")
 
             allocationTable = readFATB(dataReader)
             filenameTable = readFNTB(dataReader)
             files = readFIMG(dataReader)
-
-            System.out.println(allocationTable)
-            System.out.println(filenameTable)
-            System.out.println(files)
 
             dataReader.close()
         }
@@ -127,9 +125,9 @@ class NARC private constructor(file: File?, name: String = "") {
         val newList: MutableList<NARCAlloc> = ArrayList()
 
         val size = reader.readUnsignedInt()
-        System.out.println("Alloc Size: $size")
         val numFiles = reader.readUnsignedInt()
-        System.out.println("Number of files: $numFiles")
+
+        assert(size == (12u + numFiles * 8u))
 
         for (i in 1u..numFiles) {
             val start = reader.readUnsignedInt()
@@ -147,7 +145,6 @@ class NARC private constructor(file: File?, name: String = "") {
         }
 
         val sectionSize = reader.readUnsignedInt()
-        System.out.println("FNTB Size: $sectionSize")
 
         val newList: MutableList<NARCFilename> = ArrayList()
 
