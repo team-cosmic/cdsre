@@ -1,5 +1,6 @@
 package cdsre.files
 
+import cdsre.utils.Constants
 import cdsre.utils.EndianRandomAccessFile
 import java.io.File
 
@@ -14,8 +15,6 @@ class NARC private constructor(file: File?, name: String = "") {
         }
 
     }
-
-    private val BAD_MAGIC: String = "magic does not match expected value. File corrupted?"
 
     val filename: String = file?.name ?: "$name.narc"
 
@@ -71,7 +70,7 @@ class NARC private constructor(file: File?, name: String = "") {
 
             val magic = reader.readUInt()
             if (magic != 0x4E415243u && magic != 0x4352414Eu) {
-                System.err.println("NARC file $BAD_MAGIC")
+                System.err.println("NARC file ${Constants.BAD_MAGIC}")
             }
 
             val constant = reader.readUInt()
@@ -93,7 +92,7 @@ class NARC private constructor(file: File?, name: String = "") {
     protected fun readFATB(reader: EndianRandomAccessFile): List<NARCAlloc> {
         val magic = reader.readUInt()
         if (magic != 0x42544146u && magic != 0x46415442u) {
-            System.err.println("Allocation table $BAD_MAGIC")
+            System.err.println("Allocation table ${Constants.BAD_MAGIC}")
         }
 
         val newList: MutableList<NARCAlloc> = ArrayList()
@@ -115,7 +114,7 @@ class NARC private constructor(file: File?, name: String = "") {
     protected fun readFNTB(reader: EndianRandomAccessFile): MutableList<NARCFilename> {
         val magic = reader.readUInt()
         if (magic != 0x42544E46u && magic != 0x464E5442u) {
-            System.err.println("Filename table $BAD_MAGIC")
+            System.err.println("Filename table ${Constants.BAD_MAGIC}")
         }
 
         val sectionSize = reader.readUInt()
@@ -146,7 +145,7 @@ class NARC private constructor(file: File?, name: String = "") {
     protected fun readFIMG(reader: EndianRandomAccessFile): MutableList<NARCFile> {
         val magic = reader.readUInt()
         if (magic != 0x474D4946u && magic != 0x46494D47u) {
-            System.err.println("Image Table $BAD_MAGIC")
+            System.err.println("Image Table ${Constants.BAD_MAGIC}")
         }
 
         // This will need to be changed to support nested directories
