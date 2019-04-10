@@ -23,7 +23,7 @@
       <menus>
         <Menu fx:id="menu_file" mnemonicParsing="false" text="File">
           <items>
-                  <MenuItem fx:id="menuitem_new" mnemonicParsing="false" onAction="#addFile" text="New">
+                  <MenuItem fx:id="menuitem_new" disable="true" mnemonicParsing="false" onAction="#addFile" text="New">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
@@ -35,7 +35,6 @@
                   </MenuItem>
             <Menu fx:id="menu_openrecent" mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="menuitem_close" mnemonicParsing="false" text="Close" />
             <MenuItem fx:id="menuitem_saverom" mnemonicParsing="false" text="Save ROM" />
             <MenuItem fx:id="menuitem_saveas" mnemonicParsing="false" text="Save As…" />
             <SeparatorMenuItem mnemonicParsing="false" />
