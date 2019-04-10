@@ -204,7 +204,8 @@ class CDSREController: Initializable {
 		fileChooser.title = "Open File"
 		fileChooser.extensionFilters.addAll(
 			FileChooser.ExtensionFilter("Nintendo DS ROM", "*.nds"),
-			FileChooser.ExtensionFilter("Cosmic ROM Project", "*.crp")
+			FileChooser.ExtensionFilter("Cosmic ROM Project", "*.crp"),
+			FileChooser.ExtensionFilter("CDSRE Files", "*.nds", "*.crp")
 		)
 
 		val file = fileChooser.showOpenDialog(ClientApp.globalStage) ?: return //If file is null, then no file was selected; simply do nothing
