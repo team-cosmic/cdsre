@@ -195,9 +195,10 @@ class CDSREController: Initializable {
             project = Project.loadProject(file)
         } else if (file.extension == "nds") {
             var originalRom: ROM = ROM.loadROM(file)
-            // TODO: copy old ROM to new ROM. Open project creation menu here
-            var newRom: ROM = originalRom
-            project = Project.createProject("", newRom)
+            var projectName: String = ""
+            // TODO: Open project creation dialog here
+            // TODO: Unpack ROM into project location
+            project = Project.createProject("", projectName)
         }
 
         // TODO: Set active project to project

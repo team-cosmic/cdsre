@@ -25,7 +25,7 @@ class ROM private constructor(file: File) {
         return mutableListOf()
     }
 
-    fun saveROM() {
+    fun save() {
         // TODO: Save ROM
     }
 
