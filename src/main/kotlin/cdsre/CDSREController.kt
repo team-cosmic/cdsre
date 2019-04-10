@@ -214,6 +214,9 @@ class CDSREController: Initializable {
 
     @FXML
     fun addFile(event: ActionEvent) {
+
+        //TODO: Make this more safe. Script view is not certain to be open at this point.
+
         var loader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/subcomps/file.fxml"))
 
         var newFile = Tab("", loader.load())
