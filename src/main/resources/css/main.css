@@ -10,3 +10,20 @@
 	-fx-border-color: #333333;
 	-fx-text-box-color: #333333;
 }
+
+.styled-text-area {
+    -fx-background-color: #333333;
+	-fx-fill: white;
+}
+
+.styled-text-area .text {
+	-fx-fill: white;
+}
+
+.styled-text-area .lineno {
+	-fx-background-color: #333333;
+}
+
+.styled-text-area .lineno .text {
+    -fx-fill: gray;
+}

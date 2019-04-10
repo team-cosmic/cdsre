@@ -33,6 +33,9 @@ class CDSREController: Initializable {
     lateinit var menu_file: Menu
 
     @FXML
+    lateinit var menuitem_new: MenuItem
+
+    @FXML
     lateinit var menuitem_open: MenuItem
 
     @FXML
@@ -131,26 +134,32 @@ class CDSREController: Initializable {
             menuitem_viewmapheaders.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_mapheaders.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_mapheaders.fxml"))
+                menuitem_new.isDisable = true
             }
             menuitem_viewmatrix.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_matrix.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_matrix.fxml"))
+                menuitem_new.isDisable = true
             }
             menuitem_viewmap.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_map.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_map.fxml"))
+                menuitem_new.isDisable = true
             }
             menuitem_viewtext.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_text.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_text.fxml"))
+                menuitem_new.isDisable = false
             }
             menuitem_viewscript.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_script.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_script.fxml"))
+                menuitem_new.isDisable = false
             }
             menuitem_viewevent.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_event.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_event.fxml"))
+                menuitem_new.isDisable = true
             }
         }
 
@@ -202,5 +211,30 @@ class CDSREController: Initializable {
         }
 
         // TODO: Set active project to project
+    }
+
+    @FXML
+    fun addFile(event: ActionEvent) {
+
+        //TODO: Make this more safe. Script view is not certain to be open at this point.
+
+        var loader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/subcomps/file.fxml"))
+
+        var newFile = Tab("", loader.load())
+
+        loader.getController<FileController>().script_view = view.content as AnchorPane
+        loader.getController<FileController>().file = newFile
+
+        var files = loader.getController<FileController>().script_view.children[0].lookup("#files") as TabPane
+
+        loader.getController<FileController>().establishFile()
+
+        newFile.setOnClosed {
+            loader.getController<FileController>().closeFile()
+        }
+
+        files.tabs.add(newFile)
+
+        newFile.text = "Untitled " + (newFile.tabPane.tabs.indexOf(newFile) + 1)
     }
 }

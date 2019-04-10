@@ -23,6 +23,11 @@
       <menus>
         <Menu fx:id="menu_file" mnemonicParsing="false" text="File">
           <items>
+                  <MenuItem fx:id="menuitem_new" disable="true" mnemonicParsing="false" onAction="#addFile" text="New">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
             <MenuItem fx:id="menuitem_open" mnemonicParsing="false" onAction="#openFile" text="Open">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -30,7 +35,6 @@
                   </MenuItem>
             <Menu fx:id="menu_openrecent" mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="menuitem_close" mnemonicParsing="false" text="Close" />
             <MenuItem fx:id="menuitem_saverom" mnemonicParsing="false" text="Save ROM" />
             <MenuItem fx:id="menuitem_saveas" mnemonicParsing="false" text="Save As…" />
             <SeparatorMenuItem mnemonicParsing="false" />
@@ -125,7 +129,7 @@
           <AnchorPane fx:id="leftpanel" maxWidth="300.0" minHeight="0.0" minWidth="20.0" prefHeight="160.0" prefWidth="100.0" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-              <ScrollPane fx:id="view" prefHeight="153.0" prefWidth="87.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+              <ScrollPane fx:id="view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="rightpanel" maxWidth="300.0" minHeight="0.0" minWidth="20.0" prefHeight="160.0" prefWidth="100.0" />
