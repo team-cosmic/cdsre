@@ -16,7 +16,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="679.0" prefWidth="968.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cdsre.CDSREController">
    <top>
     <MenuBar fx:id="menubar" prefWidth="1055.0" BorderPane.alignment="CENTER">
@@ -63,6 +62,11 @@
         </Menu>
             <Menu fx:id="menu_view" mnemonicParsing="false" text="View">
                <items>
+                  <MenuItem fx:id="menuitem_viewpokemon" mnemonicParsing="false" onAction="#switchView" text="Pokemon Editor">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
                   <MenuItem fx:id="menuitem_viewmapheaders" mnemonicParsing="false" onAction="#switchView" text="Map Headers">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />

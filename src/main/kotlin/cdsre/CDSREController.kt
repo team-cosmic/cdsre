@@ -66,6 +66,9 @@ class CDSREController: Initializable {
     lateinit var menu_help: Menu
 
     @FXML
+    lateinit var menuitem_viewpokemon: MenuItem
+
+    @FXML
     lateinit var menuitem_viewmapheaders: MenuItem
 
     @FXML
@@ -131,6 +134,12 @@ class CDSREController: Initializable {
 
         when((event.source as MenuItem).text)
         {
+            menuitem_viewpokemon.text -> {
+                viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_pokemon.fxml"))
+                detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_pokemon.fxml"))
+                menuitem_new.isDisable = true
+            }
+
             menuitem_viewmapheaders.text -> {
                 viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_mapheaders.fxml"))
                 detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_mapheaders.fxml"))
