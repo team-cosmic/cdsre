@@ -25,5 +25,5 @@
 }
 
 .styled-text-area .lineno .text {
-    -fx-fill: #90EE90;
+    -fx-fill: gray;
 }

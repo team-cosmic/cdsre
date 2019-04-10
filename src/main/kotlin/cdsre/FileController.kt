@@ -42,4 +42,9 @@ class FileController: Initializable {
         println(container.height)
         container.children.add(script_area)
     }
+
+    fun closeFile()
+    {
+        println("File closed.")
+    }
 }

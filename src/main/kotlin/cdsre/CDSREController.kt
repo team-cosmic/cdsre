@@ -202,4 +202,26 @@ class CDSREController: Initializable {
 
         // TODO: Set active project to project
     }
+
+    @FXML
+    fun addFile(event: ActionEvent) {
+        var loader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/subcomps/file.fxml"))
+
+        var newFile = Tab("", loader.load())
+
+        loader.getController<FileController>().script_view = view.content as AnchorPane
+        loader.getController<FileController>().file = newFile
+
+        var files = loader.getController<FileController>().script_view.children[0].lookup("#files") as TabPane
+
+        loader.getController<FileController>().establishFile()
+
+        newFile.setOnClosed {
+            loader.getController<FileController>().closeFile()
+        }
+
+        files.tabs.add(newFile)
+
+        newFile.text = "Untitled " + (newFile.tabPane.tabs.indexOf(newFile) + 1)
+    }
 }
