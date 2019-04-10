@@ -4,9 +4,9 @@
 
 .root{
     -fx-base: #333333;
-    -fx-background: #333333;
+    -fx-background-color: #333333;
 	-fx-font-color: white;
-    -fx-focus-color: transparent; 
+    -fx-focus-color: #333333; 
 	-fx-border-color: #333333;
 	-fx-text-box-color: #333333;
 }
