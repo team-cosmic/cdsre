@@ -43,6 +43,21 @@ class EndianRandomAccessFile(file: File, mode: String): RandomAccessFile(file, m
             throw EOFException()
         return Endianness.toUInt(ch1, ch2, ch3, ch4, this.endian)
     }
+    
+    fun readULong(): ULong {
+        val ch1 = read()
+        val ch2 = read()
+        val ch3 = read()
+        val ch4 = read()
+        val ch5 = read()
+        val ch6 = read()
+        val ch7 = read()
+        val ch8 = read()
+
+        if((ch1 or ch2 or ch3 or ch4 or ch5 or ch6 or ch7 or ch8) < 0)
+            throw EOFException()
+        return Endianness.toULong(ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, this.endian)
+    }
 
     fun readString(length: Long): String {
         var out = ""
@@ -74,30 +89,14 @@ class EndianRandomAccessFile(file: File, mode: String): RandomAccessFile(file, m
 
     fun writeUShort(out: UShort) {
         for(byte in Endianness.fromUShort(out, this.endian)) write(byte)
-        /*val int = out.toInt()
-        if(endian == Endian.LITTLE) {
-            write((int shr 0) and 0xFF)
-            write((int shr 8) and 0xFF)
-        } else {
-            write((int shr 8) and 0xFF)
-            write((int shr 0) and 0xFF)
-        }*/
     }
 
     fun writeUInt(out: UInt) {
         for(byte in Endianness.fromUInt(out, this.endian)) write(byte)
-        /*val int = out.toInt()
-        if(endian == Endian.LITTLE) {
-            write((int shr 0) and 0xFF)
-            write((int shr 8) and 0xFF)
-            write((int shr 16) and 0xFF)
-            write((int shr 24) and 0xFF)
-        } else {
-            write((int shr 24) and 0xFF)
-            write((int shr 16) and 0xFF)
-            write((int shr 8) and 0xFF)
-            write((int shr 0) and 0xFF)
-        }*/
+    }
+
+    fun writeULong(out: ULong) {
+        for(byte in Endianness.fromULong(out, this.endian)) write(byte)
     }
 
     fun writeString(out: String) {
