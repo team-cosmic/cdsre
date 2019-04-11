@@ -71,6 +71,7 @@ class Project private constructor(file: File, var name: String = "CDSRE Project"
 
 		for(i in 1..root.childNodes.length) {
 			val el = root.childNodes.item(i)
+
 			if(el !is Element)
 				continue
 
