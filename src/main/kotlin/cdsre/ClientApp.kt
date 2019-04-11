@@ -2,29 +2,28 @@ package cdsre
 
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
+import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.Stage
-import javafx.scene.Parent
 
+class ClientApp: Application() {
 
-class ClientApp : Application() {
+	override fun start(stage: Stage?) {
 
-    override fun start(stage: Stage?) {
+		globalStage = stage!!
 
-        globalStage = stage!!
+		val root = FXMLLoader.load<Parent>(this.javaClass.classLoader.getResource("cdsre.fxml"))
 
-        val root = FXMLLoader.load<Parent>(this.javaClass.classLoader.getResource("cdsre.fxml"))
+		stage.scene = Scene(root)
 
-        stage.scene = Scene(root)
+		stage.scene.stylesheets.add(this.javaClass.classLoader.getResource("css/main.css").toExternalForm())
 
-        stage.scene.stylesheets.add(this.javaClass.classLoader.getResource("css/main.css").toExternalForm())
+		stage.title = "CDSRE v1.0"
+		stage.show()
+	}
 
-        stage.title = "CDSRE v1.0"
-        stage.show()
-    }
-
-    companion object {
-        @JvmStatic
-        lateinit var globalStage: Stage
-    }
+	companion object {
+		@JvmStatic
+		lateinit var globalStage: Stage
+	}
 }

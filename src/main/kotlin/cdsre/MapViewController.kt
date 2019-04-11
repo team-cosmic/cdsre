@@ -8,10 +8,9 @@ import java.util.*
 
 class MapViewController: Initializable {
 
-    override fun initialize(p0: URL?, p1: ResourceBundle?) {
-    }
+	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+	}
 
-    @FXML
-    lateinit var map_view: AnchorPane
-
+	@FXML
+	lateinit var map_view: AnchorPane
 }

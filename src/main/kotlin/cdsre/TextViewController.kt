@@ -8,10 +8,9 @@ import java.util.*
 
 class TextViewController: Initializable {
 
-    override fun initialize(p0: URL?, p1: ResourceBundle?) {
-    }
+	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+	}
 
-    @FXML
-    lateinit var text_view: AnchorPane
-
+	@FXML
+	lateinit var text_view: AnchorPane
 }

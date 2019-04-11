@@ -8,10 +8,9 @@ import java.util.*
 
 class EventViewController: Initializable {
 
-    override fun initialize(p0: URL?, p1: ResourceBundle?) {
-    }
+	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+	}
 
-    @FXML
-    lateinit var event_view: AnchorPane
-
+	@FXML
+	lateinit var event_view: AnchorPane
 }

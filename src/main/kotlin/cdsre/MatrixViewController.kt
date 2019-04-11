@@ -8,10 +8,9 @@ import java.util.*
 
 class MatrixViewController: Initializable {
 
-    override fun initialize(p0: URL?, p1: ResourceBundle?) {
-    }
+	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+	}
 
-    @FXML
-    lateinit var matrix_view: AnchorPane
-
+	@FXML
+	lateinit var matrix_view: AnchorPane
 }
