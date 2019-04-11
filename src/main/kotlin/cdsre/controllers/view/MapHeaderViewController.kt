@@ -1,4 +1,4 @@
-package cdsre
+package cdsre.controllers.view
 
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
