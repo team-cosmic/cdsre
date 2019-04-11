@@ -4,10 +4,23 @@ import cdsre.utils.Constants
 import cdsre.utils.EndianRandomAccessFile
 import java.io.File
 
+/**
+ * Class representing a `.narc` file in memory.
+ *
+ * @param file: The file being loaded, or null if this NARC is being created from scratch
+ * @param name: The name to assign to this narc, if file is null.
+ */
 @kotlin.ExperimentalUnsignedTypes
 class NARC private constructor(file: File?, name: String = "") {
 
 	companion object {
+
+		/**
+		 * Loads a NARC from the file system, and returns it
+		 *
+		 * @param file: File to load data from
+		 * @return: New loaded NARC object
+		 */
 		@JvmStatic
 		fun loadNARC(file: File): NARC {
 			return NARC(file)
@@ -87,6 +100,12 @@ class NARC private constructor(file: File?, name: String = "") {
 		}
 	}
 
+	/**
+	 * Read the File Allocation Table from the NARC being loaded.
+	 *
+	 * @param reader: RandomAccess class being used to read the file
+	 * @return: List of NARC allocations
+	 */
 	protected fun readFATB(reader: EndianRandomAccessFile): List<NARCAlloc> {
 		val magic = reader.readString(4)
 		if(magic != "FATB" && magic != "BTAF") {
@@ -109,6 +128,13 @@ class NARC private constructor(file: File?, name: String = "") {
 		return newList
 	}
 
+	/**
+	 * Read the File Name Table from the NARC being loaded
+	 *
+	 * @param reader: RandomAccess class being used to read the file
+	 * @return: List of NARC Filenames objects, defining the filenames and directory
+	 * 			structure of the NARC
+	 */
 	protected fun readFNTB(reader: EndianRandomAccessFile): MutableList<NARCFilename> {
 		val magic = reader.readString(4)
 		if(magic != "FNTB" && magic != "BTNF") {
@@ -140,6 +166,12 @@ class NARC private constructor(file: File?, name: String = "") {
 		return newList
 	}
 
+	/**
+	 * Read the File Image table from the NARC being loaded
+	 *
+	 * @param reader: RandomAccess class being used to read the file
+	 * @return: List of NARC files, data objects containing the raw file bytes
+	 */
 	protected fun readFIMG(reader: EndianRandomAccessFile): MutableList<NARCFile> {
 		val magic = reader.readString(4)
 		if(magic != "FIMG" && magic != "GMIF") {
@@ -161,6 +193,12 @@ class NARC private constructor(file: File?, name: String = "") {
 		return newList
 	}
 
+	/**
+	 * Save this NARC to a new file
+	 *
+	 * @param file: File location to save this NARC to. It will be created if it doesn't
+	 * 				exist, or overwritten if it already does.
+	 */
 	fun save(file: File) {
 		val output = EndianRandomAccessFile(file, "rw")
 
