@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="pokemon_view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cdsre.controllers.view.PokemonViewController">
    <children>
       <SplitPane dividerPositions="0.5859106529209622" orientation="VERTICAL" prefWidth="688.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -32,31 +31,38 @@
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ListView GridPane.columnSpan="2" GridPane.rowSpan="2">
+                              <ListView GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
                               </ListView>
-                              <Button mnemonicParsing="false" text="Select All" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                              <Button mnemonicParsing="false" text="Deselect All" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Button fx:id="selectalltms" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Select All" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                              <Button fx:id="deselectalltms" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Deselect All" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                              <Label text="TM Data" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Label>
                            </children>
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </GridPane>
-                        <GridPane HBox.hgrow="ALWAYS">
+                        <GridPane hgap="5.0" HBox.hgrow="ALWAYS">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
                           </columnConstraints>
                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -65,15 +71,29 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                            <children>
-                              <ListView GridPane.columnSpan="4" GridPane.rowSpan="2">
+                              <ListView GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.rowSpan="2">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
                               </ListView>
-                              <Spinner GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                              <ChoiceBox GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                              <Button mnemonicParsing="false" text="Add" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                              <Button mnemonicParsing="false" text="Delete" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Spinner fx:id="learnlevel" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin></Spinner>
+                              <ChoiceBox fx:id="move" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                              <Button fx:id="addmove" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Add" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin></Button>
+                              <Button fx:id="deletemove" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Delete" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin></Button>
+                              <Label text="Movesets" GridPane.columnSpan="4" GridPane.halignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Label>
                            </children>
                         </GridPane>
                         <GridPane HBox.hgrow="ALWAYS">
@@ -82,18 +102,27 @@
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ListView GridPane.columnSpan="2" GridPane.rowSpan="2">
+                              <ListView GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
                               </ListView>
-                              <Button mnemonicParsing="false" text="Select All" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                              <Button mnemonicParsing="false" text="Deselect All" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Button fx:id="selectallhms" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Select All" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin></Button>
+                              <Button fx:id="deselectallhms" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Deselect All" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                              <Label text="HM Data" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Label>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -118,7 +147,7 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <ChoiceBox>
+                                          <ChoiceBox fx:id="evolutionmethod" minHeight="-Infinity" minWidth="-Infinity">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" />
                                              </VBox.margin>
@@ -131,7 +160,7 @@
                                     <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                                        <children>
                                           <Label text="Evolution" />
-                                          <Slider blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0">
+                                          <Slider fx:id="evolutionnumber" blockIncrement="1.0" majorTickUnit="1.0" max="7.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0">
                                              <VBox.margin>
                                                 <Insets />
                                              </VBox.margin>
@@ -147,13 +176,6 @@
                                  </BorderPane.margin>
                               </HBox>
                            </top>
-                           <left>
-                              <TreeView maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
-                                 <BorderPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </BorderPane.margin>
-                              </TreeView>
-                           </left>
                            <center>
                               <GridPane hgap="20.0" BorderPane.alignment="CENTER">
                                 <columnConstraints>
@@ -200,12 +222,12 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <ChoiceBox GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <ChoiceBox GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <ChoiceBox GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <ChoiceBox GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <Spinner prefWidth="65.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Spinner prefWidth="65.0" GridPane.columnIndex="1" />
+                                    <Spinner fx:id="evolutionlevel" prefWidth="65.0" GridPane.columnIndex="1" />
+                                    <Spinner fx:id="happinessrequired" prefWidth="65.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ChoiceBox fx:id="evolutionitem" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ChoiceBox fx:id="evolutionpokemon" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <ChoiceBox fx:id="evolutionattack" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <ChoiceBox fx:id="evolvesinto" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <Button mnemonicParsing="false" text="Add Evolution" GridPane.rowIndex="6">
                                        <GridPane.margin>
                                           <Insets />
@@ -217,6 +239,18 @@
                                  </BorderPane.margin>
                               </GridPane>
                            </center>
+                           <left>
+                              <VBox alignment="CENTER" BorderPane.alignment="TOP_LEFT">
+                                 <children>
+                                    <Label alignment="CENTER" text="Evolution Tree" />
+                                    <TreeView>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TreeView>
+                                 </children>
+                              </VBox>
+                           </left>
                         </BorderPane>
                      </children>
                   </VBox>
