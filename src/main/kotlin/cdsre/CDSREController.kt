@@ -17,7 +17,6 @@ import java.awt.Desktop
 import java.net.URI
 import javafx.stage.FileChooser
 
-
 class CDSREController: Initializable {
 
     override fun initialize(p0: URL?, p1: ResourceBundle?) {

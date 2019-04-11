@@ -133,7 +133,7 @@
           <AnchorPane fx:id="leftpanel" maxWidth="300.0" minHeight="0.0" minWidth="20.0" prefHeight="160.0" prefWidth="100.0" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-              <ScrollPane fx:id="view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+              <ScrollPane fx:id="view" fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="rightpanel" maxWidth="300.0" minHeight="0.0" minWidth="20.0" prefHeight="160.0" prefWidth="100.0" />
