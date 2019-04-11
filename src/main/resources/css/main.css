@@ -27,3 +27,7 @@
 .styled-text-area .lineno .text {
     -fx-fill: gray;
 }
+
+.caret {
+    -fx-stroke: white;
+}
