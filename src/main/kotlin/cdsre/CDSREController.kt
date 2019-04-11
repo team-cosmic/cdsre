@@ -21,8 +21,8 @@ import javafx.scene.layout.VBox
 import javafx.stage.FileChooser
 import java.awt.Desktop
 import java.net.URI
-import java.net.URL
 import java.util.*
+import java.net.URL
 
 class CDSREController: Initializable {
 
@@ -131,14 +131,17 @@ class CDSREController: Initializable {
 	fun switchView(event: ActionEvent) {
 		println("Loading " + (event.source as MenuItem).text + " View")
 
+		var masterpanel: AnchorPane?
 		var primaryview: AnchorPane?
 		var detailpanel: AnchorPane?
 
+		var masterLoader: FXMLLoader? = null
 		var viewLoader: FXMLLoader? = null
 		var detailLoader: FXMLLoader? = null
 
 		when((event.source as MenuItem).text) {
 			menuitem_viewpokemon.text -> {
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_pokemon.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_pokemon.fxml"))
 				menuitem_new.isDisable = true
@@ -175,6 +178,11 @@ class CDSREController: Initializable {
 				menuitem_new.isDisable = true
 			}
 		}
+
+		masterpanel = AnchorPane(masterLoader!!.load())
+		masterpanel.prefWidthProperty().bind(this.leftpanel.widthProperty())
+		masterpanel.prefHeightProperty().bind(this.leftpanel.heightProperty())
+		leftpanel.children.setAll(masterpanel)
 
 		primaryview = AnchorPane(viewLoader!!.load())
 		primaryview.prefWidthProperty().bind(this.view.widthProperty())

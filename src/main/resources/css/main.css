@@ -13,10 +13,9 @@
 
 .styled-text-area {
     -fx-background-color: #333333;
-	-fx-fill: white;
 }
 
-.styled-text-area .text {
+.text {
 	-fx-fill: white;
 }
 
@@ -26,4 +25,13 @@
 
 .styled-text-area .lineno .text {
     -fx-fill: gray;
+}
+
+.caret {
+    -fx-stroke: white;
+}
+
+.keyword {
+    -fx-fill: #FFC66D;
+    -fx-font-weight: bold;
 }
