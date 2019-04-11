@@ -15,6 +15,12 @@ class EndianRandomAccessFile(file: File, mode: String): RandomAccessFile(file, m
 
     val endian: Endian = DEFAULT_ENDIAN
 
+    // Type overrides for unsigned values
+
+    fun seek(loc: UInt) {
+        seek(loc.toLong())
+    }
+
     // Methods for reading
 
     fun readUByte(): UByte {
