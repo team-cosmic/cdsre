@@ -1,0 +1,43 @@
+<mapping>
+	<location src="data/poketool/personal/pl_personal.narc" />
+	<entries>
+		<entry name="HP" />
+		<entry name="Attack" />
+		<entry name="Defense" />
+		<entry name="Speed" />
+		<entry name="Special Attack" />
+		<entry name="Special Defense" />
+		<entry name="Type 1" />
+		<entry name="Type 2" />
+		<entry name="Catch Rate" />
+		<entry name="Base Experience" />
+		<entry length="2" name="EV">
+			<subentry length="4b" name="PADDING" />
+			<subentry length="2b" name="Health" />
+			<subentry length="2b" name="Attack" />
+			<subentry length="2b" name="Defense" />
+			<subentry length="2b" name="Speed" />
+			<subentry length="2b" name="Special Attack" />
+			<subentry length="2b" name="Special Defense" />
+		</entry>
+		<entry length="2" name="Item 1" />
+		<entry length="2" name="Item 2" />
+		<entry name="Gender Ratio" />
+		<entry name="Hatch Cycle" />
+		<entry name="Base Happiness" />
+		<entry name="Experience Rate" />
+		<entry name="Egg Group 1" />
+		<entry name="Egg Group 2" />
+		<entry name="Ability 1" />
+		<entry name="Ability 2" />
+		<entry name="Flee" />
+		<entry name="Color" />
+		<entry length="2" name="PADDING" />
+		<entry length="13" name="Machines">
+			<subentry length="4b" name="PADDING" />
+			<subentry length="8b" name="HMs" />
+			<subentry length="92b" name="TMs" />
+		</entry>
+		<entry length="3" name="PADDING" />
+	</entries>
+</mapping>

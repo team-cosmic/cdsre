@@ -1,0 +1,399 @@
+<mapping>
+	<!-- Using https://github.com/mikabre/SDSME/blob/master/Source/Map_Editor/Resources/ScriptNamesWGS.resx -->
+	<function index="0000" name="Nop" />
+	<function index="0001" name="Nop1" />
+	<function index="0002" name="End" />
+	<function index="0003" name="Return2" />
+	<function index="0011" name="If" />
+	<function index="0012" name="If2" />
+	<function index="0014" name="CallStandard" />
+	<function index="0015" name="Return3" />
+	<function index="0016" name="Jump" />
+	<function index="001A" name="Call" />
+	<function index="001B" name="Return" />
+	<function index="001C" name="CompareLastResultJump" />
+	<function index="001D" name="CompareLastResultCall" />
+	<function index="001E" name="SetFlag" />
+	<function index="001F" name="ClearFlag" />
+	<function index="0020" name="StoreFlag" />
+	<function index="0022" name="UNKNOWN" />
+	<function index="0023" name="DisableTrainer" />
+	<function index="0024" name="ActivateTrainer" />
+	<function index="0025" name="StoreTrainerStatus" />
+	<function index="0026" name="AddTo" />
+	<function index="0027" name="SubtractFrom" />
+	<function index="0028" name="SetVar" />
+	<function index="0029" name="SetVar2" />
+	<function index="002A" name="CopyVar" />
+	<function index="002B" name="Message3 />
+	<function index="002C" name="Message4" />
+	<function index="002D" name="Message" />
+	<function index="002E" name="Message2" />
+	<function index="002F" name="Message5" />
+	<function index="0030" name="UNKNOWN" />
+	<function index="0033" name="WaitButton" />
+	<function index="0034" name="CloseMessageOnKeyPress" />
+	<function index="0035" name="FreezeMessageBox" />
+	<function index="0037" name="ColorMessageBox" />
+	<function index="0038" name="TypeMessageBox" />
+	<function index="0039" name="NoMapMessageBox" />
+	<function index="003A" name="CallMessageBox" />
+	<function index="003B" name="UNKNOWN" />
+	<function index="003C" name="OpenMenu" />
+	<function index="003E" name="ShowYesNoDialog" />
+	<function index="003F" name="WaitFor" />
+	<function index="0040" name="Multi" />
+	<function index="0041" name="Multi2" />
+	<function index="0042" name="TextScriptMulti" />
+	<function index="0043" name="CloseMulti" />
+	<function index="0044" name="Multi3" />
+	<function index="0045" name="Multi4" />
+	<function index="0046" name="TextScriptMulti2" />
+	<function index="0047" name="ClosePrevMulti" />  
+	<function index="0048" name="MultiRow" />
+	<function index="0049" name="PlayFanfare" />
+	<function index="004A" name="PlayFanfare2" />
+	<function index="004B" name="WaitFanfare" />
+	<function index="004C" name="PlayCry" />
+	<function index="004D" name="WaitCry" />
+	<function index="004E" name="PlaySound" />
+	<function index="004F" name="FadeDefaultMusic" />
+	<function index="0050" name="PlayMusic" />
+	<function index="0051" name="StopMusic" />
+	<function index="0052" name="RestartMusic" />
+	<function index="0054" name="SwitchMusic" />
+	<function index="0055" name="SetPrevMusicVolume" />
+	<function index="0057" name="PlayMusic2" />
+	<function index="0059" name="CheckPrevMicroReg" />
+	<function index="005A" name="SwitchMusic2" />
+	<function index="005B" name="EnableMicrophone" />
+	<function index="005C" name="DisableMicrophone" />
+	<function index="005D" name="UNKNOWN" />
+	<function index="005E" name="ApplyMovement" />
+	<function index="005F" name="WaitMovement" />
+	<function index="0060" name="LockAll" />
+	<function index="0061" name="ReleaseAll" />
+	<function index="0062" name="Lock" />
+	<function index="0063" name="Release" />
+	<function index="0064" name="AddPeople" />
+	<function index="0065" name="RemovePeople" />
+	<function index="0066" name="LockCam" />
+	<function index="0067" name="ZoomCam" />
+	<function index="0068" name="FacePlayer" />
+	<function index="0069" name="CheckSpritePosition" />
+	<function index="006A" name="GetNPCPosition" />
+	<function index="006B" name="CheckPersonPosition" />
+	<function index="006C" name="ContinueFollow" />
+	<function index="006D" name="FollowHero" />
+	<function index="006F" name="GiveMoney" />
+	<function index="0070" name="TakeMoney" />
+	<function index="0071" name="CheckMoney" />
+	<function index="0072" name="ShowMoney" />
+	<function index="0073" name="HideMoney" />
+	<function index="0074" name="UpdateMoney" />
+	<function index="0075" name="ShowCoinsBox" />
+	<function index="0076" name="HideCoinsBox" />
+	<function index="0077" name="UpdateCoinsBox" />
+	<function index="0078" name="CanGiveCoins" />
+	<function index="0079" name="GivePlayerCoins" />
+	<function index="007A" name="TakePlayerCoins" />
+	<function index="007B" name="GiveItem" />
+	<function index="007C" name="TakeItem" />
+	<function index="007D" name="CanGiveItem" />
+	<function index="007E" name="HasAmountOfItem" />
+	<function index="007F" name="GetItemAmount" />
+	<function index="0080" name="GetItemBagLocation" />
+	<function index="0083" name="GiveUndergroundItem" />
+	<function index="0084" name="DoubleMessage" />
+	<function index="0085" name="GetUndergroundItemAmount" />
+	<function index="0087" name="GiveUndergroundItem" />
+	<function index="0089" name="GiveStoredPokemon" />
+	<function index="0092" name="RecordPokegearNumber" />
+	<function index="0093" name="StoreSeal" />
+	<function index="0094" name="GiveSeal" />
+	<function index="0095" name="GetPokemonForm" />
+	<function index="0096" name="CallEnd" />
+	<function index="0097" name="GiveEggFromPokemon" />
+	<function index="0098" name="Wifi" />
+	<function index="0099" name="DoesPokemonKnowMove" />
+	<function index="009A" name="OpenPokemonDress" />
+	<function index="00A1" name="CallEnd2" />
+	<function index="00A3" name="EndGame" />
+	<function index="00A5" name="StartInterview" />
+	<function index="00A6" name="WFC" />
+	<function index="00A7" name="ShowPokemonInPicture" />
+	<function index="00A8" name="ShowContestWinnerInPicture" />
+	<function index="00A9" name="OpenCapsuleEditor" />
+	<function index="00AA" name="OpenSinnohMaps" />
+	<function index="00AB" name="ShowBoxStoragePokemon" />
+	<function index="00AC" name="OpenUnionDrawing" />
+	<function index="00AD" name="GivePokemonNickname" />
+	<function index="00AE" name="FadeScreen" />
+	<function index="00AF" name="ResetScreen" />
+	<function index="00B0" name="Warp" />
+	<function index="00B1" name="HallFameData" />
+	<function index="00B2" name="UNKNOWN" />
+	<function index="00B3" name="WFC1" />
+	<function index="00B4" name="ChooseStarter" />
+	<function index="00B5" name="StartStarterBattle />
+	<function index="00B6" name="GetBattleID" /> <!-- DOUBLE CHECK -->
+	<function index="00B7" name="UNKNOWN" />
+	<function index="00B8" name="UNKNOWN" />
+	<function index="00B9" name="UNKNOWN" />
+	<function index="00BA" name="ChoosePlayerName" />
+	<function index="00BB" name="ChoosePokemonNickname" />
+	<function index="00BC" name="FadeScreen" />
+	<function index="00BD" name="ResetScreen" />
+	<function index="00BE" name="Warp" />
+	<function index="00BF" name="UseRockClimb" />
+	<function index="00C0" name="UseSurf" />
+	<function index="00C1" name="UseWaterfall" />
+	<function index="00C2" name="UseFly" />
+	<function index="00C4" name="UNKNOWN" />
+	<function index="00C5" name="ArrangeAnimation" />
+	<function index="00C6" name="ChangeTuxedo" />
+	<function index="00C7" name="IsHeroOnBike" />
+	<function index="00C8" name="SetHeroOnBike" />
+	<function index="00C9" name="UNKNOWN" />
+	<function index="00CB" name="UNKNOWN" />
+	<function index="00CD" name="SetTextHeroVariable" />
+	<function index="00CE" name="SetTextRivalVariable" />
+	<function index="00CF" name="SetTextAlterEgoVariable" />
+	<function index="00D0" name="SetTextPokemonVariable" />
+	<function index="00D1" name="StoreNameOfItem" />
+	<function index="00D2" name="UNKNOWN" />
+	<function index="00D3" name="StoreAttackOfItem" />
+	<function index="00D4" name="SetTextAttackVariable" />
+	<function index="00D5" name="SetTextNumberVariable" />
+	<function index="00D6" name="SetTextPokemonNicknameVariable" />
+	<function index="00D7" name="SetTextObjectVariable" /> <!-- DOUBLE CHECK -->
+	<function index="00D8" name="SetTextTrainerTypeVariable" />
+	<function index="00D9" name="UNKNOWN" />
+	<function index="00DA" name="UNKNOWN" />
+	<function index="00DB" name="SetTextStarterHeroVariable" />
+	<function index="00DC" name="SetTextStarterRivalVariable" />
+	<function index="00DD" name="SetTextStarterAlterVariable" />
+	<function index="00DE" name="StorePokemonStarter" />
+	<function index="00DF" name="UNKNOWN" />
+	<function index="00E0" name="UNKNOWN" />
+	<function index="00E1" name="UNKNOWN" />
+	<function index="00E2" name="UNKNOWN" />
+	<function index="00E3" name="UNKNOWN" />
+	<function index="00E4" name="UNKNOWN" />
+	<function index="00E5" name="StartBattle" />
+	<function index="00E6" name="EndTrainerBattle" />
+	<function index="00E7" name="UNKNOWN" />
+	<function index="00E8" name="UNKNOWN" />
+	<function index="00E9" name="UNKNOWN" />
+	<function index="00EA" name="UNKNOWN" />
+	<function index="00EB" name="LostGoPokemonCenter" />
+	<function index="00EC" name="HasLostBattle" />
+	<function index="00ED" name="UNKNOWN" />
+	<function index="00EE" name="UNKNOWN" />
+	<function index="00EF" name="RepeatLastBattle" /> <!-- DOUBLE CHECK -->
+	<function index="00F2" name="ChooseTradingFriend" />
+	<function index="00F3" name="OpenWirelessBattleWaiting" />
+	<function index="00F6" name="UNKNOWN" />
+	<function index="00F7" name="StartPokemonContest" />
+	<function index="00F8" name="UNKNOWN" />
+	<function index="00F9" name="UNKNOWN" />
+	<function index="00FA" name="UNKNOWN" />
+	<function index="00FB" name="UNKNOWN" />
+	<function index="00FC" name="UNKNOWN" />
+	<function index="00FD" name="UNKNOWN" />
+	<etc>
+	<function index="0111" name="StartFlash" />
+	<function index="0112" name="StopFlash" />
+	<function index="0113" name="FadeSreenCurtain" />
+	<function index="0114" name="UNKNOWN" />
+	<function index="0115" name="UNKNOWN" />
+	<function index="0116" name="ShowLinkContestRecordBox" />
+	<function index="0117" name="UNKNOWN" />
+	<function index="0119" name="UNKNOWN" />
+	<function index="011B" name="SetElevatorWarp" />
+	<function index="011C" name="CheckElevatorFloor" />
+	<function index="011E" name="UNKNOWN" />
+	<function index="0121" name="UNKNOWN" />
+	<function index="0123" name="UNKNOWN" />
+	<function index="0124" name="StartWildBattle" />
+	<function index="0125" name="StarterBattle" />
+	<function index="0126" name="WildBattleExplanation" />
+	<function index="0127" name="HoneyTreeBattle" />
+	<function index="0128" name="UNKNOWN" />
+	<function index="0129" name="RandomWurmpleBattle" />
+	<function index="012A" name="UNKNOWN" />
+	<function index="012B" name="ShowWriteAutograph" />
+	<function index="012C" name="UNKNOWN" />
+	<function index="012D" name="SaveGameData" />
+	<function index="012E" name="CheckPokemonInPicture" /> <!-- DOUBLE CHECK -->
+	<function index="0130" name="UNKNOWN" />
+	<function index="0131" name="GivePoketch" />
+	<function index="0132" name="IsPoketchActivated" />
+	<function index="0134" name="GivePoketchApp" />
+	<function index="0135" name="UNKNOWN" />
+	<function index="0136" name="UNKNOWN" />
+	<etc>
+	<function index="0147" name="ShowPokemartWith" />
+	<function index="0148" name="ShowPokemart2With" />
+	<function index="014A" name="ShowPokemart4With" />
+	<function index="014B" name="PlayerDefeatedGoToPC" />
+	<function index="014C" name="UNKNOWN" />
+	<function index="014D" name="UNKNOWN" />
+	<function index="014E" name="HealPlayerPokemon" />
+	<function index="0150" name="UNKNOWN" />
+	<function index="0151" name="UNKNOWN" />
+	<function index="0152" name="UNKNOWN" />
+	<function index="0153" name="GoToUnionRoom" />
+	<function index="0155" name="UNKNOWN" />
+	<function index="0156" name="UNKNOWN" />
+	<function index="015B" name="PlayerHasBadge" />
+	<function index="015C" name="GivePlayerBadge" />
+	<function index="015D" name="TakePlayerBadge" />
+	<function index="0160" name="UNKNOWN" />
+	<etc>
+	<function index="0173" name="ChangeCollision" />
+	<function index="0175" name="UNKNOWN" />
+	<function index="0176" name="UNKNOWN" />
+	<function index="0177" name="GetPartySize" />
+	<function index="0178" name="OpenBerryPouch" />
+	<function index="0179" name="UNKNOWN" />
+	<etc>
+	<function index="0186" name="MoveOwnerworld" />
+	<function index="0188" name="ChangeOverworld" />
+	<function index="0189" name="ResetOverworldAttributes" />
+	<function index="018A" name="UNKNOWN" />
+	<function index="018B" name="UNKNOWN" />
+	<function index="018C" name="UNKNOWN" />
+	<function index="018D" name="ShowClock" />
+	<function index="018E" name="HideClock" />
+	<function index="018F" name="UNKNOWN" />
+	<function index="0190" name="UNKNOWN" />
+	<function index="0191" name="ChoosePokemonMenu" />
+	<function index="0192" name="ChoosePokemonForBattleTower" />
+	<function index="0193" name="StoreLastResult" />
+	<function index="0194" name="ChoosePokemonAble" />
+	<function index="0195" name="UNKNOWN" />
+	<function index="0196" name="OpenPokemonInfo" />
+	<function index="0197" name="UNKNOWN" />
+	<function index="0198" name="StorePartySizeNoEggs" />
+	<function index="0199" name="UNKNOWN" />
+	<function index="019A" name="UNKNOWN" />
+	<etc>
+	<function index="01AC" name="EggAnimation" />
+	<function index="01B1" name="UNKNOWN" />
+	<function index="01B2" name="UNKNOWN" />
+	<function index="01B3" name="OpenMailbox" />
+	<function index="01B4" name="UNKNOWN" />
+	<function index="01B5" name="OpenRecordList" />
+	<function index="01B6" name="CheckTime" />
+	<function index="01B7" name="UNKNOWN" />
+	<function index="01B8" name="UNKNOWN" />
+	<function index="01B9" name="StorePokemonHappiness" />
+	<function index="01BA" name="UNKNOWN" />
+	<etc>
+	<function index="01C6" name="OpenBattleMovesOfPokemon" />
+	<function index="01C7" name="StoreDataMove" />
+	<function index="01C8" name="UNKNOWN" />
+	<function index="01C9" name="DeleteDataMove" />
+	<function index="01CA" name="UNKNOWN" />
+	<function index="01CB" name="UNKNOWN" />
+	<function index="01CC" name="UNKNOWN" />
+	<function index="01CD" name="UNKNOWN" />
+	<etc>
+	<function index="01D7" name="OpenBerryPouchForPoffin" />
+	<function index="01D8" name="UNKNOWN" />
+	<function index="01D9" name="OpenBattleRoomResult" />
+	<function index="01DA" name="UNKNOWN" />
+	<etc>
+	<function index="01E8" name="IsPokedexCompleted" />
+	<function index="01E9" name="IsNationalPokedexCompleted" />
+	<function index="01EA" name="ShowPokedexSheet" />
+	<function index="01EB" name="ShowNationalPokedexSheet" />
+	<function index="01EC" name="UNKNOWN" />
+	<etc>
+	<function index="0204" name="WarpToLastElevator" />
+	<function index="0205" name="OpenGeonet" />
+	<function index="0206" name="GreatMarshBynoculePokemon" />
+	<function index="0207" name="UNKNOWN" />
+	<function index="0208" name="ShowPCBoxWithPokemonSprite" />
+	<function index="0209" name="HideBPCBoxWithPokemonSprite" />
+	<function index="020A" name="UNKNOWN" />
+	<etc>
+	<function index="0221" name="RememberMoveForPokemon" />
+	<function index="0223" name="UNKNOWN" />
+	<function index="0224" name="TeachPokemonMove" />
+	<function index="0225" name="GetPokemonTeachMoveResult" />
+	<function index="0226" name="UNKNOWN" />
+	<function index="0228" name="CheckPokemonForTrade" />
+	<function index="0229" name="TradePokemon" />
+	<function index="022A" name="StopTrade" /> <!-- DOUBLE CHECK -->
+	<function index="022C" name="UNKNOWN" />
+	<function index="022D" name="GiveNationalPokedex" />
+	<function index="022F" name="StoreAmountOfRibbonsInParty" />
+	<function index="0230" name="UNKNOWN" />
+	<etc>
+	<function index="0239" name="GetDecidedBattleLinkRules" />
+	<function index="023A" name="UNKNOWN" />
+	<function index="023B" name="DoPokecenterHealAnimation" />
+	<function index="023C" name="UNKNOWN" />
+	<function index="023D" name="DoShipAnimation" />
+	<function index="023E" name="UNKNOWN" />
+	<function index="0243" name="ShowPhraseBox1" />
+	<function index="0244" name="ShowPhraseBox2" />
+	<function index="0245" name="UNKNOWN" />
+	<etc>
+	<function index="024B" name="PreparePokecenterPCAnimation" />
+	<function index="024C" name="DoPokecenterPCOpenAnimation" />
+	<function index="024D" name="DoPokecenterPCCloseAnimation" 
+	<function index="024E" name="CheckLotusTicketNumber" />
+	<function index="024F" name="CompareLotusTicketNumberWith" />
+	<function index="0250" name="UNKNOWN" />
+	<etc
+	<function index="0257" name="ExchangeBerriesForAccessories" />
+	<function index="0258" name="ChangeSpritePostionWhileSaveGame" />
+	<function index="0259" name="ReturnToOriginalOverworldSprite" />
+	<function index="025A" name="UNKNOWN" />
+	<etc>
+	<function index="0267" name="StartPokeCasino" />
+	<function index="0268" name="UNKNOWN" />
+	<etc>
+	<function index="026D" name="OpenUnownTextBox" />
+	<function index="0271" name="OpenThankWhoNameInsert" />
+	<function index="0272" name="UNKNOWN" />
+	<etc>
+	<function index="027A" name="ShowLeagueCastleView" />
+	<function index="027C" name="UNKNOWN" />
+	<etc>
+	<function index="028B" name="CheckMysteryGiftTrades" />
+	<function index="028C" name="ShowPartySpriteForPokemon" />
+	<function index="028F" name="UNKNOWN" />
+	<etc>
+	<function index="0294" name="ShowBattlePointsBox" />
+	<function index="0295" name="HideBattlePointsBox" />
+	<function index="0296" name="UNKNOWN" />
+	<function index="029E" name="ApplyEffect" />
+	<function index="029F" name="CameraBumpEffect" />
+	<function index="02A1" name="MovePersonWithMovement" />
+	<function index="02A2" name="UNKNOWN" />
+	<function index="02A5" name="ChoosePokemonForTrade" />
+	<etc>
+	<function index="02BD" name="StartWildBattleWithPokemon" />
+	<function index="02BE" name="UNKNOWN" />
+	
+	
+	
+	<function index="UNKNOWN" name="ActLeagueBattlers" /> <!-- FOUND AT: Script 73 -> Script 5 -->
+	<function index="UNKNOWN" name="FloralClockAnimation" /> <!-- FOUND AT: Script 73 -> Script 5 -->
+	<function index="0174" name="UNKNOWN" /> <!-- FOUND AT: Script 137 -> Script 1 -->
+	<function index="0260" name="UNKNOWN" /> <!-- FOUND AT: Script 137 -> Script 2 -->
+	<function index="01CD" name="UNKNOWN" /> <!-- FOUND AT: Script 137 -> Script 2 AND Script 73 -> Script 4 -->
+	<function index="0275" name="UNKNOWN" /> <!-- FOUND AT: Script 141 -> Script 13 -->
+	<function index="00A2" name="UNKNOWN" /> <!-- FOUND AT: Script 0 -> Script 3 -->
+	<function index="02BB" name="UNKNOWN" /> <!-- FOUND AT: Script 0 -> Script 3 -->
+	<function index="02BB" name="UNKNOWN" /> <!-- FOUND AT: Script 73 -> Script 1 -->
+	<!-- Variables? -->
+	<var index="0x800C" name="UNKNOWN" /> <!-- FOUND AT: Script 0 -> Script 2 -->
+	<var index="0x4077" name="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -->
+	<var index="0x4000" name="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -->
+	<var index="0x4020" name="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -> Functions -->
+<mapping>
