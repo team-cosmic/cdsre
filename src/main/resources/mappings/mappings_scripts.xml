@@ -1,4 +1,5 @@
 <mapping>
+	<!-- Using https://github.com/mikabre/SDSME/blob/master/Source/Map_Editor/Resources/ScriptNamesWGS.resx -->
 	<function obfName="0000" deobfName="Nop" />
 	<function obfName="0001" deobfName="Nop1" />
 	<function obfName="0002" deobfName="End" />
@@ -170,4 +171,18 @@
 	<function obfName="0346" deobfName="CheckMomMoneyNumber" />
 	<function obfName="0037" deobfName="CallMessageBox" />
 	<function obfName="009D" deobfName="OpenPokegearMap" />
+	<function obfName="UNKNOWN" deobfName="ActLeagueBattlers" /> <!-- FOUND AT: Script 73 -> Script 5 -->
+	<function obfName="UNKNOWN" deobfName="FloralClockAnimation" /> <!-- FOUND AT: Script 73 -> Script 5 -->
+	<function obfName="0174" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 137 -> Script 1 -->
+	<function obfName="0260" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 137 -> Script 2 -->
+	<function obfName="01CD" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 137 -> Script 2 AND Script 73 -> Script 4 -->
+	<function obfName="0275" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 141 -> Script 13 -->
+	<function obfName="00A2" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 0 -> Script 3 -->
+	<function obfName="02BB" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 0 -> Script 3 -->
+	<function obfName="02BB" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 73 -> Script 1 -->
+	<!-- Variables? -->
+	<var obfName="0x800C" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 0 -> Script 2 -->
+	<var obfName="0x4077" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -->
+	<var obfName="0x4000" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -->
+	<var obfName="0x4020" deobfName="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -> Functions -->
 <mapping>
