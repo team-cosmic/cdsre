@@ -6,7 +6,6 @@ import java.io.RandomAccessFile
 import cdsre.utils.Endianness.Endian
 import cdsre.utils.Endianness.Endian.LITTLE
 
-@kotlin.ExperimentalUnsignedTypes
 class EndianRandomAccessFile(file: File, mode: String): RandomAccessFile(file, mode) {
 
     companion object {

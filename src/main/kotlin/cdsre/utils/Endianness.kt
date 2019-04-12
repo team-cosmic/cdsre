@@ -1,6 +1,5 @@
 package cdsre.utils
 
-@kotlin.ExperimentalUnsignedTypes
 class Endianness {
     enum class Endian {
         LITTLE, BIG;
