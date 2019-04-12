@@ -4,17 +4,17 @@ import java.io.File
 
 
 open class NarcMapping {
-    fun getEntry(index: Int): Entry {
+    open fun getEntry(index: Int): Entry {
         return Entry()
     }
 }
 
 open class Entry {
-    fun getValue(name: String): ByteArray {
+    open fun getValue(name: String): ByteArray {
         return ByteArray(0)
     }
 
-    fun setValue(name: String, data: ByteArray) {
+    open fun setValue(name: String, data: ByteArray) {
 
     }
 }
