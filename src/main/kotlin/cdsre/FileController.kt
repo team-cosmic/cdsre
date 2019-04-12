@@ -2,8 +2,10 @@ package cdsre
 
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
+import javafx.scene.control.Label
 import javafx.scene.control.Tab
 import javafx.scene.layout.AnchorPane
+import javafx.stage.Popup
 import org.fxmisc.richtext.CodeArea
 import org.fxmisc.richtext.LineNumberFactory
 import org.fxmisc.richtext.model.StyleSpansBuilder
@@ -12,6 +14,12 @@ import java.net.URL
 import java.time.Duration
 import java.util.*
 import java.util.regex.Pattern
+import org.fxmisc.richtext.event.MouseOverTextEvent
+import java.awt.SystemColor.text
+import javafx.scene.input.KeyCombination.SHIFT_DOWN
+import javafx.scene.input.KeyCombination.CONTROL_DOWN
+import javafx.scene.input.KeyEvent
+import org.fxmisc.wellbehaved.event.EventPattern.keyPressed
 
 
 class FileController: Initializable {
@@ -66,10 +74,34 @@ class FileController: Initializable {
 		script_area.prefWidthProperty().bind(container.widthProperty())
 		script_area.prefHeightProperty().bind(container.heightProperty())
 
+		val popup = Popup()
+		val popupMsg = Label()
+		popupMsg.style = "-fx-background-color: black;" +
+				"-fx-text-fill: white;" +
+				"-fx-padding: 5;"
+		popup.content.add(popupMsg)
+
+		script_area.addEventFilter(KeyEvent.KEY_PRESSED) {
+			if(popup.isShowing)
+			{
+				popupMsg.text += it.text
+				println(it.character)
+				println(popupMsg.text)
+			}
+		}
+
+		script_area.mouseOverTextDelay = Duration.ofMillis(500)
+		script_area.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_BEGIN) {
+
+			val chIdx = it.characterIndex
+			val pos = it.screenPosition
+			popupMsg.text = this.getWordAround(script_area.text, chIdx)
+			popup.show(script_area, pos.x, pos.y + 10)
+		}
+		script_area.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_END) { popup.hide()  }
+
 		script_area.isWrapText = true
 
-		println(container.width)
-		println(container.height)
 		container.children.add(script_area)
 	}
 
@@ -108,5 +140,36 @@ class FileController: Initializable {
 
 	fun closeFile() {
 		println("File closed.")
+	}
+
+	private fun getWordAround(source: String, startIndex: Int = 0): String {
+		if (startIndex < 0) return ""
+
+		var startPosition = 0
+		var endPosition = 0
+
+		println("Given Index: $startIndex")
+		if (source != null)
+		{
+			for (i in startIndex downTo 0)
+			{
+				if (Character.isWhitespace(source[i]) || i == 0) {
+					startPosition = i
+					println("Start: " + startPosition)
+					break
+				}
+			}
+			for (j in startIndex..source.length)
+			{
+				if (j == source.length || Character.isWhitespace(source[j])) {
+					endPosition = j
+					println("End: " + startPosition)
+					break
+				}
+			}
+		}
+
+		println(source.length)
+		return source.substring(startPosition, endPosition)
 	}
 }
