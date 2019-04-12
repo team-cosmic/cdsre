@@ -139,6 +139,7 @@ class CDSREController: Initializable {
 		var viewLoader: FXMLLoader? = null
 		var detailLoader: FXMLLoader? = null
 
+		//TODO: Simplify
 		when((event.source as MenuItem).text) {
 			menuitem_viewpokemon.text -> {
 				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
@@ -148,31 +149,37 @@ class CDSREController: Initializable {
 			}
 
 			menuitem_viewmapheaders.text -> {
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_mapheaders.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_mapheaders.fxml"))
 				menuitem_new.isDisable = true
 			}
 			menuitem_viewmatrix.text -> {
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_matrix.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_matrix.fxml"))
 				menuitem_new.isDisable = true
 			}
 			menuitem_viewmap.text -> {
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_map.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_map.fxml"))
 				menuitem_new.isDisable = true
 			}
 			menuitem_viewtext.text -> {
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_text.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_text.fxml"))
 				menuitem_new.isDisable = false
 			}
 			menuitem_viewscript.text -> {
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_script.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_script.fxml"))
 				menuitem_new.isDisable = false
 			}
 			menuitem_viewevent.text -> {
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_event.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_event.fxml"))
 				menuitem_new.isDisable = true
@@ -223,6 +230,8 @@ class CDSREController: Initializable {
 		// If it is a .crp, do some extraction
 		var project: Project? = null
 
+		println(file.extension)
+
 		if(file.extension == "crp") {
 			project = Project.loadProject(file)
 		} else if(file.extension == "nds") {
@@ -230,7 +239,7 @@ class CDSREController: Initializable {
 			var projectName: String = ""
 			// TODO: Open project creation dialog here
 			// TODO: Unpack ROM into project location
-			project = Project.createProject("", projectName)
+			//project = Project.createProject("", projectName)
 		} else {
 			System.err.println("An invalid file has somehow been loaded? Nixing file!")
 			return
