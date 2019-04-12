@@ -379,7 +379,26 @@
 	<etc>
 	<function index="02BD" name="StartWildBattleWithPokemon" />
 	<function index="02BE" name="UNKNOWN" />
-	
+	<function index="02BF" name="SetHeroRidingBike" />
+	<function index="02C0" name="UNKNOWN" />
+	<function index="02C1" name="ShowSaveBox" />
+	<function index="02C2" name="HideSaveBox" />
+	<etc>
+	<function index="02CA" name="FloralClockAnimation" />
+	<etc>
+	<function index="02E2" name="DisplayCardGameScratch" />
+	<function index="02E3" name="CloseCardGameScratch" />
+	<function index="02E4" name="ChooseCard" />
+	<etc>
+	<function index="0318" name="StartSimpleWildBattle" />
+	<etc>
+	<function index="032B" name="IsEventRegigigasInParty" />
+	<etc>
+	<function index="0343" name="StorePokemon" />
+	<function index="0344" name="CopyWifiSpriteIntoVariable" />
+	<function index="0345" name="SetSealVariable" />
+	<function index="0346" name="SetWifiSpriteVariable" />
+	<function index="0347" name="ElevatorDisplayFloors" />
 	
 	
 	<function index="UNKNOWN" name="ActLeagueBattlers" /> <!-- FOUND AT: Script 73 -> Script 5 -->
