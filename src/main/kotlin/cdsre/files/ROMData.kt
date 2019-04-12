@@ -1,6 +1,5 @@
 package cdsre.files
 
-@kotlin.ExperimentalUnsignedTypes
 data class ARMConfig(
     val offset: UInt,
     val entryAddress: UInt,
@@ -11,7 +10,6 @@ data class ARMConfig(
     val autoloadListHookRAMAddress: UInt
 )
 
-@kotlin.ExperimentalUnsignedTypes
 data class IconTitle(
     val version: UShort,
     val crc1: UShort,
@@ -28,4 +26,8 @@ data class IconTitle(
     val titleSpanish: String,
     val titleChinese: String,
     val titleKorean: String
+)
+
+data class ROMFilenames(
+    var name: String
 )

@@ -82,6 +82,11 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <args>
+                        <arg>-Xuse-experimental=kotlin.ExperimentalUnsignedTypes</arg>
+                    </args>
+                </configuration>
             </plugin>
         </plugins>
     </build>
