@@ -4,17 +4,14 @@ import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.Tab
 import javafx.scene.layout.AnchorPane
-import javafx.util.Duration
 import org.fxmisc.richtext.CodeArea
 import org.fxmisc.richtext.LineNumberFactory
+import org.fxmisc.richtext.model.StyleSpansBuilder
+import org.fxmisc.richtext.model.StyleSpans
 import java.net.URL
 import java.time.Duration
 import java.util.*
 import java.util.regex.Pattern
-import org.fxmisc.richtext.model.StyleSpansBuilder
-import org.fxmisc.richtext.model.StyleSpans
-import org.intellij.lang.annotations.Pattern
-import org.reactfx.inhibeans.collection.Collections
 
 
 class FileController: Initializable {
@@ -28,7 +25,7 @@ class FileController: Initializable {
 	lateinit var container: AnchorPane
 
 	private val KEYWORDS = arrayOf(
-		"placeholder"
+		""
 	)
 
 	private val KEYWORD_PATTERN = "\\b(" + KEYWORDS.joinToString("|") + ")\\b"
