@@ -1,6 +1,6 @@
 package cdsre.files
 
-class PokemonNarcMapping : NarcMapping {
+class PokemonNarcMapping : NarcMapping() {
     val cachedEntries: List<Entry> = listOf()
 
     override fun getEntry(index: Int): Entry {
@@ -8,7 +8,7 @@ class PokemonNarcMapping : NarcMapping {
     }
 }
 
-class PokemonEntry : Entry {
+class PokemonEntry : Entry() {
 
     // Whatever properties
 
