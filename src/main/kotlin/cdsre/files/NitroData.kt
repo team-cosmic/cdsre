@@ -106,19 +106,19 @@ class RealRomFile(file: File, path: String) : RomFile(path) {
     override val isPacked: Boolean = false
 
     override fun inputStream(): InputStream {
-        TODO("Not implemented")
+        return realFile.inputStream()
     }
 
     override fun outputStream(): OutputStream {
-        TODO("not implemented")
+        return realFile.outputStream()
     }
 
     override fun randomAccessFile(): EndianRandomAccessFile {
-        TODO("Not implemented")
+        return EndianRandomAccessFile(realFile, "rw")
     }
 }
 
-// Represents a file that only exists inside a virtual file system
+// Represents a file that only exists inside a virtual file system. May or may not be packed
 class VirtualRomFile : RomFile {
     override var offset: UInt
     override val isVirtual: Boolean = true
