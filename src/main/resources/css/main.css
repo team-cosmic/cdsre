@@ -11,6 +11,12 @@
 	-fx-text-box-color: #333333;
 }
 
+.text-area {
+	-fx-control-inner-background:#333333;
+	-fx-font-family: Consolas; 
+	-fx-font-color: white;
+}
+
 .styled-text-area {
     -fx-background-color: #333333;
 }
