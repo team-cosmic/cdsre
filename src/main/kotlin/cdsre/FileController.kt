@@ -10,6 +10,7 @@ import javafx.fxml.Initializable
 import javafx.scene.control.Label
 import javafx.scene.control.ListView
 import javafx.scene.control.Tab
+import javafx.scene.input.KeyCode
 import javafx.scene.layout.AnchorPane
 import javafx.stage.Popup
 import org.fxmisc.richtext.CodeArea
@@ -106,6 +107,21 @@ class FileController: Initializable {
 			if(popup.isShowing) {
 				popup.hide()
 			}
+			it.consume()
+		}
+
+		popupMsg.setOnKeyPressed {
+			if(it.code == KeyCode.ENTER)
+			{
+				var temp = popupMsg.selectionModel.selectedItem
+
+				script_area.replaceText(queryIndex, script_area.caretPosition, temp)
+
+				if(popup.isShowing) {
+					popup.hide()
+				}
+				it.consume()
+			}
 		}
 
 		popup.focusedProperty().addListener { arg0, oldPropertyValue, newPropertyValue ->
@@ -116,7 +132,7 @@ class FileController: Initializable {
 
 		val s = script_area.plainTextChanges().subscribe { tc ->
 
-			if(tc.inserted != " ")
+			if(tc.inserted != " " && tc.inserted != "\n")
 			{
 				if (tc.removed.isNotEmpty() && tc.inserted.isEmpty())
 				{
