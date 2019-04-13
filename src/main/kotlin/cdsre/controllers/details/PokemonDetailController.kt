@@ -1,14 +1,19 @@
 package cdsre.controllers.details
 
+import cdsre.ClientApp
 import javafx.fxml.Initializable
 import java.net.URL
 import java.util.*
-import javafx.scene.control.ChoiceBox
 import javafx.fxml.FXML
-import javafx.scene.control.Spinner
-import javafx.scene.control.SpinnerValueFactory
+import javafx.scene.control.*
 import javafx.scene.layout.AnchorPane
-
+import javafx.scene.control.ContentDisplay
+import javafx.scene.control.ListCell
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
+import javafx.collections.FXCollections
+import javafx.collections.ObservableList
+import javafx.scene.control.ComboBox
 
 
 class PokemonDetailController: Initializable {
@@ -53,10 +58,10 @@ class PokemonDetailController: Initializable {
 	lateinit var maxexperience: ChoiceBox<*>
 
 	@FXML
-	lateinit var firsttype: ChoiceBox<*>
+	lateinit var firsttype: ComboBox<Image>
 
 	@FXML
-	lateinit var secondtype: ChoiceBox<*>
+	lateinit var secondtype: ComboBox<Image>
 
 	@FXML
 	lateinit var firsteggtype: ChoiceBox<*>
@@ -80,6 +85,7 @@ class PokemonDetailController: Initializable {
 	lateinit var secondability: ChoiceBox<*>
 
 	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+
 		hp.valueFactory = SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE)
 		attack.valueFactory = SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE)
 		defense.valueFactory = SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE)
@@ -94,5 +100,64 @@ class PokemonDetailController: Initializable {
 		marshchance.valueFactory = SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE)
 
 		stepstohatch.valueFactory = SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE)
+
+		val images = fetchImages()
+		firsttype.items.addAll(images)
+		firsttype.buttonCell = ImageListCell()
+		firsttype.setCellFactory { listView -> ImageListCell() }
+		firsttype.selectionModel.select(0)
+
+		secondtype.items.addAll(images)
+		secondtype.buttonCell = ImageListCell()
+		secondtype.setCellFactory { listView -> ImageListCell() }
+		secondtype.selectionModel.select(0)
 	}
+
+	private fun fetchImages():ObservableList<Image> {
+		val data = FXCollections.observableArrayList<Image>()
+
+		//TODO: maybe loop through them all instead?
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/unknown.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/bug.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/dark.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/dragon.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/electric.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/fight.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/fire.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/flying.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/ghost.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/grass.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/ground.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/ice.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/normal.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/poison.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/psychic.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/rock.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/steel.png")))
+		data.add(Image(this.javaClass.getResourceAsStream("/graphics/types/water.png")))
+		return data
+	}
+
+
+}
+
+internal class ImageListCell : ListCell<Image>() {
+	private val view: ImageView
+
+	init {
+		contentDisplay = ContentDisplay.GRAPHIC_ONLY
+		view = ImageView()
+	}
+
+	override fun updateItem(item: Image?, empty: Boolean) {
+		super.updateItem(item, empty)
+
+		if (item == null || empty) {
+			graphic = null
+		} else {
+			view.image = item
+			graphic = view
+		}
+	}
+
 }

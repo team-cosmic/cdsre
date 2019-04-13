@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,6 +19,7 @@
          <content>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
+                  <TextField promptText="Search" />
                   <TitledPane expanded="false" text="Battle Data">
                      <content>
                         <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
@@ -95,8 +98,8 @@
                            <children>
                               <Label text="First Type" />
                               <Label text="Second Type" GridPane.rowIndex="1" />
-                              <ChoiceBox fx:id="firsttype" prefWidth="150.0" GridPane.columnIndex="1" />
-                              <ChoiceBox fx:id="secondtype" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="firsttype" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="secondtype" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </content>
