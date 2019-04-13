@@ -100,7 +100,7 @@ class FileController: Initializable {
 		popup.content.add(popupMsg)
 
 		popupMsg.setOnMouseClicked {
-			var temp = popupMsg.selectionModel.selectedItem
+			var temp = popupMsg.selectionModel.selectedItem + " "
 
 			script_area.replaceText(queryIndex, script_area.caretPosition, temp)
 
@@ -113,7 +113,7 @@ class FileController: Initializable {
 		popupMsg.setOnKeyPressed {
 			if(it.code == KeyCode.ENTER)
 			{
-				var temp = popupMsg.selectionModel.selectedItem
+				var temp = popupMsg.selectionModel.selectedItem + " "
 
 				script_area.replaceText(queryIndex, script_area.caretPosition, temp)
 
@@ -203,22 +203,16 @@ class FileController: Initializable {
 		var lastKwEnd = 0
 		val spansBuilder = StyleSpansBuilder<Collection<String>>()
 		while (matcher.find()) {
-			val styleClass = (if (matcher.group("KEYWORD") != null)
-				"keyword"
-			else if (matcher.group("PAREN") != null)
-				"paren"
-			else if (matcher.group("BRACE") != null)
-				"brace"
-			else if (matcher.group("BRACKET") != null)
-				"bracket"
-			else if (matcher.group("SEMICOLON") != null)
-				"semicolon"
-			else if (matcher.group("STRING") != null)
-				"string"
-			else if (matcher.group("COMMENT") != null)
-				"comment"
-			else
-				null)!! /* never happens */
+			val styleClass = (when {
+				matcher.group("KEYWORD") != null -> "keyword"
+				matcher.group("PAREN") != null -> "paren"
+				matcher.group("BRACE") != null -> "brace"
+				matcher.group("BRACKET") != null -> "bracket"
+				matcher.group("SEMICOLON") != null -> "semicolon"
+				matcher.group("STRING") != null -> "string"
+				matcher.group("COMMENT") != null -> "comment"
+				else -> null
+			})!! /* never happens */
 			spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd)
 			spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start())
 			lastKwEnd = matcher.end()
@@ -237,26 +231,22 @@ class FileController: Initializable {
 		var startPosition = 0
 		var endPosition = 0
 
-		if (source != null)
+		println(source)
+		for (i in startIndex downTo 0)
 		{
-
-			println(source)
-			for (i in startIndex downTo 0)
-			{
-				if (i == 0) {
-					startPosition = i
-					break
-				}else if(Character.isWhitespace(source[i])) {
-					startPosition = i
-					break
-				}
+			if (i == 0) {
+				startPosition = i
+				break
+			}else if(Character.isWhitespace(source[i])) {
+				startPosition = i
+				break
 			}
-			for (j in startIndex..source.length)
-			{
-				if (j == source.length || Character.isWhitespace(source[j])) {
-					endPosition = j
-					break
-				}
+		}
+		for (j in startIndex..source.length)
+		{
+			if (j == source.length || Character.isWhitespace(source[j])) {
+				endPosition = j
+				break
 			}
 		}
 
