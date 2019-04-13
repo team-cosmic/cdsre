@@ -1,25 +1,26 @@
 package cdsre
 
+import javafx.beans.value.ChangeListener
+import javafx.beans.value.ObservableValue
+import javafx.collections.FXCollections
+import javafx.collections.ObservableList
+import javafx.collections.transformation.FilteredList
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.Label
+import javafx.scene.control.ListView
 import javafx.scene.control.Tab
 import javafx.scene.layout.AnchorPane
 import javafx.stage.Popup
 import org.fxmisc.richtext.CodeArea
 import org.fxmisc.richtext.LineNumberFactory
+import org.fxmisc.richtext.event.MouseOverTextEvent
 import org.fxmisc.richtext.model.StyleSpansBuilder
 import org.fxmisc.richtext.model.StyleSpans
 import java.net.URL
 import java.time.Duration
 import java.util.*
 import java.util.regex.Pattern
-import org.fxmisc.richtext.event.MouseOverTextEvent
-import java.awt.SystemColor.text
-import javafx.scene.input.KeyCombination.SHIFT_DOWN
-import javafx.scene.input.KeyCombination.CONTROL_DOWN
-import javafx.scene.input.KeyEvent
-import org.fxmisc.wellbehaved.event.EventPattern.keyPressed
 
 
 class FileController: Initializable {
@@ -54,7 +55,18 @@ class FileController: Initializable {
 		+ "|(?<COMMENT>" + COMMENT_PATTERN + ")"
 )
 
+	var masterData: ObservableList<String> = FXCollections.observableArrayList<String>()
+
+	var searchQuery: String = ""
+	var queryIndex: Int = 0
+
 	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+
+		//TODO: Populate these with real command names instead
+		for(i in 0..100)
+		{
+			masterData.add("Item$i")
+		}
 	}
 
 	fun establishFile() {
@@ -74,31 +86,92 @@ class FileController: Initializable {
 		script_area.prefWidthProperty().bind(container.widthProperty())
 		script_area.prefHeightProperty().bind(container.heightProperty())
 
+		val filteredList = FilteredList(masterData) { data -> true }
+
 		val popup = Popup()
-		val popupMsg = Label()
-		popupMsg.style = "-fx-background-color: black;" +
+		val popupMsg = ListView<String>()
+		popupMsg.items = filteredList
+
+		//TODO: Move these into main css
+		popupMsg.style = "-fx-background-color: #444444;" +
 				"-fx-text-fill: white;" +
-				"-fx-padding: 5;"
+				"-fx-padding: 15;"
 		popup.content.add(popupMsg)
 
-		script_area.addEventFilter(KeyEvent.KEY_PRESSED) {
-			if(popup.isShowing)
-			{
-				popupMsg.text += it.text
-				println(it.character)
-				println(popupMsg.text)
+		popupMsg.setOnMouseClicked {
+			var temp = popupMsg.selectionModel.selectedItem
+
+			script_area.replaceText(queryIndex, script_area.caretPosition, temp)
+
+			if(popup.isShowing) {
+				popup.hide()
 			}
 		}
 
+		popup.focusedProperty().addListener { arg0, oldPropertyValue, newPropertyValue ->
+			if (!newPropertyValue!!) {
+				popup.hide()
+			}
+		}
+
+		val s = script_area.plainTextChanges().subscribe { tc ->
+
+			if(tc.inserted != " ")
+			{
+				if (tc.removed.isNotEmpty() && tc.inserted.isEmpty())
+				{
+					searchQuery = this.getWordAround(script_area.text, tc.position - 1).trim()
+				} else if (tc.inserted.isNotEmpty() && tc.removed.isEmpty())
+				{
+					searchQuery = this.getWordAround(script_area.text, tc.position).trim()
+				}
+
+				println(searchQuery)
+
+				filteredList.setPredicate{
+					if (searchQuery.isEmpty()){
+						true
+					}
+					var lowerCaseSearch = searchQuery.toLowerCase()
+
+					it.toLowerCase().contains(lowerCaseSearch)
+				}
+
+				if(filteredList.size == 0)
+				{
+					popup.hide()
+				}else {
+					if(!popup.isShowing)
+					{
+						popup.show(script_area, script_area.caretBounds.get().centerX, script_area.caretBounds.get().centerY + 10)
+						queryIndex = script_area.caretPosition - 1
+					}
+				}
+			}else {
+				if(popup.isShowing)
+				{
+					popup.hide()
+				}
+			}
+		}
+
+		//TODO: Clean this up
+		val popup2 = Popup()
+		val popupMsg2 = Label()
 		script_area.mouseOverTextDelay = Duration.ofMillis(500)
 		script_area.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_BEGIN) {
 
 			val chIdx = it.characterIndex
 			val pos = it.screenPosition
-			popupMsg.text = this.getWordAround(script_area.text, chIdx)
-			popup.show(script_area, pos.x, pos.y + 10)
+			popupMsg2.text = this.getWordAround(script_area.text, chIdx)
+			popup2.show(script_area, pos.x, pos.y + 10)
 		}
-		script_area.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_END) { popup.hide()  }
+		script_area.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_END) { popup2.hide()  }
+
+		popupMsg2.style = "-fx-background-color: black;" +
+				"-fx-text-fill: white;" +
+				"-fx-padding: 5;"
+		popup2.content.add(popupMsg2)
 
 		script_area.isWrapText = true
 
@@ -148,14 +221,17 @@ class FileController: Initializable {
 		var startPosition = 0
 		var endPosition = 0
 
-		println("Given Index: $startIndex")
 		if (source != null)
 		{
+
+			println(source)
 			for (i in startIndex downTo 0)
 			{
-				if (Character.isWhitespace(source[i]) || i == 0) {
+				if (i == 0) {
 					startPosition = i
-					println("Start: " + startPosition)
+					break
+				}else if(Character.isWhitespace(source[i])) {
+					startPosition = i
 					break
 				}
 			}
@@ -163,7 +239,6 @@ class FileController: Initializable {
 			{
 				if (j == source.length || Character.isWhitespace(source[j])) {
 					endPosition = j
-					println("End: " + startPosition)
 					break
 				}
 			}
