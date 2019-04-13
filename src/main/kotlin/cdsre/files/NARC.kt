@@ -9,7 +9,6 @@ import java.io.FileNotFoundException
  * Class representing a `.narc` file in memory.
  *
  * @param file: The file being loaded, or null if this NARC is being created from scratch
- * @param name: The name to assign to this narc, if file is null.
  */
 class NARC private constructor(protected val file: RomFile) : NitroFS(file.isVirtual) {
 
@@ -23,11 +22,16 @@ class NARC private constructor(protected val file: RomFile) : NitroFS(file.isVir
 		 */
 		@JvmStatic
 		fun loadNARC(file: File): NARC {
-			// TODO: make RealRomFile and instantiate with that
-			TODO("Not implemented")
-//			return NARC(file)
+            val romFile = RealRomFile(file, file.path)
+			return NARC(romFile)
 		}
 
+		/**
+		 * Loads a NARC from inside of a ROM and returns it
+		 *
+		 * @param file: File to load from
+		 * @return: New loaded NARC object
+		 */
 		@JvmStatic
 		fun loadNARC(file: RomFile): NARC {
 			return NARC(file)

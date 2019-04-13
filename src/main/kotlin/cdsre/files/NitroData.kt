@@ -2,14 +2,21 @@ package cdsre.files
 
 import cdsre.utils.EndianRandomAccessFile
 import java.io.File
-import java.io.FileNotFoundException
 import java.io.InputStream
 import java.io.OutputStream
 
+/**
+ * Class to represent an allocation table entry inside of
+ * a nitro archive or nitro rom file system
+ */
 data class NitroAlloc(val start: UInt, val end: UInt) {
     var name: String? = null
 }
 
+/**
+ * Abstract class for a Nitro file tree directory
+ * Subclassed below by the two specific types of directory
+ */
 abstract class NitroTree(
     val subtableOffset: UInt,
     val firstFileID: UShort
@@ -46,15 +53,23 @@ abstract class NitroTree(
     }
 }
 
+/**
+ * The root of a file tree. Has no name, stores the total number of directories
+ * and files in the tree
+ */
 class NitroRoot(
     subtableOffset: UInt,
     firstFileID: UShort,
     val numDirs: UShort
 ) : NitroTree(subtableOffset, firstFileID)
 
+/**
+ * A directory in the tree. Has a name, and references its parent directory
+ */
 class NitroDir (
     subtableOffset: UInt,
     firstFileID: UShort,
+    @Deprecated("This will be auto generated on save")
     val parentDir: UShort,
     var name: String
 ) : NitroTree(subtableOffset, firstFileID) {
@@ -62,11 +77,19 @@ class NitroDir (
         get() = super.size + name.length.toUInt() + 3u
 }
 
+/**
+ * A single file in a NARC.
+ */
+@Deprecated("NARC file system handling is changing, this may be replaced")
 data class NitroFile(var data: ByteArray) {
     val size: UInt
         get() = data.size.toUInt()
 }
 
+/**
+ * An abstract representation of a file in a Nitro filetree.
+ * many classes within the NitroFS return an instance of this
+ */
 abstract class RomFile(val path: String) {
 
     abstract var offset: UInt
@@ -98,7 +121,12 @@ abstract class RomFile(val path: String) {
 
 }
 
-// Represents a file on the 'real' file system
+/**
+ * A concrete implementation of RomFile. Refers to a single file on
+ * the real file system
+ *
+ * Always counts as being 'unpacked'
+ */
 class RealRomFile(file: File, path: String) : RomFile(path) {
     override var offset = 0u
     override val isVirtual: Boolean = false
@@ -118,7 +146,12 @@ class RealRomFile(file: File, path: String) : RomFile(path) {
     }
 }
 
-// Represents a file that only exists inside a virtual file system. May or may not be packed
+/**
+ * A concrete implementation of RomFile. Refers to a single file
+ * stored within another file
+ *
+ * May or may not be 'unpacked'
+ */
 class VirtualRomFile : RomFile {
     override var offset: UInt
     override val isVirtual: Boolean = true

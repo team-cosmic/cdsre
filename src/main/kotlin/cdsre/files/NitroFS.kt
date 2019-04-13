@@ -2,6 +2,23 @@ package cdsre.files
 
 import cdsre.utils.EndianRandomAccessFile
 
+/**
+ * Abstract class implemented by any file that contains a
+ * Nitro file system.
+ *
+ * A nitro file system is stored in three parts:
+ *   A file allocation table
+ *   A filename table
+ *   A file data section
+ * The allocation table specifies where each file is in the
+ * data section, the filename table specifies the directory tree
+ * and file names, and the file data section contains the actual files.
+ *
+ * A NitroFS can be in two states, packed or unpacked. A packed filesystem
+ * cannot have its allocation or filename tables changes, and files must
+ * stay the same size if altered. An unpacked filesystem does not have these
+ * restrictions.
+ */
 abstract class NitroFS(val packed: Boolean) {
 
 	abstract val allocationTable: MutableList<NitroAlloc>
