@@ -29,7 +29,7 @@ class Endianness {
             if(endianness == Endian.LITTLE)
                 for(i in 1 downTo 0) short += (bytes[i] shl (8*i))
             else
-                for(i in 0..1) short += (bytes[i] shl (8*i))
+                for(i in 0..1) short += (bytes[i] shl (8*(1-i)))
             return short.toUShort()
         }
         
@@ -57,7 +57,7 @@ class Endianness {
             if(endianness == Endian.LITTLE)
                 for(i in 3 downTo 0) int += (bytes[i] shl (8*i))
             else
-                for(i in 0..3) int += (bytes[i] shl (8*i))
+                for(i in 0..3) int += (bytes[i] shl (8*(3-i)))
             return int.toUInt()
         }
         
@@ -89,7 +89,7 @@ class Endianness {
             if(endianness == Endian.LITTLE)
             	for(i in 7 downTo 0) long += (bytes[i].toLong() shl (8*i))
             else
-                for(i in 0..7) long += (bytes[i].toLong() shl (8*i))
+                for(i in 0..7) long += (bytes[i].toLong() shl (8*(7-i)))
             return long.toULong()
         }
         
