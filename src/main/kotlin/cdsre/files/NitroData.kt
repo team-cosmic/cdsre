@@ -1,6 +1,8 @@
 package cdsre.files
 
 import cdsre.utils.EndianRandomAccessFile
+import cdsre.utils.VirtualInputStream
+import cdsre.utils.VirtualOutputStream
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -92,7 +94,7 @@ data class NitroFile(var data: ByteArray) {
  */
 abstract class RomFile(val path: String) {
 
-    abstract var offset: UInt
+    abstract var offset: Long
         protected set
 
     abstract val realFile: File
@@ -128,7 +130,7 @@ abstract class RomFile(val path: String) {
  * Always counts as being 'unpacked'
  */
 class RealRomFile(file: File, path: String) : RomFile(path) {
-    override var offset = 0u
+    override var offset: Long = 0
     override val isVirtual: Boolean = false
     override val realFile = file
     override val isPacked: Boolean = false
@@ -153,7 +155,8 @@ class RealRomFile(file: File, path: String) : RomFile(path) {
  * May or may not be 'unpacked'
  */
 class VirtualRomFile : RomFile {
-    override var offset: UInt
+    override var offset: Long
+    var length: Long
     override val isVirtual: Boolean = true
     override val realFile: File
     override val isPacked: Boolean
@@ -162,23 +165,33 @@ class VirtualRomFile : RomFile {
     val nitroFS: NitroFS
 
     constructor(file: File, alloc: NitroAlloc, path: String, rom: ROM) : super(path) {
-        offset = alloc.start
+        offset = alloc.start.toLong()
+        length = (alloc.end - alloc.start).toLong()
         realFile = file
         nitroFS = rom
     }
 
     constructor(file: RomFile, alloc: NitroAlloc, path: String, narc: NARC) : super(path) {
-        offset = alloc.start + file.offset
+        offset = alloc.start.toLong() + file.offset
+        length = (alloc.end - alloc.start).toLong()
         realFile = file.realFile
         nitroFS = narc
     }
 
     override fun inputStream(): InputStream {
-        TODO("Not implemented")
+        if (isPacked) {
+            return VirtualInputStream(realFile, offset, length)
+        } else {
+            TODO("Not implemented")
+        }
     }
 
     override fun outputStream(): OutputStream {
-        TODO("Not implemented")
+        if (isPacked) {
+            return VirtualOutputStream(realFile, offset, length)
+        } else {
+            TODO("Not implemented")
+        }
     }
 
     override fun randomAccessFile(): EndianRandomAccessFile {
