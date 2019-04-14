@@ -1,0 +1,46 @@
+<mapping>
+	<location src="data/itemtool/itemdata/pl_itemdata.narc" />
+	<entries>
+		<entry length="2" name="Price" />
+		<entry name="Battle Effect" />
+		<entry name="Gain" />
+		<entry name="Berry Tag" />
+		<entry name="Fling Effect" />
+		<entry name="Fling Power" />
+		<entry name="Natural Power" />
+		<entry length="4" name="UNKNOWN">
+			<entry length="?" name="UNKNOWN" />
+			<entry length="?" name="UNKNOWN" />
+			<entry length="?" name="UNKNOWN" />
+			<entry length="?" name="Pocket" />
+			<entry length="?" name="UNKNOWN" />
+		</entry>
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+		<entry name="HP" />
+		<entry name="Level" />
+		<entry name="Evolution" />
+		<entry name="Attack" />
+		<entry name="Defense" />
+		<entry name="Special Attack" />
+		<entry name="Special Defense" />
+		<entry name="Speed" />
+		<entry name="Accuracy" />
+		<entry name="Critical Chance" /> <!-- Double check that this is chance -->
+		<entry name="Power Points" />
+		<entry name="Target 1" />
+		<entry name="Target 2" />
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+		<entry name="HP Restored" />
+		<entry name="Power Points Restored" />
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+		<entry name="UNKNOWN" />
+	</entries>
+</mapping>
