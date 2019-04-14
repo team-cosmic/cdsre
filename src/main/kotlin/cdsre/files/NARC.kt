@@ -1,7 +1,8 @@
 package cdsre.files
 
 import cdsre.utils.Constants
-import cdsre.utils.EndianRandomAccessFile
+import cdsre.utils.streams.EndianData
+import cdsre.utils.streams.EndianRandomAccessFile
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -112,7 +113,7 @@ class NARC private constructor(protected val file: RomFile) : NitroFS(file.isVir
 	 * @param reader: RandomAccess class being used to read the file
 	 * @return: List of NARC allocations
 	 */
-	protected fun readFATB(reader: EndianRandomAccessFile): MutableList<NitroAlloc> {
+	protected fun readFATB(reader: EndianData): MutableList<NitroAlloc> {
 		val magic = reader.readString(4)
 		if(magic != "FATB" && magic != "BTAF") {
 			System.err.println("Allocation table ${Constants.BAD_MAGIC}")
@@ -133,7 +134,7 @@ class NARC private constructor(protected val file: RomFile) : NitroFS(file.isVir
 	 * @return: List of NARC Filenames objects, defining the filenames and directory
 	 * 			structure of the NARC
 	 */
-	protected fun readFNTB(reader: EndianRandomAccessFile): NitroRoot {
+	protected fun readFNTB(reader: EndianData): NitroRoot {
 		val magic = reader.readString(4)
 		if(magic != "FNTB" && magic != "BTNF") {
 			System.err.println("Filename table ${Constants.BAD_MAGIC}")
@@ -150,7 +151,7 @@ class NARC private constructor(protected val file: RomFile) : NitroFS(file.isVir
 	 * @param reader: RandomAccess class being used to read the file
 	 * @return: List of NARC files, data objects containing the raw file bytes
 	 */
-	protected fun readFIMG(reader: EndianRandomAccessFile): MutableList<NitroFile> {
+	protected fun readFIMG(reader: EndianData): MutableList<NitroFile> {
 		val magic = reader.readString(4)
 		if(magic != "FIMG" && magic != "GMIF") {
 			System.err.println("Image Table ${Constants.BAD_MAGIC}")

@@ -1,6 +1,6 @@
 package cdsre.files
 
-import cdsre.utils.EndianRandomAccessFile
+import cdsre.utils.streams.EndianRandomAccessFile
 import java.io.File
 import java.io.FileNotFoundException
 import java.nio.file.Paths

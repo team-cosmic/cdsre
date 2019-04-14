@@ -1,4 +1,4 @@
-package cdsre.utils
+package cdsre.utils.streams
 
 import java.io.File
 import java.io.IOException

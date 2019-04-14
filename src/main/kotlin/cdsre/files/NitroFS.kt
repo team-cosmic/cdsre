@@ -1,6 +1,7 @@
 package cdsre.files
 
-import cdsre.utils.EndianRandomAccessFile
+import cdsre.utils.streams.EndianData
+import cdsre.utils.streams.EndianRandomAccessFile
 
 /**
  * Abstract class implemented by any file that contains a
@@ -32,7 +33,7 @@ abstract class NitroFS(val packed: Boolean) {
 
 	// Loading functions
 
-	fun readFAT(reader: EndianRandomAccessFile, fatOffset: UInt, fatSize: UInt): MutableList<NitroAlloc> {
+	fun readFAT(reader: EndianData, fatOffset: UInt, fatSize: UInt): MutableList<NitroAlloc> {
 		reader.seek(fatOffset)
 
 		val newList: MutableList<NitroAlloc> = mutableListOf()
@@ -47,7 +48,7 @@ abstract class NitroFS(val packed: Boolean) {
 		return newList
 	}
 
-	fun readFNT(reader: EndianRandomAccessFile, fntOffset: UInt): NitroRoot {
+	fun readFNT(reader: EndianData, fntOffset: UInt): NitroRoot {
 		reader.seek(fntOffset)
 
 		val subtableOffset = reader.readUInt()
@@ -68,7 +69,7 @@ abstract class NitroFS(val packed: Boolean) {
 		return newRoot
 	}
 
-	fun readSubtable(reader: EndianRandomAccessFile, fntOffset: UInt, dir: NitroTree) {
+	fun readSubtable(reader: EndianData, fntOffset: UInt, dir: NitroTree) {
 		reader.seek(fntOffset + dir.subtableOffset)
 		var typeLen = reader.readUByte().toUInt()
 		var fileID: Int = dir.firstFileID.toInt()
