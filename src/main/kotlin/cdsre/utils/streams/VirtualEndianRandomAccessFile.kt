@@ -7,7 +7,7 @@ import java.io.IOException
 import java.io.RandomAccessFile
 import javax.naming.OperationNotSupportedException
 
-class VirtualEndianRandomAccessFile(file: File, mode: String, val offset: Long, val length: Long) : EndianData {
+class VirtualEndianRandomAccessFile(file: File, mode: String, private val offset: Long, val length: Long) : EndianData {
 
     private val backing = RandomAccessFile(file, mode)
 
