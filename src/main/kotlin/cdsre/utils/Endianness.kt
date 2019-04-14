@@ -280,6 +280,17 @@ class Endianness {
         
         
         /**
+         * @param short signed short to unpack
+         * @param endianness which endian to unpack bytes by
+         * @return an array containing the bytes ordered by endianness
+         */
+        fun fromShort(short: Short, endianness: Endian): IntArray {
+            val int = short.toInt()
+            return toIntArray(int, 2, endianness)
+        }
+        
+        
+        /**
          * @param ushort unsigned short to unpack
          * @param endianness which endian to unpack bytes by
          * @return an array containing the bytes ordered by endianness
@@ -291,6 +302,16 @@ class Endianness {
         
         
         /**
+         * @param int signed int to unpack
+         * @param endianness which endian to unpack bytes by
+         * @return an array containing the bytes ordered by endianness
+         */
+        fun fromInt(int: Int, endianness: Endian): IntArray {
+            return toIntArray(int, 4, endianness)
+        }
+        
+        
+        /**
          * @param uint unsigned int to unpack
          * @param endianness which endian to unpack bytes by
          * @return an array containing the bytes ordered by endianness
@@ -298,6 +319,16 @@ class Endianness {
         fun fromUInt(uint: UInt, endianness: Endian): IntArray {
             val int = uint.toInt()
             return toIntArray(int, 4, endianness)
+        }
+        
+        
+        /**
+         * @param long signed long to unpack
+         * @param endianness which endian to unpack bytes by
+         * @return an array containing the bytes ordered by endianness
+         */
+        fun fromLong(long: Long, endianness: Endian): IntArray {
+            return longToIntArray(long, endianness)
         }
         
         
