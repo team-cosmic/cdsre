@@ -15,9 +15,8 @@ class VirtualOutputStream(file: File, offset: Long, val length: Long) : OutputSt
     }
 
     override fun write(out: Int) {
-        if (curOffset >= length) {
+        if (curOffset >= length)
             throw IOException("Max output length reached")
-        }
         curOffset += 1
         realOutputFile.write(out)
     }

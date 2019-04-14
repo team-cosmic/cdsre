@@ -13,9 +13,8 @@ class VirtualInputStream(file: File, offset: Long, val length: Long) : InputStre
     }
 
     override fun read(): Int {
-        if (curOffset >= length) {
+        if (curOffset >= length)
             return -1
-        }
         curOffset += 1
         return realInputStream.read()
     }

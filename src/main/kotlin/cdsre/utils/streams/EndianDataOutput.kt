@@ -15,22 +15,42 @@ interface EndianDataOutput : Closeable {
         }
     }
 
-    fun writeByte(out: Byte)
+    fun writeByte(out: Byte) {
+        write(out.toInt())
+    }
 
-    fun writeUByte(out: UByte)
+    fun writeUByte(out: UByte) {
+        write(out.toInt())
+    }
 
-    fun writeShort(out: Short)
+    fun writeShort(out: Short) {
+        for(byte in Endianness.fromShort(out, this.endianness)) write(byte)
+    }
 
-    fun writeUShort(out: UShort)
+    fun writeUShort(out: UShort) {
+        for(byte in Endianness.fromUShort(out, this.endianness)) write(byte)
+    }
 
-    fun writeInt(out: Int)
+    fun writeInt(out: Int) {
+        for(byte in Endianness.fromInt(out, this.endianness)) write(byte)
+    }
 
-    fun writeUInt(out: UInt)
+    fun writeUInt(out: UInt) {
+        for(byte in Endianness.fromUInt(out, this.endianness)) write(byte)
+    }
 
-    fun writeLong(out: Long)
+    fun writeLong(out: Long) {
+        for(byte in Endianness.fromLong(out, this.endianness)) write(byte)
+    }
 
-    fun writeULong(out: ULong)
+    fun writeULong(out: ULong) {
+        for(byte in Endianness.fromULong(out, this.endianness)) write(byte)
+    }
 
-    fun writeString(out: String)
+    fun writeString(out: String) {
+        for(char in out) {
+            write(char.toInt())
+        }
+    }
 
 }

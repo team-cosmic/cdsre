@@ -1,9 +1,6 @@
 package cdsre.files
 
-import cdsre.utils.streams.EndianData
-import cdsre.utils.streams.EndianRandomAccessFile
-import cdsre.utils.streams.VirtualInputStream
-import cdsre.utils.streams.VirtualOutputStream
+import cdsre.utils.streams.*
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -196,6 +193,10 @@ class VirtualRomFile : RomFile {
     }
 
     override fun randomAccessFile(): EndianData {
-        TODO("Not implemented")
+        if (isPacked) {
+            return VirtualEndianRandomAccessFile(realFile, "rw", offset, length)
+        } else {
+            TODO("Not implemented")
+        }
     }
 }

@@ -141,8 +141,11 @@ class NARC private constructor(protected val file: RomFile) : NitroFS(file.isVir
 		}
 
 		val sectionSize = reader.readUInt()
+		val startPointer = reader.filePointer
+		val result = readFNT(reader, startPointer.toUInt())
+		reader.seek(startPointer + sectionSize.toLong() - 8)
 
-		return readFNT(reader, reader.filePointer.toUInt())
+		return result
 	}
 
 	/**
