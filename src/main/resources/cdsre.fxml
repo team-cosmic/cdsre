@@ -110,6 +110,7 @@
                       <items>
                         <MenuItem fx:id="menuitem_about" mnemonicParsing="false" onAction="#openLink" text="About" />
                               <MenuItem fx:id="menuitem_discord" mnemonicParsing="false" onAction="#openLink" text="Discord" />
+                              <MenuItem fx:id="menuitem_github" mnemonicParsing="false" onAction="#openLink" text="Github" />
                       </items>
                     </Menu>
                   </menus>
