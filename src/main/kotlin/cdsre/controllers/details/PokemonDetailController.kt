@@ -84,6 +84,30 @@ class PokemonDetailController: Initializable {
 	@FXML
 	lateinit var secondability: ChoiceBox<*>
 
+    @FXML
+    lateinit var battledata: TitledPane
+
+    @FXML
+    lateinit var otherdata: TitledPane
+
+    @FXML
+    lateinit var types: TitledPane
+
+    @FXML
+    lateinit var breeding: TitledPane
+
+    @FXML
+    lateinit var holditems: TitledPane
+
+    @FXML
+    lateinit var abilities: TitledPane
+
+    @FXML
+    lateinit var collapseall: Button
+
+    @FXML
+    lateinit var expandall: Button
+
 	override fun initialize(p0: URL?, p1: ResourceBundle?) {
 
 		hp.valueFactory = SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE)
@@ -138,6 +162,27 @@ class PokemonDetailController: Initializable {
 		return data
 	}
 
+    @FXML
+    fun expandAll()
+    {
+        battledata.isExpanded = true
+        otherdata.isExpanded = true
+        types.isExpanded = true
+        breeding.isExpanded = true
+        holditems.isExpanded = true
+        abilities.isExpanded = true
+    }
+
+    @FXML
+    fun collapseAll()
+    {
+        battledata.isExpanded = false
+        otherdata.isExpanded = false
+        types.isExpanded = false
+        breeding.isExpanded = false
+        holditems.isExpanded = false
+        abilities.isExpanded = false
+    }
 
 }
 

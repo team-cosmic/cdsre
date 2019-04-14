@@ -1,5 +1,6 @@
 package cdsre
 
+import cdsre.workspace.Workspace
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
@@ -10,7 +11,7 @@ class ClientApp: Application() {
 
 	override fun start(stage: Stage?) {
 
-		globalStage = stage!!
+		Workspace.globalStage = stage!!
 
 		val root = FXMLLoader.load<Parent>(this.javaClass.classLoader.getResource("cdsre.fxml"))
 
@@ -20,10 +21,5 @@ class ClientApp: Application() {
 
 		stage.title = "CDSRE v1.0"
 		stage.show()
-	}
-
-	companion object {
-		@JvmStatic
-		lateinit var globalStage: Stage
 	}
 }

@@ -28,11 +28,12 @@
                   <menus>
                     <Menu fx:id="menu_file" mnemonicParsing="false" text="File">
                       <items>
-                              <MenuItem fx:id="menuitem_new" disable="true" mnemonicParsing="false" onAction="#addFile" text="New">
-                                 <accelerator>
-                                    <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                                 </accelerator>
-                              </MenuItem>
+                              <Menu mnemonicParsing="false" text="New...">
+                                <items>
+                                  <MenuItem fx:id="menu_newfile" disable="true" mnemonicParsing="false" text="File" />
+                                    <MenuItem fx:id="menuitem_newproject" mnemonicParsing="false" onAction="#addFile" text="Project" />
+                                </items>
+                              </Menu>
                         <MenuItem fx:id="menuitem_open" mnemonicParsing="false" onAction="#openFile" text="Open">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
