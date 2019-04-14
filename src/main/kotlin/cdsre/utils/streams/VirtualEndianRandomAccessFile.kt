@@ -4,11 +4,12 @@ import cdsre.utils.Constants
 import cdsre.utils.Endianness
 import java.io.File
 import java.io.IOException
+import java.io.RandomAccessFile
 import javax.naming.OperationNotSupportedException
 
-class VirtualEndianRandomAccessFile(file: File, mode: String, val offset: Long, val length: Long) : EndianData {
+class VirtualEndianRandomAccessFile(file: File, mode: String, private val offset: Long, val length: Long) : EndianData {
 
-    private val backing: EndianData = EndianRandomAccessFile(file, mode)
+    private val backing = RandomAccessFile(file, mode)
 
     private var curOffset: Long = 0
 

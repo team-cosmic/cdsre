@@ -37,6 +37,10 @@ abstract class NitroTree(
             return out
         }
 
+    override fun toString(): String {
+        return "NitroTree(subtableOffset=$subtableOffset, firstFileID=$firstFileID, children=$children, files=$files)"
+    }
+
     fun getChild(file: List<String>, depth: Int = 0): NitroAlloc? {
         for (item in children) {
             if (item.name == file[depth]) {
