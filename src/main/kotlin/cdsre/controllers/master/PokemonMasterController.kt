@@ -31,7 +31,7 @@ class PokemonMasterController: Initializable {
 		}
 
 		for (i in 1..492) {
-			masterData.add("Item $i")
+			masterData.add("Pokemon $i")
 		}
 	}
 
