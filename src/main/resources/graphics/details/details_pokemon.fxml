@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
@@ -19,8 +21,14 @@
          <content>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
-                  <TextField promptText="Search" />
-                  <TitledPane expanded="false" text="Battle Data">
+                  <HBox>
+                     <children>
+                        <TextField promptText="Search" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="collapseall" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#collapseAll" text="CA" />
+                        <Button fx:id="expandall" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#expandAll" text="EA" />
+                     </children>
+                  </HBox>
+                  <TitledPane fx:id="battledata" expanded="false" text="Battle Data">
                      <content>
                         <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
                            <columnConstraints>
@@ -52,7 +60,7 @@
                         </GridPane>
                      </content>
                   </TitledPane>
-                  <TitledPane expanded="false" text="Other Data">
+                  <TitledPane fx:id="otherdata" expanded="false" text="Other Data">
                      <content>
                         <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
                           <columnConstraints>
@@ -84,7 +92,7 @@
                         </GridPane>
                      </content>
                   </TitledPane>
-                  <TitledPane expanded="false" text="Types">
+                  <TitledPane fx:id="types" expanded="false" text="Types">
                      <content>
                         <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
                            <columnConstraints>
@@ -104,7 +112,7 @@
                         </GridPane>
                      </content>
                   </TitledPane>
-                  <TitledPane expanded="false" text="Breeding">
+                  <TitledPane fx:id="breeding" expanded="false" text="Breeding">
                      <content>
                         <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
                            <columnConstraints>
@@ -127,7 +135,7 @@
                         </GridPane>
                      </content>
                   </TitledPane>
-                  <TitledPane expanded="false" text="Hold Items">
+                  <TitledPane fx:id="holditems" expanded="false" text="Hold Items">
                      <content>
                         <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
                            <columnConstraints>
@@ -147,7 +155,7 @@
                         </GridPane>
                      </content>
                   </TitledPane>
-                  <TitledPane expanded="false" text="Abilities">
+                  <TitledPane fx:id="abilities" expanded="false" text="Abilities">
                      <content>
                         <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
                            <columnConstraints>
