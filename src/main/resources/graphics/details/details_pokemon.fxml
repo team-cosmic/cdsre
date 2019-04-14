@@ -17,167 +17,171 @@
 
 <AnchorPane fx:id="pokemon_details" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cdsre.controllers.details.PokemonDetailController">
    <children>
-      <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <content>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox>
                <children>
-                  <HBox>
-                     <children>
-                        <TextField promptText="Search" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="collapseall" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#collapseAll" text="CA" />
-                        <Button fx:id="expandall" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#expandAll" text="EA" />
-                     </children>
-                  </HBox>
-                  <TitledPane fx:id="battledata" expanded="false" text="Battle Data">
-                     <content>
-                        <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="HP" />
-                              <Label text="Attack" GridPane.rowIndex="1" />
-                              <Label text="Defense" GridPane.rowIndex="2" />
-                              <Label text="Speed" GridPane.rowIndex="3" />
-                              <Label text="Special Attack" GridPane.rowIndex="4" />
-                              <Label text="Special Defense" GridPane.rowIndex="5" />
-                              <Spinner fx:id="hp" layoutX="120.0" layoutY="58.0" GridPane.columnIndex="1" />
-                              <Spinner fx:id="attack" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Spinner fx:id="defense" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Spinner fx:id="speed" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Spinner fx:id="specialattack" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Spinner fx:id="specialdefense" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                           </children>
-                        </GridPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="otherdata" expanded="false" text="Other Data">
-                     <content>
-                        <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                          </rowConstraints>
-                           <children>
-                              <Label text="Base Experience" />
-                              <Label text="Base Happiness" GridPane.rowIndex="1" />
-                              <Label text="Catch Rate" GridPane.rowIndex="2" />
-                              <Label text="Marsh Chance" GridPane.rowIndex="3" />
-                              <Label text="Gender Ratio" GridPane.rowIndex="4" />
-                              <Label text="Max Experience" GridPane.rowIndex="5" />
-                              <Spinner fx:id="baseexperience" layoutX="120.0" layoutY="58.0" GridPane.columnIndex="1" />
-                              <Spinner fx:id="basehappiness" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Spinner fx:id="catchrate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Spinner fx:id="marshchance" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <ChoiceBox fx:id="genderratio" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <ChoiceBox fx:id="maxexperience" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                           </children>
-                        </GridPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="types" expanded="false" text="Types">
-                     <content>
-                        <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="First Type" />
-                              <Label text="Second Type" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="firsttype" GridPane.columnIndex="1" />
-                              <ComboBox fx:id="secondtype" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                           </children>
-                        </GridPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="breeding" expanded="false" text="Breeding">
-                     <content>
-                        <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="First Egg Type" />
-                              <Label text="Second Egg Type" GridPane.rowIndex="1" />
-                              <Label text="Steps To Hatch" GridPane.rowIndex="2" />
-                              <ChoiceBox fx:id="firsteggtype" prefWidth="150.0" GridPane.columnIndex="1" />
-                              <ChoiceBox fx:id="secondeggtype" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Spinner fx:id="stepstohatch" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                           </children>
-                        </GridPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="holditems" expanded="false" text="Hold Items">
-                     <content>
-                        <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="First Item" />
-                              <Label text="Second Item" GridPane.rowIndex="1" />
-                              <ChoiceBox fx:id="firstitem" prefWidth="150.0" GridPane.columnIndex="1" />
-                              <ChoiceBox fx:id="seconditem" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                           </children>
-                        </GridPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane fx:id="abilities" expanded="false" text="Abilities">
-                     <content>
-                        <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="First Ability" />
-                              <Label text="Second Ability" GridPane.rowIndex="1" />
-                              <ChoiceBox fx:id="firstability" prefWidth="150.0" GridPane.columnIndex="1" />
-                              <ChoiceBox fx:id="secondability" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                           </children>
-                        </GridPane>
-                     </content>
-                  </TitledPane>
+                  <TextField promptText="Search" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="collapseall" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#collapseAll" text="CA" />
+                  <Button fx:id="expandall" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#expandAll" text="EA" />
                </children>
-            </VBox>
-         </content>
-      </ScrollPane>
+            </HBox>
+            <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <content>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <children>
+                        <TitledPane fx:id="battledata" expanded="false" text="Battle Data">
+                           <content>
+                              <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="HP" />
+                                    <Label text="Attack" GridPane.rowIndex="1" />
+                                    <Label text="Defense" GridPane.rowIndex="2" />
+                                    <Label text="Speed" GridPane.rowIndex="3" />
+                                    <Label text="Special Attack" GridPane.rowIndex="4" />
+                                    <Label text="Special Defense" GridPane.rowIndex="5" />
+                                    <Spinner fx:id="hp" layoutX="120.0" layoutY="58.0" GridPane.columnIndex="1" />
+                                    <Spinner fx:id="attack" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Spinner fx:id="defense" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Spinner fx:id="speed" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Spinner fx:id="specialattack" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Spinner fx:id="specialdefense" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="otherdata" expanded="false" text="Other Data">
+                           <content>
+                              <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Base Experience" />
+                                    <Label text="Base Happiness" GridPane.rowIndex="1" />
+                                    <Label text="Catch Rate" GridPane.rowIndex="2" />
+                                    <Label text="Marsh Chance" GridPane.rowIndex="3" />
+                                    <Label text="Gender Ratio" GridPane.rowIndex="4" />
+                                    <Label text="Max Experience" GridPane.rowIndex="5" />
+                                    <Spinner fx:id="baseexperience" layoutX="120.0" layoutY="58.0" GridPane.columnIndex="1" />
+                                    <Spinner fx:id="basehappiness" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Spinner fx:id="catchrate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Spinner fx:id="marshchance" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <ChoiceBox fx:id="genderratio" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <ChoiceBox fx:id="maxexperience" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="types" expanded="false" text="Types">
+                           <content>
+                              <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="First Type" />
+                                    <Label text="Second Type" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="firsttype" GridPane.columnIndex="1" />
+                                    <ComboBox fx:id="secondtype" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="breeding" expanded="false" text="Breeding">
+                           <content>
+                              <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="First Egg Type" />
+                                    <Label text="Second Egg Type" GridPane.rowIndex="1" />
+                                    <Label text="Steps To Hatch" GridPane.rowIndex="2" />
+                                    <ChoiceBox fx:id="firsteggtype" prefWidth="150.0" GridPane.columnIndex="1" />
+                                    <ChoiceBox fx:id="secondeggtype" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Spinner fx:id="stepstohatch" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="holditems" expanded="false" text="Hold Items">
+                           <content>
+                              <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="First Item" />
+                                    <Label text="Second Item" GridPane.rowIndex="1" />
+                                    <ChoiceBox fx:id="firstitem" prefWidth="150.0" GridPane.columnIndex="1" />
+                                    <ChoiceBox fx:id="seconditem" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </TitledPane>
+                        <TitledPane fx:id="abilities" expanded="false" text="Abilities">
+                           <content>
+                              <GridPane alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" vgap="5.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="First Ability" />
+                                    <Label text="Second Ability" GridPane.rowIndex="1" />
+                                    <ChoiceBox fx:id="firstability" prefWidth="150.0" GridPane.columnIndex="1" />
+                                    <ChoiceBox fx:id="secondability" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </TitledPane>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
