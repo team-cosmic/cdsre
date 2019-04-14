@@ -1,6 +1,5 @@
 package cdsre.controllers.details
 
-import cdsre.ClientApp
 import javafx.fxml.Initializable
 import java.net.URL
 import java.util.*

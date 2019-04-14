@@ -7,7 +7,7 @@ import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.Stage
 
-class ClientApp: Application() {
+class Start: Application() {
 
 	override fun start(stage: Stage?) {
 
