@@ -12,12 +12,12 @@ import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.collections.transformation.FilteredList
 
-class PokemonMasterController: Initializable {
+class ScriptMasterController: Initializable {
 
 	override fun initialize(p0: URL?, p1: ResourceBundle?) {
 
 		val filteredList = FilteredList(masterData) { data -> true }
-		pokemonlistings.items = filteredList
+		scriptlistings.items = filteredList
 
 		search.textProperty().addListener { observableValue: ObservableValue<out String>, oldVal: String, newVal: String ->
 			filteredList.setPredicate{
@@ -30,19 +30,19 @@ class PokemonMasterController: Initializable {
 		}
 		}
 
-		for (i in 1..492) {
-			masterData.add("Pokemon $i")
+		for (i in 1..1122) {
+			masterData.add("Script $i")
 		}
 	}
 
 	@FXML
-	lateinit var pokemon_master: AnchorPane
+	lateinit var script_master: AnchorPane
 
 	@FXML
 	lateinit var search: TextField
 
 	@FXML
-	lateinit var pokemonlistings: ListView<*>
+	lateinit var scriptlistings: ListView<*>
 
 	var masterData: ObservableList<String> = FXCollections.observableArrayList<String>()
 }
