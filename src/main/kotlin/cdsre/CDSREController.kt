@@ -141,32 +141,32 @@ class CDSREController: Initializable {
 			}
 
 			menuitem_viewmapheaders.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_mapheaders.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_mapheaders.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_mapheaders.fxml"))
 			}
 			menuitem_viewmatrix.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_matrix.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_matrix.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_matrix.fxml"))
 			}
 			menuitem_viewmap.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_map.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_map.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_map.fxml"))
 			}
 			menuitem_viewtext.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_text.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_text.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_text.fxml"))
 			}
 			menuitem_viewscript.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_script.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_script.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_script.fxml"))
 			}
 			menuitem_viewevent.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
+				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_event.fxml"))
 				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_event.fxml"))
 				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_event.fxml"))
 			}
