@@ -69,37 +69,37 @@
                     </Menu>
                         <Menu fx:id="menu_view" mnemonicParsing="false" text="View">
                            <items>
-                              <MenuItem fx:id="menuitem_viewpokemon" mnemonicParsing="false" onAction="#switchView" text="Pokemon Editor">
+                              <MenuItem id="pokemon" fx:id="menuitem_viewpokemon" mnemonicParsing="false" onAction="#switchView" text="Pokemon Editor">
                                  <accelerator>
                                     <KeyCodeCombination alt="DOWN" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                              <MenuItem fx:id="menuitem_viewmapheaders" mnemonicParsing="false" onAction="#switchView" text="Map Headers">
+                              <MenuItem id="mapheaders" fx:id="menuitem_viewmapheaders" mnemonicParsing="false" onAction="#switchView" text="Map Headers">
                                  <accelerator>
                                     <KeyCodeCombination alt="DOWN" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                              <MenuItem fx:id="menuitem_viewmatrix" mnemonicParsing="false" onAction="#switchView" text="Matrix Editor">
+                              <MenuItem id="matrix" fx:id="menuitem_viewmatrix" mnemonicParsing="false" onAction="#switchView" text="Matrix Editor">
                                  <accelerator>
                                     <KeyCodeCombination alt="DOWN" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                              <MenuItem fx:id="menuitem_viewmap" mnemonicParsing="false" onAction="#switchView" text="Map Editor">
+                              <MenuItem id="map" fx:id="menuitem_viewmap" mnemonicParsing="false" onAction="#switchView" text="Map Editor">
                                  <accelerator>
                                     <KeyCodeCombination alt="DOWN" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                              <MenuItem fx:id="menuitem_viewtext" mnemonicParsing="false" onAction="#switchView" text="Text Editor">
+                              <MenuItem id="text" fx:id="menuitem_viewtext" mnemonicParsing="false" onAction="#switchView" text="Text Editor">
                                  <accelerator>
                                     <KeyCodeCombination alt="DOWN" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                              <MenuItem fx:id="menuitem_viewscript" mnemonicParsing="false" onAction="#switchView" text="Script Editor">
+                              <MenuItem id="script" fx:id="menuitem_viewscript" mnemonicParsing="false" onAction="#switchView" text="Script Editor">
                                  <accelerator>
                                     <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                              <MenuItem fx:id="menuitem_viewevent" mnemonicParsing="false" onAction="#switchView" text="Event Editor">
+                              <MenuItem id="event" fx:id="menuitem_viewevent" mnemonicParsing="false" onAction="#switchView" text="Event Editor">
                                  <accelerator>
                                     <KeyCodeCombination alt="DOWN" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>

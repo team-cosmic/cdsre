@@ -122,7 +122,8 @@ class CDSREController: Initializable {
 
 	@FXML
 	fun switchView(event: ActionEvent) {
-		println("Loading " + (event.source as MenuItem).text + " View")
+		println("Loading " + (event.source as MenuItem).id + " View")
+		var viewToLoad = (event.source as MenuItem).id
 
 		var masterpanel: AnchorPane?
 		var primaryview: AnchorPane?
@@ -132,45 +133,9 @@ class CDSREController: Initializable {
 		var viewLoader: FXMLLoader? = null
 		var detailLoader: FXMLLoader? = null
 
-		//TODO: Simplify
-		when((event.source as MenuItem).text) {
-			menuitem_viewpokemon.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_pokemon.fxml"))
-				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_pokemon.fxml"))
-				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_pokemon.fxml"))
-			}
-
-			menuitem_viewmapheaders.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_mapheaders.fxml"))
-				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_mapheaders.fxml"))
-				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_mapheaders.fxml"))
-			}
-			menuitem_viewmatrix.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_matrix.fxml"))
-				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_matrix.fxml"))
-				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_matrix.fxml"))
-			}
-			menuitem_viewmap.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_map.fxml"))
-				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_map.fxml"))
-				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_map.fxml"))
-			}
-			menuitem_viewtext.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_text.fxml"))
-				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_text.fxml"))
-				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_text.fxml"))
-			}
-			menuitem_viewscript.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_script.fxml"))
-				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_script.fxml"))
-				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_script.fxml"))
-			}
-			menuitem_viewevent.text -> {
-				masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_event.fxml"))
-				viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_event.fxml"))
-				detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_event.fxml"))
-			}
-		}
+		masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_$viewToLoad.fxml"))
+		viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_$viewToLoad.fxml"))
+		detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_$viewToLoad.fxml"))
 
 		masterpanel = AnchorPane(masterLoader!!.load())
 		masterpanel.prefWidthProperty().bind(this.leftpanel.widthProperty())
