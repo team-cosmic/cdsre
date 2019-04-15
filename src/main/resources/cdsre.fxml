@@ -136,7 +136,7 @@
          <children>
             <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextArea VBox.vgrow="NEVER" />
+                  <TextArea fx:id="console" wrapText="true" VBox.vgrow="NEVER" />
                 <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0">
                   <children>
                     <Label fx:id="leftstatus" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">

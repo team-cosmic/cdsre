@@ -8,13 +8,8 @@ import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.fxml.Initializable
-import javafx.scene.control.Label
-import javafx.scene.control.Menu
-import javafx.scene.control.MenuBar
-import javafx.scene.control.MenuItem
-import javafx.scene.control.ScrollPane
-import javafx.scene.control.Tab
-import javafx.scene.control.TabPane
+import javafx.scene.control.*
+import javafx.scene.input.KeyCode
 import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.Pane
 import javafx.stage.FileChooser
@@ -22,10 +17,68 @@ import java.awt.Desktop
 import java.net.URI
 import java.util.*
 import java.net.URL
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.io.File
+import java.lang.Exception
+import java.io.PrintWriter
+import java.io.StringWriter
+
+
+
 
 class CDSREController: Initializable {
 
+	var directory: String = System.getProperty("user.home").replace("\\", "/")
+	var lastDirectory: String = ""
+
 	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+		console.style = "-fx-font-family: monospace"
+		console.text = "$directory> "
+		console.setOnKeyPressed { event ->
+
+			//TODO: implement for non-Windows users. :P
+			if(event.code == KeyCode.ENTER) {
+				val builder = ProcessBuilder()
+				var inArr = console.text.split("\n")
+				var input = inArr[inArr.size - 2].replace("$directory>", "").trim()
+				builder.command("cmd.exe", "/c", input)
+
+				if(input.startsWith("cd"))
+				{
+					lastDirectory = directory
+					directory = input.substring(3)
+				}
+				builder.directory(File(directory))
+
+				try{
+					val process = builder.start()
+
+					var line: String? = ""
+					var buf = BufferedReader(InputStreamReader(process.inputStream))
+					while(line != null)
+					{
+						line = buf.readLine()
+
+						if(line != null)
+						{
+							console.appendText(line + "\n")
+						}else {
+							println("Line was null!")
+						}
+					}
+				}catch (e: Exception) {
+					val sw = StringWriter()
+					val pw = PrintWriter(sw)
+					e.printStackTrace(pw)
+					console.appendText("\n" + sw.toString())
+					directory = lastDirectory
+				}
+				console.appendText("$directory> ")
+				console.positionCaret(console.text.length)
+			}
+		}
 	}
 
 	@FXML
@@ -112,6 +165,9 @@ class CDSREController: Initializable {
 	@FXML
 	lateinit var rightstatus: Label
 
+	@FXML
+	lateinit var console: TextArea
+
 	/**
 	 * Quits the program.
 	 */
@@ -137,18 +193,18 @@ class CDSREController: Initializable {
 		viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_$viewToLoad.fxml"))
 		detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_$viewToLoad.fxml"))
 
-		masterpanel = AnchorPane(masterLoader!!.load())
+		masterpanel = AnchorPane(masterLoader.load())
 		masterpanel.prefWidthProperty().bind(this.leftpanel.widthProperty())
 		masterpanel.prefHeightProperty().bind(this.leftpanel.heightProperty())
 		leftpanel.children.setAll(masterpanel)
 
-		primaryview = AnchorPane(viewLoader!!.load())
+		primaryview = AnchorPane(viewLoader.load())
 		primaryview.prefWidthProperty().bind(this.view.widthProperty())
 		primaryview.prefHeightProperty().bind(this.view.heightProperty())
 		view.content = primaryview
 		this.leftstatus.text = (event.source as MenuItem).text
 
-		detailpanel = AnchorPane(detailLoader!!.load())
+		detailpanel = AnchorPane(detailLoader.load())
 		detailpanel.prefWidthProperty().bind(this.rightpanel.widthProperty())
 		detailpanel.prefHeightProperty().bind(this.rightpanel.heightProperty())
 		rightpanel.children.setAll(detailpanel)
@@ -218,5 +274,11 @@ class CDSREController: Initializable {
 		files.tabs.add(newFile)
 
 		newFile.text = "Untitled " + (newFile.tabPane.tabs.indexOf(newFile) + 1)
+	}
+
+	@Throws(IOException::class, InterruptedException::class)
+	fun consoleExecOutput(inputCommand: String): String {
+
+		return ""
 	}
 }
