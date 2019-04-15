@@ -8,7 +8,8 @@ import java.io.FileNotFoundException
 /**
  * Class representing a `.narc` file in memory.
  *
- * @param file: The file being loaded, or null if this NARC is being created from scratch
+ * @param file: The file being loaded. If it doesn't exist, this NARC is being created
+ *              from scratch.
  */
 class NARC private constructor(protected val file: NitroFile) : NitroFS(file.isVirtual) {
 

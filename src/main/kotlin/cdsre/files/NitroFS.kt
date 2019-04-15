@@ -1,15 +1,16 @@
 package cdsre.files
 
 import cdsre.utils.streams.EndianData
+import java.io.FileNotFoundException
 
 /**
  * Abstract class implemented by any file that contains a
  * Nitro file system.
  *
  * A nitro file system is stored in three parts:
- *   A file allocation table
- *   A filename table
- *   A file data section
+ *   A file allocation table (FAT)
+ *   A filename table (FNT)
+ *   A file data section (FIMG)
  * The allocation table specifies where each file is in the
  * data section, the filename table specifies the directory tree
  * and file names, and the file data section contains the actual files.
@@ -21,18 +22,34 @@ import cdsre.utils.streams.EndianData
  */
 abstract class NitroFS(val packed: Boolean) {
 
+	/**
+	 * Holds the actual allocation table for this NitroFS
+	 */
 	abstract val allocationTable: MutableList<NitroAlloc>
+
+	/**
+	 * Holds the actual filename table for this NitroFS
+	 */
 	abstract val filenameTable: NitroRoot
 
+	/**
+	 * Size of the file allocation table for this NitroFS
+	 */
 	val fatSize: UInt
 		get() = allocationTable.size.toUInt() * 8u
 
+	/**
+	 * Size of the filename table for this NitroFS
+	 */
 	val fntSize: UInt
 		get() = filenameTable.size
 
 	// Loading functions
 
-	fun readFAT(reader: EndianData, fatOffset: UInt, fatSize: UInt): MutableList<NitroAlloc> {
+	/**
+	 * Read the FAT for this object from a file
+	 */
+	protected fun readFAT(reader: EndianData, fatOffset: UInt, fatSize: UInt): MutableList<NitroAlloc> {
 		reader.seek(fatOffset)
 
 		val newList: MutableList<NitroAlloc> = mutableListOf()
@@ -47,7 +64,10 @@ abstract class NitroFS(val packed: Boolean) {
 		return newList
 	}
 
-	fun readFNT(reader: EndianData, fntOffset: UInt): NitroRoot {
+	/**
+	 * Read the FNT for this object from a file
+	 */
+	protected fun readFNT(reader: EndianData, fntOffset: UInt): NitroRoot {
 		reader.seek(fntOffset)
 
 		val subtableOffset = reader.readUInt()
@@ -68,7 +88,11 @@ abstract class NitroFS(val packed: Boolean) {
 		return newRoot
 	}
 
-	fun readSubtable(reader: EndianData, fntOffset: UInt, dir: NitroTree) {
+	/**
+	 * Recursive call for readFNT that reads a directory subtable, and all of its directories
+	 * and their subtables, etc.
+	 */
+	protected fun readSubtable(reader: EndianData, fntOffset: UInt, dir: NitroTree) {
 		reader.seek(fntOffset + dir.subtableOffset)
 		var typeLen = reader.readUByte().toUInt()
 		var fileID: Int = dir.firstFileID.toInt()
@@ -115,43 +139,43 @@ abstract class NitroFS(val packed: Boolean) {
 		get() = false
 
 	/**
-	 * Returns -1 in the case of alloc not existing
+	 * Convert a NitroAlloc object into its corresponding in-memory ID
+	 *
+	 * @param alloc: NitroAlloc to get ID of
+	 * @return: Id of the allocation, or -1 in the case of alloc not existing
 	 */
 	open fun getIdFromAlloc(alloc: NitroAlloc): Int {
 		throw NotImplementedError()
 	}
 
+	/**
+	 * Get and return the ByteArray for an in-memory file, from its ID
+	 *
+	 * @param id: ID of the file to get
+	 * @return: ByteArray containing the file's data
+	 */
 	open fun getInMemory(id: Int): ByteArray {
 		throw NotImplementedError()
 	}
 
+	/**
+	 * Set the ByteArray for an in-memory file, from its ID
+	 *
+	 * @param id: ID of the file to set
+	 * @param arr: ByteArray containing the data to put in the file.
+	 */
 	open fun setInMemory(id: Int, arr: ByteArray) {
 		throw NotImplementedError()
 	}
 
+	/**
+	 * Gets a NitroFile from within this filesystem. This is a sub-file
+	 * within the larger file that is the current NitroFS object.
+	 *
+	 * @param path: Path to the desired file, as a string. EG "dirone/dirtwo/file.name"
+	 * @return: NitroFile pointing to the file if it exists
+	 * @throws FileNotFoundException: If the file path doesn't exist
+	 */
 	abstract fun getFile(path: String): NitroFile
 
-	// Debug stuff
-
-	fun recursePrint(dir: NitroRoot) {
-		println("root")
-		for (child in dir.children) {
-			_print(child, 1)
-		}
-		var count = 0
-		for (file in dir.files) {
-			println(file.name ?: count)
-			count += 1
-		}
-	}
-
-	fun _print(dir: NitroDir, depth: Int) {
-		println(" ".repeat(depth) + dir.name)
-		for (child in dir.children) {
-			_print(child, depth + 1)
-		}
-		for (file in dir.files) {
-			println(" ".repeat(depth + 1) + file.name)
-		}
-	}
 }

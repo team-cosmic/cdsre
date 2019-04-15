@@ -5,6 +5,14 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.nio.file.Paths
 
+/**
+ * Class representing a '.nds' file, or the equivalent unpacked
+ * root directory.
+ *
+ * @param file: The file being loaded. Could be either a file or a
+ * 				directory. If it doesn't exist, this ROM is being
+ * 				created from scratch.
+ */
 class ROM private constructor(file: File) : NitroFS(file.isFile) {
 
 	companion object {
@@ -95,9 +103,8 @@ class ROM private constructor(file: File) : NitroFS(file.isFile) {
 			val size7 = reader.readUInt()
 
 			fntOffset = reader.readUInt()
-			val fntSize = reader.readUInt()
 			// Skip over FNT size
-//			reader.seek(reader.filePointer + 4)
+			reader.seek(reader.filePointer + 4)
 
 			fatOffset = reader.readUInt()
 			val fatSize = reader.readUInt()
@@ -151,8 +158,7 @@ class ROM private constructor(file: File) : NitroFS(file.isFile) {
 			filenameTable = readFNT(reader, fntOffset)
 
 		} else if (file.isDirectory) {
-			// TODO: Load unpacked
-
+			TODO("not implemented")
 			gameTitle = ""
 			gameCode = ""
 			makerCode = ""
@@ -267,6 +273,6 @@ class ROM private constructor(file: File) : NitroFS(file.isFile) {
 	}
 
 	fun save() {
-		// TODO: Save ROM
+		TODO("not implemented")
 	}
 }
