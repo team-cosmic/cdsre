@@ -254,15 +254,15 @@ class ROM private constructor(file: File) : NitroFS(file.isFile) {
 		}
 	}
 
-	override fun getFile(path: String): RomFile {
+	override fun getFile(path: String): NitroFile {
 		if(!packed) {
 			val file = Paths.get(this.path, path).toFile()
 			if (!file.exists())
 				throw FileNotFoundException()
-			return RealRomFile(Paths.get(this.path, path).toFile(), path)
+			return RealNitroFile(Paths.get(this.path, path).toFile(), path)
 		} else {
 			val alloc = this.filenameTable.getChild(path.split("\\", "/")) ?: throw FileNotFoundException()
-			return VirtualRomFile(File(this.path), alloc, path, this)
+			return VirtualNitroFile(File(this.path), alloc, path, this)
 		}
 	}
 

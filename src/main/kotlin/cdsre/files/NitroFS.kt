@@ -1,7 +1,6 @@
 package cdsre.files
 
 import cdsre.utils.streams.EndianData
-import cdsre.utils.streams.EndianRandomAccessFile
 
 /**
  * Abstract class implemented by any file that contains a
@@ -106,7 +105,31 @@ abstract class NitroFS(val packed: Boolean) {
 
 	// Get a file
 
-	abstract fun getFile(path: String): RomFile
+	/**
+	 * Indicates whether a nitroFS implements the 'in-memory files' interface, meaning that
+	 * it reads its virtual files into an internal memory representation.
+	 *
+	 * If it implements this interface, it may be unpacked despite being virtual
+	 */
+	open val inMemory: Boolean
+		get() = false
+
+	/**
+	 * Returns -1 in the case of alloc not existing
+	 */
+	open fun getIdFromAlloc(alloc: NitroAlloc): Int {
+		throw NotImplementedError()
+	}
+
+	open fun getInMemory(id: Int): ByteArray {
+		throw NotImplementedError()
+	}
+
+	open fun setInMemory(id: Int, arr: ByteArray) {
+		throw NotImplementedError()
+	}
+
+	abstract fun getFile(path: String): NitroFile
 
 	// Debug stuff
 
