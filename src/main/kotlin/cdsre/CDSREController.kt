@@ -24,8 +24,7 @@ import java.io.File
 import java.lang.Exception
 import java.io.PrintWriter
 import java.io.StringWriter
-
-
+import kotlin.collections.HashMap
 
 
 class CDSREController: Initializable {
@@ -34,6 +33,21 @@ class CDSREController: Initializable {
 	var lastDirectory: String = ""
 
 	override fun initialize(p0: URL?, p1: ResourceBundle?) {
+
+		/** CONTROLLER SETUP **/
+		var names = arrayOf("pokemon", "text", "event", "script", "mapheaders", "matrix", "map")
+
+		for(name in names)
+		{
+			var tempLeft = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_$name.fxml"))
+			var tempMid = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_$name.fxml"))
+			var tempRight = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_$name.fxml"))
+
+			var tempMulti = MultiController(tempLeft, tempMid, tempRight)
+			controllers[name] = tempMulti
+		}
+
+		/** COMMAND LINE **/
 		console.style = "-fx-font-family: monospace"
 		console.text = "$directory> "
 		console.setOnKeyPressed { event ->
@@ -181,30 +195,18 @@ class CDSREController: Initializable {
 		println("Loading " + (event.source as MenuItem).id + " View")
 		var viewToLoad = (event.source as MenuItem).id
 
-		var masterpanel: AnchorPane?
-		var primaryview: AnchorPane?
-		var detailpanel: AnchorPane?
-
-		var masterLoader: FXMLLoader? = null
-		var viewLoader: FXMLLoader? = null
-		var detailLoader: FXMLLoader? = null
-
-		masterLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_$viewToLoad.fxml"))
-		viewLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_$viewToLoad.fxml"))
-		detailLoader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_$viewToLoad.fxml"))
-
-		masterpanel = AnchorPane(masterLoader.load())
+		var masterpanel = AnchorPane(controllers[viewToLoad]!!.master)
 		masterpanel.prefWidthProperty().bind(this.leftpanel.widthProperty())
 		masterpanel.prefHeightProperty().bind(this.leftpanel.heightProperty())
 		leftpanel.children.setAll(masterpanel)
 
-		primaryview = AnchorPane(viewLoader.load())
+		var primaryview = AnchorPane(controllers[viewToLoad]!!.view)
 		primaryview.prefWidthProperty().bind(this.view.widthProperty())
 		primaryview.prefHeightProperty().bind(this.view.heightProperty())
 		view.content = primaryview
 		this.leftstatus.text = (event.source as MenuItem).text
 
-		detailpanel = AnchorPane(detailLoader.load())
+		var detailpanel = AnchorPane(controllers[viewToLoad]!!.details)
 		detailpanel.prefWidthProperty().bind(this.rightpanel.widthProperty())
 		detailpanel.prefHeightProperty().bind(this.rightpanel.heightProperty())
 		rightpanel.children.setAll(detailpanel)
@@ -276,9 +278,8 @@ class CDSREController: Initializable {
 		newFile.text = "Untitled " + (newFile.tabPane.tabs.indexOf(newFile) + 1)
 	}
 
-	@Throws(IOException::class, InterruptedException::class)
-	fun consoleExecOutput(inputCommand: String): String {
-
-		return ""
+	companion object {
+		@JvmStatic
+		var controllers: HashMap<String, MultiController> = HashMap()
 	}
 }
