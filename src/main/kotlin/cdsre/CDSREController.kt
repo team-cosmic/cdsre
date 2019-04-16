@@ -1,5 +1,6 @@
 package cdsre
 
+import cdsre.controllers.project.ProjectSetup
 import cdsre.files.Project
 import cdsre.files.ROM
 import cdsre.workspace.Workspace
@@ -277,6 +278,9 @@ class CDSREController: Initializable {
 
 		newFile.text = "Untitled " + (newFile.tabPane.tabs.indexOf(newFile) + 1)
 	}
+
+	@FXML
+	fun openProjectSetup(event: ActionEvent) = ProjectSetup().start()
 
 	companion object {
 		@JvmStatic

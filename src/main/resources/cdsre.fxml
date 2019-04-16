@@ -31,7 +31,7 @@
                               <Menu mnemonicParsing="false" text="New...">
                                 <items>
                                   <MenuItem fx:id="menu_newfile" disable="true" mnemonicParsing="false" text="File" />
-                                    <MenuItem fx:id="menuitem_newproject" mnemonicParsing="false" onAction="#addFile" text="Project" />
+                                    <MenuItem fx:id="menuitem_newproject" mnemonicParsing="false" onAction="#openProjectSetup" text="Project" />
                                 </items>
                               </Menu>
                         <MenuItem fx:id="menuitem_open" mnemonicParsing="false" onAction="#openFile" text="Open">
