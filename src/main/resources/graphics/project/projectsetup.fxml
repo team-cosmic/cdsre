@@ -22,6 +22,7 @@
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" />
                       <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -35,9 +36,9 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextField GridPane.columnIndex="1">
+                        <TextField fx:id="baserom_dest" GridPane.columnIndex="1">
                            <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
                            </GridPane.margin>
                         </TextField>
                         <Label text="Project Location" GridPane.rowIndex="1">
@@ -45,17 +46,19 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="project_dest" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
                            </GridPane.margin>
                         </TextField>
                         <Label text="Mappings" GridPane.rowIndex="3" />
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <ChoiceBox fx:id="mappings" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </ChoiceBox>
+                        <Button fx:id="baserom_select" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectBaseROM" text="..." GridPane.columnIndex="2" />
+                        <Button fx:id="project_select" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectProjectDest" text="..." GridPane.columnIndex="2" GridPane.rowIndex="1" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -63,7 +66,7 @@
                   </GridPane>
                   <HBox alignment="BOTTOM_RIGHT">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#createProject" text="Create">
+                        <Button fx:id="create" mnemonicParsing="false" onMouseClicked="#createProject" text="Create">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
