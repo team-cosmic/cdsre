@@ -127,6 +127,8 @@ abstract class NitroFS(val packed: Boolean) {
 		}
 	}
 
+	// TODO: Generate FAT and FNT, writeFAT and writeFNT functions
+
 	// Get a file
 
 	/**
