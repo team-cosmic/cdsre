@@ -25,7 +25,7 @@
 	<function index="0028" name="SetVar" />
 	<function index="0029" name="SetVar2" />
 	<function index="002A" name="CopyVar" />
-	<function index="002B" name="Message3 />
+	<function index="002B" name="Message3" />
 	<function index="002C" name="Message4" />
 	<function index="002D" name="Message" />
 	<function index="002E" name="Message2" />
@@ -135,7 +135,7 @@
 	<function index="00B2" name="UNKNOWN" />
 	<function index="00B3" name="WFC1" />
 	<function index="00B4" name="ChooseStarter" />
-	<function index="00B5" name="StartStarterBattle />
+	<function index="00B5" name="StartStarterBattle" />
 	<function index="00B6" name="GetBattleID" /> <!-- DOUBLE CHECK -->
 	<function index="00B7" name="UNKNOWN" />
 	<function index="00B8" name="UNKNOWN" />
@@ -201,7 +201,7 @@
 	<function index="00FB" name="UNKNOWN" />
 	<function index="00FC" name="UNKNOWN" />
 	<function index="00FD" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0111" name="StartFlash" />
 	<function index="0112" name="StopFlash" />
 	<function index="0113" name="FadeSreenCurtain" />
@@ -232,7 +232,7 @@
 	<function index="0134" name="GivePoketchApp" />
 	<function index="0135" name="UNKNOWN" />
 	<function index="0136" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0147" name="ShowPokemartWith" />
 	<function index="0148" name="ShowPokemart2With" />
 	<function index="014A" name="ShowPokemart4With" />
@@ -250,14 +250,14 @@
 	<function index="015C" name="GivePlayerBadge" />
 	<function index="015D" name="TakePlayerBadge" />
 	<function index="0160" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0173" name="ChangeCollision" />
 	<function index="0175" name="UNKNOWN" />
 	<function index="0176" name="UNKNOWN" />
 	<function index="0177" name="GetPartySize" />
 	<function index="0178" name="OpenBerryPouch" />
 	<function index="0179" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0186" name="MoveOwnerworld" />
 	<function index="0188" name="ChangeOverworld" />
 	<function index="0189" name="ResetOverworldAttributes" />
@@ -278,7 +278,7 @@
 	<function index="0198" name="StorePartySizeNoEggs" />
 	<function index="0199" name="UNKNOWN" />
 	<function index="019A" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="01AC" name="EggAnimation" />
 	<function index="01B1" name="UNKNOWN" />
 	<function index="01B2" name="UNKNOWN" />
@@ -290,7 +290,7 @@
 	<function index="01B8" name="UNKNOWN" />
 	<function index="01B9" name="StorePokemonHappiness" />
 	<function index="01BA" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="01C6" name="OpenBattleMovesOfPokemon" />
 	<function index="01C7" name="StoreDataMove" />
 	<function index="01C8" name="UNKNOWN" />
@@ -299,18 +299,18 @@
 	<function index="01CB" name="UNKNOWN" />
 	<function index="01CC" name="UNKNOWN" />
 	<function index="01CD" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="01D7" name="OpenBerryPouchForPoffin" />
 	<function index="01D8" name="UNKNOWN" />
 	<function index="01D9" name="OpenBattleRoomResult" />
 	<function index="01DA" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="01E8" name="IsPokedexCompleted" />
 	<function index="01E9" name="IsNationalPokedexCompleted" />
 	<function index="01EA" name="ShowPokedexSheet" />
 	<function index="01EB" name="ShowNationalPokedexSheet" />
 	<function index="01EC" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0204" name="WarpToLastElevator" />
 	<function index="0205" name="OpenGeonet" />
 	<function index="0206" name="GreatMarshBynoculePokemon" />
@@ -318,7 +318,7 @@
 	<function index="0208" name="ShowPCBoxWithPokemonSprite" />
 	<function index="0209" name="HideBPCBoxWithPokemonSprite" />
 	<function index="020A" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0221" name="RememberMoveForPokemon" />
 	<function index="0223" name="UNKNOWN" />
 	<function index="0224" name="TeachPokemonMove" />
@@ -331,7 +331,7 @@
 	<function index="022D" name="GiveNationalPokedex" />
 	<function index="022F" name="StoreAmountOfRibbonsInParty" />
 	<function index="0230" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0239" name="GetDecidedBattleLinkRules" />
 	<function index="023A" name="UNKNOWN" />
 	<function index="023B" name="DoPokecenterHealAnimation" />
@@ -341,33 +341,33 @@
 	<function index="0243" name="ShowPhraseBox1" />
 	<function index="0244" name="ShowPhraseBox2" />
 	<function index="0245" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="024B" name="PreparePokecenterPCAnimation" />
 	<function index="024C" name="DoPokecenterPCOpenAnimation" />
-	<function index="024D" name="DoPokecenterPCCloseAnimation" 
+	<function index="024D" name="DoPokecenterPCCloseAnimation" />
 	<function index="024E" name="CheckLotusTicketNumber" />
 	<function index="024F" name="CompareLotusTicketNumberWith" />
 	<function index="0250" name="UNKNOWN" />
-	<etc
+	<etc />
 	<function index="0257" name="ExchangeBerriesForAccessories" />
 	<function index="0258" name="ChangeSpritePostionWhileSaveGame" />
 	<function index="0259" name="ReturnToOriginalOverworldSprite" />
 	<function index="025A" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0267" name="StartPokeCasino" />
 	<function index="0268" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="026D" name="OpenUnownTextBox" />
 	<function index="0271" name="OpenThankWhoNameInsert" />
 	<function index="0272" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="027A" name="ShowLeagueCastleView" />
 	<function index="027C" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="028B" name="CheckMysteryGiftTrades" />
 	<function index="028C" name="ShowPartySpriteForPokemon" />
 	<function index="028F" name="UNKNOWN" />
-	<etc>
+	<etc />
 	<function index="0294" name="ShowBattlePointsBox" />
 	<function index="0295" name="HideBattlePointsBox" />
 	<function index="0296" name="UNKNOWN" />
@@ -376,24 +376,24 @@
 	<function index="02A1" name="MovePersonWithMovement" />
 	<function index="02A2" name="UNKNOWN" />
 	<function index="02A5" name="ChoosePokemonForTrade" />
-	<etc>
+	<etc />
 	<function index="02BD" name="StartWildBattleWithPokemon" />
 	<function index="02BE" name="UNKNOWN" />
 	<function index="02BF" name="SetHeroRidingBike" />
 	<function index="02C0" name="UNKNOWN" />
 	<function index="02C1" name="ShowSaveBox" />
 	<function index="02C2" name="HideSaveBox" />
-	<etc>
+	<etc />
 	<function index="02CA" name="FloralClockAnimation" />
-	<etc>
+	<etc />
 	<function index="02E2" name="DisplayCardGameScratch" />
 	<function index="02E3" name="CloseCardGameScratch" />
 	<function index="02E4" name="ChooseCard" />
-	<etc>
+	<etc />
 	<function index="0318" name="StartSimpleWildBattle" />
-	<etc>
+	<etc />
 	<function index="032B" name="IsEventRegigigasInParty" />
-	<etc>
+	<etc />
 	<function index="0343" name="StorePokemon" />
 	<function index="0344" name="CopyWifiSpriteIntoVariable" />
 	<function index="0345" name="SetSealVariable" />
@@ -415,4 +415,4 @@
 	<var index="0x4077" name="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -->
 	<var index="0x4000" name="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -->
 	<var index="0x4020" name="UNKNOWN" /> <!-- FOUND AT: Script 2 -> Script 1 -> Functions -->
-<mapping>
+</mapping>
