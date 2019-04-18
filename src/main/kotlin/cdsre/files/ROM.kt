@@ -263,12 +263,27 @@ class ROM private constructor(file: File) : NitroFS(file.isFile) {
 		}
 	}
 
+	override fun getFile(index: Int): NitroFile {
+		if (!packed) {
+			val file = Paths.get(this.path, index.toString()).toFile()
+			if (!file.exists())
+				throw FileNotFoundException()
+			return RealNitroFile(file, index.toString())
+		} else {
+			val allocs: List<NitroAlloc> = this.filenameTable.files.filter {a -> a.name == null}
+			if (index > allocs.size)
+				throw FileNotFoundException()
+			val alloc = allocs[index]
+			return VirtualNitroFile(File(this.path), alloc, index.toString(), this)
+		}
+	}
+
 	override fun getFile(path: String): NitroFile {
 		if(!packed) {
 			val file = Paths.get(this.path, path).toFile()
 			if (!file.exists())
 				throw FileNotFoundException()
-			return RealNitroFile(Paths.get(this.path, path).toFile(), path)
+			return RealNitroFile(file, path)
 		} else {
 			val alloc = this.filenameTable.getChild(path.split("\\", "/")) ?: throw FileNotFoundException()
 			return VirtualNitroFile(File(this.path), alloc, path, this)

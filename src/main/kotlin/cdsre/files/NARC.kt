@@ -245,6 +245,20 @@ class NARC private constructor(protected val file: NitroFile) : NitroFS(file.isV
     }
 
 	/**
+	 * Get a NitroFile pointing to the desired file index. For a NARC,
+	 * this will always be a VirtualNitroFile instance
+	 *
+	 * @param index: Index of the desired unnamed file
+	 */
+	override fun getFile(index: Int): NitroFile {
+		val allocs: List<NitroAlloc> = this.filenameTable.files.filter {a -> a.name == null}
+		if (index > allocs.size)
+			throw FileNotFoundException()
+		val alloc = allocs[index]
+		return VirtualNitroFile(this.file, alloc, index.toString(), this)
+	}
+
+	/**
 	 * Get a NitroFile pointing to the desired file path. For a NARC,
 	 * this will always be a VirtualNitroFile instance
 	 *

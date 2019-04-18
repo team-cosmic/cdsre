@@ -171,8 +171,20 @@ abstract class NitroFS(val packed: Boolean) {
 	}
 
 	/**
+	 * Get a NitroFile from within this filesystem. This is a sub-file
+	 * within the larger file that is the current NitroFS object.
+	 * This method gets unnamed files on the root by index
+	 *
+	 * @param index: Index of the desired file. EG 1
+	 * @return: NitroFile pointing to the file if it exists
+	 * @throws FileNotFoundException: If the file path doesn't exist
+	 */
+	abstract fun getFile(index: Int): NitroFile
+
+	/**
 	 * Gets a NitroFile from within this filesystem. This is a sub-file
 	 * within the larger file that is the current NitroFS object.
+	 * This method gets named files on the root by path
 	 *
 	 * @param path: Path to the desired file, as a string. EG "dirone/dirtwo/file.name"
 	 * @return: NitroFile pointing to the file if it exists
