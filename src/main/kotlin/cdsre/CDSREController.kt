@@ -232,8 +232,7 @@ class CDSREController: Initializable {
 			FileChooser.ExtensionFilter("CDSRE Files", "*.nds", "*.crp")
 		)
 
-		val file = fileChooser.showOpenDialog(Workspace.globalStage)
-			?: return //If file is null, then no file was selected; simply do nothing
+		val file = fileChooser.showOpenDialog(Workspace.globalStage) ?: return //If file is null, then no file was selected; simply do nothing
 
 		println(file.extension)
 

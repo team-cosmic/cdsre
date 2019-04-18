@@ -159,7 +159,10 @@ class ROM private constructor(file: File) : NitroFS(file.isFile) {
 
 		} else if (file.isDirectory) {
 			TODO("not implemented")
-			gameTitle = ""
+
+			val bannerReader = EndianRandomAccessFile(File(file, "fnt/banner.bin"), "r") //This is somewhat of a hack solution. I'm not a good Kotlin dev
+			bannerReader.seek(0x240)
+			gameTitle = bannerReader.readUntil("\n")
 			gameCode = ""
 			makerCode = ""
 			unitCode = 0u
