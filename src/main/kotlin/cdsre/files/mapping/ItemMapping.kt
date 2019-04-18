@@ -1,3 +1,3 @@
 package cdsre.files.mapping
 
-class ItemNarcMapping(entries: Map<String, EntryDef>) : NarcMapping("item", listOf(), entries)
+class ItemNarcMapping(location: String, entries: Map<String, EntryDef>) : NarcMapping("item", location, listOf(), entries)

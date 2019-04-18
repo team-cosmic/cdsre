@@ -4,7 +4,7 @@ data class FunctionDef(val index: Int, val name: String)
 
 data class VariableDef(val index: Int, val name: String)
 
-data class EntryDef(val name: String, val length: Int, val offset: Int) {
+data class EntryDef(val name: String, val length: Int, val bits: Boolean, val offset: Int) {
 
     private val subBack: MutableList<SubentryDef> = mutableListOf()
     val subEntries: List<SubentryDef> = subBack
@@ -15,4 +15,4 @@ data class EntryDef(val name: String, val length: Int, val offset: Int) {
 
 }
 
-data class SubentryDef(val name: String, val length: Int, val offset: Int)
+data class SubentryDef(val name: String, val length: Int, val bits: Boolean, val offset: Int)

@@ -1,14 +1,15 @@
 package cdsre.files.mapping
 
-import cdsre.files.mapping.Entry
-import cdsre.files.mapping.NarcMapping
+class PokemonNarcMapping(location: String, entries: Map<String, EntryDef>) : NarcMapping("pokemon", location, listOf(), entries) {
 
-class PokemonNarcMapping(entries: Map<String, EntryDef>) : NarcMapping("pokemon", listOf(), entries) {
-    val cachedEntries: List<Entry> = listOf()
-
-    override fun getEntry(index: Int): Entry {
-        return cachedEntries[index]
+    override fun getEntry(index: Int): PokemonEntry {
+        return super.getEntry(index) as PokemonEntry
     }
+
+    override fun makeEntry(index: Int): PokemonEntry {
+        return PokemonEntry()
+    }
+
 }
 
 class PokemonEntry : Entry() {

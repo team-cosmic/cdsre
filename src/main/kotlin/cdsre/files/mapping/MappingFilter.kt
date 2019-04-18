@@ -1,24 +1,12 @@
 package cdsre.files.mapping
 
+import cdsre.utils.Converters.safeConvert
 import org.xml.sax.Attributes
 import org.xml.sax.InputSource
 import org.xml.sax.helpers.XMLFilterImpl
 import java.io.File
-import java.lang.NumberFormatException
 import javax.management.modelmbean.XMLParseException
 import javax.xml.parsers.SAXParserFactory
-
-fun <T> safeConvert(func: () -> T): T? {
-    return try {
-        func()
-    } catch (e: Exception) {
-        null
-    }
-}
-
-fun splitFilename(name: String): List<String> {
-    return name.split("_", ".")
-}
 
 /**
  * Handles the generation of a NarcMapping from a .xml file
@@ -61,22 +49,24 @@ class MappingFilter : XMLFilterImpl() {
 
     override fun startElement(uri: String?, localName: String?, qName: String?, atts: Attributes?) {
         super.startElement(uri, localName, qName, atts)
-        when (localName) {
+        when (qName) {
             "mapping" -> {
-                location = ""
-                functions = mutableListOf()
-                entries = mutableMapOf()
-
-                entryOffset = 0
             }
             "location" -> {
-                location = atts?.getValue("src") ?: throw XMLParseException("Location element must include a source")
+                location = atts?.getValue("src")
+                    ?: throw XMLParseException("Location element must include a source")
             }
             "function" -> {
-                val strIndex = atts?.getValue("index") ?: throw XMLParseException("Function element must include index")
-                val index = safeConvert(strIndex::toInt) ?: throw XMLParseException("Function index must be an integer")
-                val name = atts.getValue("name") ?: "CMD_0x$index"
-                functions.add(FunctionDef(index, name))
+                val strIndex = atts?.getValue("index")
+                    ?: throw XMLParseException("Function element must include index")
+
+                if (strIndex != "UNKNOWN") {
+                    val index = safeConvert(strIndex::toInt, 16)
+                        ?: throw XMLParseException("Function index must be a base 16 integer, not $strIndex")
+
+                    val name = atts.getValue("name") ?: "CMD_0x$index"
+                    functions.add(FunctionDef(index, name))
+                }
             }
             "entries" -> {
                 inEntries = true
@@ -84,13 +74,22 @@ class MappingFilter : XMLFilterImpl() {
             "entry" -> {
                 if (!inEntries)
                     throw XMLParseException("Entry must be nested within an entries block")
+                else if (inEntry)
+                    throw XMLParseException("Entry cannot be nested within an entry. Use tag subentry")
 
                 val name = atts?.getValue("name") ?: throw XMLParseException("Entry element must define a name")
-                val strLen = atts.getValue("length") ?: "1"
-                val length = safeConvert(strLen::toInt) ?: throw XMLParseException("Entry length must be an integer")
+                var strLen = atts.getValue("length") ?: "1"
+                var bits = false
+                if (strLen[strLen.length - 1] == 'b') {
+                    // Handle bits
+                    bits = true
+                    strLen = strLen.substring(0, strLen.length - 2)
+                }
+                val length = safeConvert(strLen::toInt)
+                    ?: throw XMLParseException("Entry length must be an integer, not $strLen")
 
                 if (name != "PADDING") {
-                    curEntry = EntryDef(name, length, entryOffset)
+                    curEntry = EntryDef(name, length, bits, entryOffset)
                     inEntry = true
                 }
                 entryOffset += length
@@ -99,12 +98,21 @@ class MappingFilter : XMLFilterImpl() {
                 if (!inEntry)
                     throw XMLParseException("Subentry must be nested within an entry block")
 
-                val name = atts?.getValue("name") ?: throw XMLParseException("Subentry element must define a name")
-                val strLen = atts.getValue("length") ?: "1"
-                val length = safeConvert(strLen::toInt) ?: throw XMLParseException("Sebentry length must be an integer")
+                val name = atts?.getValue("name")
+                    ?: throw XMLParseException("Subentry element must define a name")
+
+                var strLen = atts.getValue("length") ?: "1"
+                var bits = false
+                if (strLen[strLen.length - 1] == 'b') {
+                    // Handle bits
+                    bits = true
+                    strLen = strLen.substring(0, strLen.length - 1)
+                }
+                val length = safeConvert(strLen::toInt)
+                    ?: throw XMLParseException("Subentry length must be an integer, not $strLen")
 
                 if (name != "PADDING") {
-                    curEntry?.addSubEntry(SubentryDef(name, length, subentryOffset))
+                    curEntry?.addSubEntry(SubentryDef(name, length, bits, subentryOffset))
                 }
                 subentryOffset += length
             }
@@ -113,26 +121,32 @@ class MappingFilter : XMLFilterImpl() {
 
     override fun endElement(uri: String?, localName: String?, qName: String?) {
         super.endElement(uri, localName, qName)
-        when (localName) {
+        when (qName) {
             "mapping" -> {
                 // Create NarcMapping
-                val pieces = filename.split("_")
+                val pieces = filename.split("_", ".")
                 val type = pieces[1]
 
                 newMap = when (type) {
                     "scripts" -> {
-                        ScriptNarcMapping(functions)
+                        ScriptNarcMapping(location, functions)
                     }
                     "pokemon" -> {
-                        PokemonNarcMapping(entries)
+                        PokemonNarcMapping(location, entries)
                     }
                     "items" -> {
-                        ItemNarcMapping(entries)
+                        ItemNarcMapping(location, entries)
                     }
                     else -> {
-                        NarcMapping(type, functions, entries)
+                        NarcMapping(type, location, functions, entries)
                     }
                 }
+
+                location = ""
+                functions = mutableListOf()
+                entries = mutableMapOf()
+
+                entryOffset = 0
             }
             "entries" -> {
                 inEntries = false
