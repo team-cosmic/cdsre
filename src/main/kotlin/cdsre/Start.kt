@@ -2,6 +2,7 @@ package cdsre
 
 import cdsre.workspace.Workspace
 import javafx.application.Application
+import javafx.application.Platform
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.Scene
@@ -18,6 +19,10 @@ class Start: Application() {
 		stage.scene = Scene(root)
 
 		stage.scene.stylesheets.add(this.javaClass.classLoader.getResource("css/main.css").toExternalForm())
+
+		stage.setOnCloseRequest {
+			Platform.exit()
+		}
 
 		stage.title = "CDSRE v1.0"
 		stage.show()

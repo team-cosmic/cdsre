@@ -11,6 +11,14 @@
 	-fx-text-box-color: #333333;
 }
 
+
+.radio-button .radio {
+    -fx-base: #666666;
+    -fx-background-color: #666666;
+    -fx-focus-color: white;
+	-fx-text-box-color: white;
+}
+
 .text-area {
 	-fx-control-inner-background:#333333;
 	-fx-font-family: Consolas; 
@@ -30,7 +38,7 @@
 }
 
 .styled-text-area .lineno .text {
-    -fx-fill: gray;
+    -fx-fill: #333333;
 }
 
 .caret {

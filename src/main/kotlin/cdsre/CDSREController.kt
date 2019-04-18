@@ -19,7 +19,6 @@ import java.net.URI
 import java.util.*
 import java.net.URL
 import java.io.BufferedReader
-import java.io.IOException
 import java.io.InputStreamReader
 import java.io.File
 import java.lang.Exception
@@ -233,8 +232,7 @@ class CDSREController: Initializable {
 			FileChooser.ExtensionFilter("CDSRE Files", "*.nds", "*.crp")
 		)
 
-		val file = fileChooser.showOpenDialog(Workspace.globalStage)
-			?: return //If file is null, then no file was selected; simply do nothing
+		val file = fileChooser.showOpenDialog(Workspace.globalStage) ?: return //If file is null, then no file was selected; simply do nothing
 
 		println(file.extension)
 
