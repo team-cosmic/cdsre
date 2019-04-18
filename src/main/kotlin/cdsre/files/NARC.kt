@@ -191,7 +191,8 @@ class NARC private constructor(protected val file: NitroFile) : NitroFS(file.isV
 			System.err.println("Image Table ${Constants.BAD_MAGIC}")
 		}
 
-		val length = reader.readUInt()
+		// Skip the length of the section
+		reader.seek(reader.filePointer + 4)
 
 		val newList: MutableList<ByteArray> = ArrayList()
 

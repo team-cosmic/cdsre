@@ -14,7 +14,7 @@ class EndianRandomAccessFile(file: File, mode: String) : EndianData {
 
     override var filePointer: Long
         get() = backing.filePointer
-        set(value) = throw OperationNotSupportedException()
+        set(_) = throw OperationNotSupportedException()
 
     // EndianData methods
 

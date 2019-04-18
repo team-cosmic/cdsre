@@ -17,7 +17,7 @@ class VirtualEndianRandomAccessFile(file: File, mode: String, private val offset
 
     override var filePointer: Long
         get() = backing.filePointer - offset
-        set(value) = throw OperationNotSupportedException()
+        set(_) = throw OperationNotSupportedException()
 
     init {
         backing.seek(offset)

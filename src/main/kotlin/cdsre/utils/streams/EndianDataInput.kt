@@ -136,28 +136,28 @@ interface EndianDataInput : Closeable {
 	 * @return newly-read string, excluding delimiter
 	 */
 	fun readUntil(end: String, charset: Charset = Charsets.UTF_8, ignoreCase: Boolean = false): String {
-		val end = String(end.toByteArray(), charset) //Redefine end to match the provided charset
-		var outArray = arrayListOf<Byte>()
-		var outString = ""
+		val realEnd = String(end.toByteArray(), charset) //Redefine end to match the provided charset
+		val outArray = arrayListOf<Byte>()
+		var outString: String
 
 		//do-while loop guarantees one pass. Ends loop when delimiter is found
 		do {
 
 			//Get the next byte, as all charsets need at least one
-			outArray.add(read().toChar().toByte())
+			outArray.add(read().toByte())
 
 			if(charset != Charsets.UTF_8 && charset != Charsets.US_ASCII && charset != Charsets.ISO_8859_1) {
-				outArray.add(read().toChar().toByte()) //Two bytes for 16-bit
+				outArray.add(read().toByte()) //Two bytes for 16-bit
 
 				if(charset == Charsets.UTF_32 || charset == Charsets.UTF_32BE || charset == Charsets.UTF_32LE) {
-					outArray.add(read().toChar().toByte()) //Four bytes
-					outArray.add(read().toChar().toByte()) //for 32-bit
+					outArray.add(read().toByte()) //Four bytes
+					outArray.add(read().toByte()) //for 32-bit
 				}
 			}
 
-			outString = String(outArray.toArray() as ByteArray, charset) //Now that we have all the bytes, make a string out of them with the proper charset
-		} while(!outString.contains(end, ignoreCase))
+			outString = String(outArray.toByteArray(), charset) //Now that we have all the bytes, make a string out of them with the proper charset
+		} while(!outString.contains(realEnd, ignoreCase))
 
-		return outString.substring(0, outString.indexOf(end)) //Cut the delimiter off the output string ad return the result
+		return outString.substring(0, outString.indexOf(realEnd)) //Cut the delimiter off the output string ad return the result
 	}
 }
