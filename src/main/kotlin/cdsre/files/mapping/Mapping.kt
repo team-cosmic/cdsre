@@ -1,25 +1,8 @@
-package cdsre.files
+package cdsre.files.mapping
 
 import java.io.File
 
-
-open class NarcMapping {
-    open fun getEntry(index: Int): Entry {
-        return Entry()
-    }
-}
-
-open class Entry {
-    open fun getValue(name: String): ByteArray {
-        return ByteArray(0)
-    }
-
-    open fun setValue(name: String, data: ByteArray) {
-
-    }
-}
-
-class Mapping private constructor(file: File) {
+class Mapping private constructor(val narcMappings: Map<String, NarcMapping>) {
 
     companion object {
 
@@ -29,11 +12,17 @@ class Mapping private constructor(file: File) {
          */
         @JvmStatic
         fun loadMapping(file: File): Mapping {
-            return Mapping(file)
+            val filter = MappingFilter()
+            val newMaps: MutableMap<String, NarcMapping> = mutableMapOf()
+            for (f in file.listFiles()) {
+                if (f.extension == "xml") {
+                    val map = filter.parse(f)
+                    newMaps[map.name] = map
+                }
+            }
+            return Mapping(newMaps)
         }
     }
-
-    protected val narcMappings: Map<String, NarcMapping> = mapOf()
 
     val pokemon: PokemonNarcMapping?
         get() = narcMappings["pokemon"] as PokemonNarcMapping
