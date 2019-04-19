@@ -1,6 +1,8 @@
 package cdsre.workspace
 
 import cdsre.files.Project
+import cdsre.files.ROM
+import cdsre.files.mapping.Mapping
 import javafx.stage.Stage
 
 object Workspace {
@@ -12,4 +14,9 @@ object Workspace {
             globalStage.title = value!!.name + "| CDSRE v1.0"
             field = value
         }
+
+    var currentROM: ROM? = null
+
+    var currentMapping: Mapping? = null
+
 }

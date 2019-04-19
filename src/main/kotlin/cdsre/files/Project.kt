@@ -1,8 +1,11 @@
 package cdsre.files
 
+import cdsre.files.mapping.Mapping
 import cdsre.utils.Constants
+import cdsre.workspace.Workspace
 import org.w3c.dom.Element
 import java.io.File
+import javax.management.modelmbean.XMLParseException
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.transform.TransformerFactory
 import javax.xml.transform.dom.DOMSource
@@ -30,6 +33,7 @@ class Project private constructor(file: File, var name: String = "CDSRE Project"
 	}
 
 	var version: String = Constants.CURRENT_VERSION
+	var mapping: String = ""
 
 	var home: String = "./"
 	var root: String = "root/"
@@ -51,10 +55,11 @@ class Project private constructor(file: File, var name: String = "CDSRE Project"
 			}
 
 			version = loadedVersion
-			name = projectInfo.getOrDefault("name", name)
+			name = projectInfo["name"] ?: name
+			mapping = projectInfo["mapping"] ?: mapping
 
-			home = projectInfo.getOrDefault("paths.home", home)
-			root = projectInfo.getOrDefault("paths.root", root)
+			home = projectInfo["paths.home"] ?: home
+			root = projectInfo["paths.root"] ?: root
 		}
 	}
 
@@ -90,6 +95,11 @@ class Project private constructor(file: File, var name: String = "CDSRE Project"
 		}
 
 		return out
+	}
+
+	fun setupWorkspace() {
+		Workspace.currentROM = ROM.loadROM(File(this.root))
+		Workspace.currentMapping = Mapping.getMapping(this.mapping)
 	}
 
 	fun save(file: File) {

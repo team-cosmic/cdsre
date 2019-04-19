@@ -3,8 +3,8 @@ package cdsre.files.mapping
 open class NarcMapping(
     val name: String,
     val location: String,
-    val functions: List<FunctionDef>,
-    val entries: Map<String, EntryDef>
+    val funcDefs: List<FunctionDef>,
+    val entryDefs: Map<String, EntryDef>
 ) {
 
     protected val cachedEntries: MutableMap<Int, Entry> = mutableMapOf()
@@ -20,7 +20,7 @@ open class NarcMapping(
 
 }
 
-open class Entry internal constructor () {
+open class Entry internal constructor() {
     open fun getValue(name: String): ByteArray {
         return ByteArray(0)
     }
