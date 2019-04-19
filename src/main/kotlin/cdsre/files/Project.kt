@@ -5,13 +5,12 @@ import cdsre.utils.Constants
 import cdsre.workspace.Workspace
 import org.w3c.dom.Element
 import java.io.File
-import javax.management.modelmbean.XMLParseException
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.transform.TransformerFactory
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
 
-class Project private constructor(file: File, var name: String = "CDSRE Project") {
+class Project private constructor(val file: File, var name: String = "CDSRE Project") {
 
 	companion object {
 
@@ -100,6 +99,10 @@ class Project private constructor(file: File, var name: String = "CDSRE Project"
 	fun setupWorkspace() {
 		Workspace.currentROM = ROM.loadROM(File(this.root))
 		Workspace.currentMapping = Mapping.getMapping(this.mapping)
+	}
+
+	fun save() {
+		save(file)
 	}
 
 	fun save(file: File) {
