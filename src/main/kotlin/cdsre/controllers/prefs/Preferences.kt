@@ -69,7 +69,7 @@ class Preferences: Initializable {
         val root: Parent = FXMLLoader.load(javaClass.classLoader.getResource("graphics/prefs/prefs.fxml"))
 
         var stage = Stage()
-        stage.title = "Project Setup"
+        stage.title = "Preferences"
         stage.scene = Scene(root)
 
         stage.scene.stylesheets.add(this.javaClass.classLoader.getResource("css/main.css").toExternalForm())
