@@ -1,5 +1,6 @@
 package cdsre
 
+import cdsre.controllers.prefs.Preferences
 import cdsre.controllers.project.ProjectSetup
 import cdsre.files.Project
 import cdsre.files.ROM
@@ -279,6 +280,9 @@ class CDSREController: Initializable {
 
 	@FXML
 	fun openProjectSetup(event: ActionEvent) = ProjectSetup().start()
+
+	@FXML
+	fun openPreferences(event: ActionEvent) = Preferences().start()
 
 	companion object {
 		@JvmStatic

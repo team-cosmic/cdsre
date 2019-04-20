@@ -44,7 +44,7 @@
                         <MenuItem fx:id="menuitem_saverom" mnemonicParsing="false" text="Save ROM" />
                         <MenuItem fx:id="menuitem_saveas" mnemonicParsing="false" text="Save As…" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="menuitem_prefs" mnemonicParsing="false" text="Preferences…" />
+                        <MenuItem fx:id="menuitem_prefs" mnemonicParsing="false" onAction="#openPreferences" text="Preferences…" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="menuitem_quit" mnemonicParsing="false" onAction="#quit" text="Quit">
                                  <accelerator>
