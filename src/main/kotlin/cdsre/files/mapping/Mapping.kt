@@ -44,8 +44,14 @@ class Mapping private constructor(val narcMappings: Map<String, NarcMapping>) {
     val pokemon: PokemonNarcMapping?
         get() = narcMappings["pokemon"] as PokemonNarcMapping
 
-    fun getSupported(): List<String> {
-        return listOf()
+    val items: ItemNarcMapping?
+        get() = narcMappings["items"] as ItemNarcMapping
+
+    val script: ScriptNarcMapping?
+        get() = narcMappings["script"] as ScriptNarcMapping
+
+    fun getSupported(): Set<String> {
+        return narcMappings.keys
     }
 
     fun getMapping(name: String): NarcMapping? {

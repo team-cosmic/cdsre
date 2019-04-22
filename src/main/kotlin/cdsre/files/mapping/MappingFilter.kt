@@ -92,7 +92,7 @@ class MappingFilter : XMLFilterImpl() {
                     curEntry = EntryDef(name, length, bits, entryOffset)
                     inEntry = true
                 }
-                entryOffset += length
+                entryOffset += length * (if (bits) 1 else 8)
             }
             "subentry" -> {
                 if (!inEntry)
@@ -114,7 +114,7 @@ class MappingFilter : XMLFilterImpl() {
                 if (name != "PADDING") {
                     curEntry?.addSubEntry(SubentryDef(name, length, bits, subentryOffset))
                 }
-                subentryOffset += length
+                subentryOffset += length * (if (bits) 1 else 8)
             }
         }
     }
