@@ -36,15 +36,15 @@ class CDSREController: Initializable {
 	override fun initialize(p0: URL?, p1: ResourceBundle?) {
 
 		/** CONTROLLER SETUP **/
-		var names = arrayOf("pokemon", "text", "event", "script", "mapheaders", "matrix", "map")
+		val names = arrayOf("pokemon", "text", "event", "script", "mapheaders", "matrix", "map")
 
 		for(name in names)
 		{
-			var tempLeft = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_$name.fxml"))
-			var tempMid = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_$name.fxml"))
-			var tempRight = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_$name.fxml"))
+			val tempLeft = FXMLLoader(this.javaClass.classLoader.getResource("graphics/master/master_$name.fxml"))
+			val tempMid = FXMLLoader(this.javaClass.classLoader.getResource("graphics/view/view_$name.fxml"))
+			val tempRight = FXMLLoader(this.javaClass.classLoader.getResource("graphics/details/details_$name.fxml"))
 
-			var tempMulti = MultiController(tempLeft, tempMid, tempRight)
+			val tempMulti = MultiController(tempLeft, tempMid, tempRight)
 			controllers[name] = tempMulti
 		}
 
@@ -56,8 +56,8 @@ class CDSREController: Initializable {
 			//TODO: implement for non-Windows users. :P
 			if(event.code == KeyCode.ENTER) {
 				val builder = ProcessBuilder()
-				var inArr = console.text.split("\n")
-				var input = inArr[inArr.size - 2].replace("$directory>", "").trim()
+				val inArr = console.text.split("\n")
+				val input = inArr[inArr.size - 2].replace("$directory>", "").trim()
 				builder.command("cmd.exe", "/c", input)
 
 				if(input.startsWith("cd"))
@@ -71,7 +71,7 @@ class CDSREController: Initializable {
 					val process = builder.start()
 
 					var line: String? = ""
-					var buf = BufferedReader(InputStreamReader(process.inputStream))
+					val buf = BufferedReader(InputStreamReader(process.inputStream))
 					while(line != null)
 					{
 						line = buf.readLine()
@@ -194,20 +194,20 @@ class CDSREController: Initializable {
 	@FXML
 	fun switchView(event: ActionEvent) {
 		println("Loading " + (event.source as MenuItem).id + " View")
-		var viewToLoad = (event.source as MenuItem).id
+		val viewToLoad = (event.source as MenuItem).id
 
-		var masterpanel = AnchorPane(controllers[viewToLoad]!!.master)
+		val masterpanel = AnchorPane(controllers[viewToLoad]!!.master)
 		masterpanel.prefWidthProperty().bind(this.leftpanel.widthProperty())
 		masterpanel.prefHeightProperty().bind(this.leftpanel.heightProperty())
 		leftpanel.children.setAll(masterpanel)
 
-		var primaryview = AnchorPane(controllers[viewToLoad]!!.view)
+		val primaryview = AnchorPane(controllers[viewToLoad]!!.view)
 		primaryview.prefWidthProperty().bind(this.view.widthProperty())
 		primaryview.prefHeightProperty().bind(this.view.heightProperty())
 		view.content = primaryview
 		this.leftstatus.text = (event.source as MenuItem).text
 
-		var detailpanel = AnchorPane(controllers[viewToLoad]!!.details)
+		val detailpanel = AnchorPane(controllers[viewToLoad]!!.details)
 		detailpanel.prefWidthProperty().bind(this.rightpanel.widthProperty())
 		detailpanel.prefHeightProperty().bind(this.rightpanel.heightProperty())
 		rightpanel.children.setAll(detailpanel)
@@ -240,8 +240,9 @@ class CDSREController: Initializable {
 		if(file.extension == "crp") {
 			Workspace.currentProject = Project.loadProject(file)
 		} else if(file.extension == "nds") {
-			var originalRom: ROM = ROM.loadROM(file)
+			val originalRom: ROM = ROM.loadROM(file)
 			var projectName: String = ""
+			Workspace.currentROM = originalRom
 			// TODO: Open project creation dialog here
 			// TODO: Unpack ROM into project location
 			//project = Project.createProject("", projectName)
@@ -258,14 +259,14 @@ class CDSREController: Initializable {
 
 		//TODO: Make this more safe. Script view is not certain to be open at this point.
 
-		var loader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/subcomps/file.fxml"))
+		val loader = FXMLLoader(this.javaClass.classLoader.getResource("graphics/subcomps/file.fxml"))
 
-		var newFile = Tab("", loader.load())
+		val newFile = Tab("", loader.load())
 
 		loader.getController<FileController>().script_view = view.content as AnchorPane
 		loader.getController<FileController>().file = newFile
 
-		var files = loader.getController<FileController>().script_view.children[0].lookup("#files") as TabPane
+		val files = loader.getController<FileController>().script_view.children[0].lookup("#files") as TabPane
 
 		loader.getController<FileController>().establishFile()
 
