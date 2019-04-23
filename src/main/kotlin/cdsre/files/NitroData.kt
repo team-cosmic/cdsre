@@ -218,7 +218,7 @@ class VirtualNitroFile : NitroFile {
 
     constructor(file: NitroFile, alloc: NitroAlloc, path: String, narc: NARC) : super(path) {
         this.alloc = alloc
-        offset = alloc.start.toLong() + file.offset
+        offset = alloc.start.toLong() + file.offset + narc.fimgOffset.toLong()
         length = (alloc.end - alloc.start).toLong()
         realFile = file.realFile
         nitroFS = narc

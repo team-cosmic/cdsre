@@ -90,6 +90,12 @@ class NARC private constructor(protected val file: NitroFile) : NitroFS(file.isV
 		get() = fntbHeaderSize + fntSize
 
 	/**
+	 * The size of the FIMG header
+	 */
+	val fimgHeaderSize: UInt
+		get() = 8u
+
+	/**
 	 * The total size of the FIMG section
 	 */
 	val fimgSize: UInt
@@ -100,6 +106,9 @@ class NARC private constructor(protected val file: NitroFile) : NitroFS(file.isV
 			}
 			return out
 		}
+
+	val fimgOffset: UInt
+		get() = headerSize + fatbSize + fntbSize + fimgHeaderSize
 
 	override val allocationTable: MutableList<NitroAlloc>
 	override val filenameTable: NitroRoot
@@ -252,7 +261,8 @@ class NARC private constructor(protected val file: NitroFile) : NitroFS(file.isV
 	 * @param index: Index of the desired unnamed file
 	 */
 	override fun getFile(index: Int): NitroFile {
-		val allocs: List<NitroAlloc> = this.filenameTable.files.filter {a -> a.name == null}
+		// TODO: can this be optimized out?
+		val allocs: List<NitroAlloc> = this.filenameTable.files.filter {it.name == null}
 		if (index > allocs.size)
 			throw FileNotFoundException()
 		val alloc = allocs[index]
