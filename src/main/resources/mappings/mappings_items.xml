@@ -1,5 +1,5 @@
 <mapping>
-	<location src="data/itemtool/itemdata/pl_itemdata.narc" />
+	<location src="itemtool/itemdata/pl_itemdata.narc" />
 	<entries>
 		<entry length="2" name="Price" />
 		<entry name="Battle Effect" />

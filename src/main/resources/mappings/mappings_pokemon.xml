@@ -1,5 +1,5 @@
 <mapping>
-	<location src="data/poketool/personal/pl_personal.narc" />
+	<location src="poketool/personal/pl_personal.narc" />
 	<entries>
 		<entry name="HP" />
 		<entry name="Attack" />

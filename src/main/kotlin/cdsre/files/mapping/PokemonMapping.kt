@@ -1,28 +1,29 @@
 package cdsre.files.mapping
 
+import kotlin.reflect.KClass
+
 class PokemonNarcMapping(location: String, entries: Map<String, EntryDef>) : NarcMapping("pokemon", location, listOf(), entries) {
 
     override fun getEntry(index: Int): PokemonEntry {
         return super.getEntry(index) as PokemonEntry
     }
 
-    override fun makeEntry(index: Int): PokemonEntry {
-        return PokemonEntry()
+    override fun getEntryType(): KClass<out Entry> {
+        return PokemonEntry::class
     }
 
 }
 
-class PokemonEntry : Entry() {
+class PokemonEntry(mapping: PokemonNarcMapping, index: Int, data: MutableMap<String, ByteArray>) : Entry(mapping, index, data) {
 
     // Whatever properties
 
-    override fun getValue(name: String): ByteArray {
-        return ByteArray(0)
+    fun getName(): String {
+        TODO()
     }
 
-    override fun setValue(name: String, data: ByteArray) {}
-
-    fun getName() {}
-
-    fun getAbility1() {}
+    fun getHP(): Int {
+        val arr = getValue("HP") ?: return 0
+        return arr[0].toInt()
+    }
 }

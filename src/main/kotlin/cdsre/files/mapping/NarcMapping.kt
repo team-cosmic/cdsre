@@ -2,6 +2,9 @@ package cdsre.files.mapping
 
 import cdsre.workspace.Workspace
 import java.io.FileNotFoundException
+import java.io.InvalidClassException
+import kotlin.reflect.KClass
+import kotlin.reflect.full.primaryConstructor
 
 open class NarcMapping(
     val name: String,
@@ -30,7 +33,7 @@ open class NarcMapping(
             val byteArray = ByteArray(value.length * (if (value.bits) 8 else 1))
             reader.read(byteArray)
 
-            if (value.bits) {
+            if (!value.bits) {
                 newMap[key] = byteArray
             } else {
                 val newArr = ByteArray(value.length)
@@ -41,7 +44,12 @@ open class NarcMapping(
             }
         }
 
-        return Entry(this, index, newMap)
+        val klass = getEntryType()
+        return klass.primaryConstructor?.call(this, index, newMap) ?: throw InvalidClassException("Primary constructor not available")
+    }
+
+    protected open fun getEntryType(): KClass<out Entry> {
+        return Entry::class
     }
 
     open fun saveEntry(entry: Entry) {
