@@ -159,7 +159,7 @@ class FileController: Initializable {
 				}else {
 					if(!popup.isShowing)
 					{
-						popup.show(script_area, script_area.caretBounds.get().centerX, script_area.caretBounds.get().centerY + 10)
+						popup.show(script_area, script_area.caretBounds.get().maxX / 2, script_area.caretBounds.get().maxY / 2 + 10)
 						queryIndex = script_area.caretPosition - 1
 					}
 				}

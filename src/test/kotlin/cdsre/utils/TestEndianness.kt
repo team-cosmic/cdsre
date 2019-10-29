@@ -1,7 +1,7 @@
 package cdsre.utils
 
-import kotlin.test.Test
 import cdsre.utils.Endianness.Endian
+import org.junit.jupiter.api.Test
 
 
 class TestEndianness {
